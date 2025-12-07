@@ -46,6 +46,7 @@ Kişisel veri gönderilmez; sadece hizmet için gerekli teknik bilgiler (ör. is
 ### Reklam & Analytics
 - Şu an reklam yok ve analitik yapılmıyor.
 - (İleride) Reklam eklendiğinde Google Mobile Ads/benzeri sağlayıcılar tarafından cihaz tanımlayıcıları toplanabilir; sağlayıcıların kendi politikaları geçerli olacaktır. Ek bildirim yapacağız.
+- (İleride) Reklam gösterimi ve ölçümü için Google Advertising ID (AD_ID) kullanılabilir; bu yalnızca reklam sunumu ve performans ölçümü amacıyla kullanılacaktır.
 
 ### Uygulama İçi Satın Almalar (İleride)
 - Şu an yoktur.
