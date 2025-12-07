@@ -249,7 +249,7 @@ const GameScreen: React.FC<GameScreenProps> = ({ category, secretWord, onWin, on
       </div>
 
       {/* Input Area (Sticky Bottom) */}
-      <div className="absolute bottom-0 left-0 right-0 p-4 bg-white border-t border-slate-200 shadow-lg z-30">
+      <div className="sticky bottom-0 left-0 right-0 p-4 pb-[max(1rem,env(safe-area-inset-bottom,0.75rem))] bg-white border-t border-slate-200 shadow-lg z-30">
         <div className="relative">
             {/* Suggestions Popover */}
             {showSuggestions && (
@@ -277,7 +277,7 @@ const GameScreen: React.FC<GameScreenProps> = ({ category, secretWord, onWin, on
                          handleGuess(inputValue);
                     }
                 }} 
-                className="flex gap-2"
+                className="flex gap-2 items-stretch"
             >
             <input
                 ref={inputRef}
@@ -285,7 +285,7 @@ const GameScreen: React.FC<GameScreenProps> = ({ category, secretWord, onWin, on
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 placeholder="Kelime yaz..."
-                className="flex-1 px-4 py-3 rounded-xl border-2 border-slate-300 focus:border-indigo-500 focus:ring-0 outline-none transition text-lg bg-slate-50"
+                className="flex-1 min-w-0 px-4 py-3 rounded-xl border-2 border-slate-300 focus:border-indigo-500 focus:ring-0 outline-none transition text-base md:text-lg bg-slate-50"
                 autoComplete="off"
                 autoCorrect="off"
                 spellCheck="false"
@@ -293,7 +293,7 @@ const GameScreen: React.FC<GameScreenProps> = ({ category, secretWord, onWin, on
             <button 
                 type="submit"
                 disabled={!inputValue}
-                className="bg-indigo-600 disabled:bg-slate-300 text-white px-6 py-3 rounded-xl font-bold hover:bg-indigo-700 transition active:scale-95"
+                className="bg-indigo-600 disabled:bg-slate-300 text-white px-5 md:px-6 py-3 rounded-xl font-bold hover:bg-indigo-700 transition active:scale-95 flex-shrink-0 min-w-[96px] text-sm md:text-base"
             >
                 Tahmin
             </button>
