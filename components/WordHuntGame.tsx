@@ -43,6 +43,13 @@ const WordHuntGame: React.FC<WordHuntGameProps> = ({ category, onWin, onBack }) 
     const shuffled = [...validWords].sort(() => 0.5 - Math.random());
     const selectedWords = shuffled.slice(0, 5).map(w => w.toLocaleUpperCase('tr-TR'));
     
+    console.log('🔍 KELIME AVI OYUNU - HATA AYIKLAMA');
+    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+    console.log(`Kategori: ${category.label}`);
+    console.log(`Geçerli Kelime Sayısı: ${validWords.length}`);
+    console.log(`Seçilen Kelimeler:`, selectedWords);
+    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+    
     setTargetWords(selectedWords);
     setFoundWords([]);
     
@@ -180,6 +187,10 @@ const WordHuntGame: React.FC<WordHuntGameProps> = ({ category, onWin, onBack }) 
 
         const found = targetWords.find(w => !foundWords.includes(w) && (w === selectedWord || w === reversedWord));
         
+        console.log(`📝 Seçilen: "${selectedWord}" | Ters: "${reversedWord}"`);
+        console.log(`Bulundu mu?: ${found ? '✅ EVET - ' + found : '❌ HAYIR'}`);
+        console.log(`Bulunan Kelimeler (${foundWords.length}/${targetWords.length}):`, [...foundWords, ...(found ? [found] : [])]);
+        
         if (found) {
             setFoundWords(prev => [...prev, found]);
             // Mark grid permanently
@@ -189,6 +200,7 @@ const WordHuntGame: React.FC<WordHuntGameProps> = ({ category, onWin, onBack }) 
             
             // Check win condition
             if (foundWords.length + 1 === targetWords.length) {
+                console.log('🎉 KAZANDI! Tüm kelimeler bulundu!');
                 setTimeout(onWin, 500);
             }
         }

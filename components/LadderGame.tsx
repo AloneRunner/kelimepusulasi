@@ -99,6 +99,15 @@ const LadderGame: React.FC<LadderGameProps> = ({ onWin, onBack, coins, onSpendCo
         if (reachableTargets.length > 0) {
             const targetObj = reachableTargets[Math.floor(Math.random() * reachableTargets.length)];
             
+            console.log('🎯 MERDIVEN OYUNU - HATA AYIKLAMA');
+            console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+            console.log(`Başlangıç: ${start}`);
+            console.log(`Hedef: ${targetObj.word}`);
+            console.log(`Minimum Adım: ${targetObj.path.length - 1}`);
+            console.log(`Çözüm Yolu:`, targetObj.path.join(' → '));
+            console.log('Reachable Targets Sayısı:', reachableTargets.length);
+            console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+            
             setStartWord(start);
             setTargetWord(targetObj.word);
             setSolutionPath(targetObj.path); // Save full path for hints
@@ -124,9 +133,13 @@ const LadderGame: React.FC<LadderGameProps> = ({ onWin, onBack, coins, onSpendCo
       const currentInput = inputValue.toLocaleUpperCase('tr-TR');
       const lastWord = userSteps.length > 0 ? userSteps[userSteps.length - 1] : startWord;
 
+      console.log(`📝 Girdi: "${currentInput}" | Son Kelime: "${lastWord}"`);
+      console.log(`Hedef: "${targetWord}"`);
+
       // Validations
       if (currentInput.length !== startWord.length) {
           playSound('wrong');
+          console.log(`❌ Harf sayısı yanlış: ${currentInput.length}/${startWord.length}`);
           setMessage("Harf sayısı eksik.");
           setTimeout(() => setMessage(null), 1500);
           return;
@@ -134,6 +147,7 @@ const LadderGame: React.FC<LadderGameProps> = ({ onWin, onBack, coins, onSpendCo
 
       if (!isOneLetterDiff(lastWord, currentInput)) {
           playSound('wrong');
+          console.log(`❌ Sadece 1 harf değişmeli: "${lastWord}" → "${currentInput}"`);
           setMessage("Sadece 1 harf değişmeli!");
           setTimeout(() => setMessage(null), 1500);
           return;
@@ -141,6 +155,7 @@ const LadderGame: React.FC<LadderGameProps> = ({ onWin, onBack, coins, onSpendCo
 
       if (!dictionary.includes(currentInput)) {
           playSound('wrong');
+          console.log(`❌ Sözlükte yok: "${currentInput}" (Sözlük boyutu: ${dictionary.length})`);
           setMessage("Bu kelime sözlükte yok.");
           setTimeout(() => setMessage(null), 1500);
           return;
@@ -148,6 +163,7 @@ const LadderGame: React.FC<LadderGameProps> = ({ onWin, onBack, coins, onSpendCo
 
       if (userSteps.includes(currentInput) || currentInput === startWord) {
           playSound('wrong');
+          console.log(`❌ Kelime zaten kullanıldı: "${currentInput}"`);
           setMessage("Bu kelimeyi zaten kullandın.");
           setTimeout(() => setMessage(null), 1500);
           return;
@@ -158,9 +174,11 @@ const LadderGame: React.FC<LadderGameProps> = ({ onWin, onBack, coins, onSpendCo
       const newSteps = [...userSteps, currentInput];
       setUserSteps(newSteps);
       setInputValue('');
+      console.log(`✅ Geçerli Hamle! Merdiven: ${[startWord, ...newSteps].join(' → ')}`);
 
       // Check Win
       if (currentInput === targetWord) {
+          console.log(`🎉 KAZANDI! Toplam Adımlar: ${newSteps.length}, Minimum: ${minSteps}`);
           setTimeout(onWin, 500);
       }
   };
