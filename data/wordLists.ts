@@ -782,47 +782,47 @@ const body = prepareList([
   "yanak", "yemek borusu", "yumruk", "yutak", "yüz", "yürek"
 ]);
 
-const science6 = prepareList([
-  "akciğer", "akustik", "alyuvar", "ampul", "anatomi", "anüs", "asteroid", "astronomi", "atmosfer", "atom", "atık", "ay", 
+const science = prepareList([
+  "akciğer", "akustik", "alyuvar", "ampul", "anatomi", "anüs", "asteroid", "astronomi", "atmosfer", "atom", "atık", "ay",
+  "ayın evreleri", "dolunay",
   "bağırsak", "basınç", "besin", "beyincik", "beyin", "biyoçeşitlilik", "böbrek", "bronş", "buhar", "burun",
-  "canlı", "ciğer", "cıva", 
-  "çekirdek", "çevre", "çiçek", "çimlenme", "çözelti",
+  "canlı", "ciğer", "cıva",
+  "çekirdek", "çevre", "çevre kirliliği", "çiçek", "çimlenme", "çözelti",
   "damar", "dengelenmiş", "destek", "devre", "dışkı", "diyafram", "dolaşım", "doku", "dünya", "duyu",
-  "eklem", "ekosistem", "elektrik", "enerji", "enzim", "erozyon", "eşey", "evren",
+  "eklem", "ekosistem", "elektrik", "elektrik devresi", "enerji", "enzim", "erozyon", "eşey", "evren",
   "fen", "fizik", "fotosentez", "fosil",
-  "gaz", "genleşme", "gezegen", "göktaşı", "gölge", "göz", "gübre", "güneş", "güç",
+  "gaz", "genleşme", "gezegen", "göktaşı", "gölge", "tam gölge", "göz", "gübre", "güneş", "güç",
   "hacim", "hareket", "hava", "hazımsızlık", "heterojen", "hipofiz", "homojen", "hormon", "hücre",
   "ısı", "iskelet", "iletim", "iletken", "ince", "izolatör",
   "jüpiter",
   "kalın", "kalp", "kan", "karaciğer", "karbondioksit", "kas", "katı", "kaynama", "kemik", "kıkırdak", "kimyasal", "kofoul", "koza", "kulak", "kuyrukluyıldız", "kuvvet", "küf", "kütle",
-  "maça", "madde", "magma", "mantar", "mars", "mayoz", "mercek", "merkez", "merkür", "metal", "meteor", "mide", "mikroskop", "mito", "mitoz", "molekül",
+  "maça", "madde", "magma", "mantar", "mars", "mayoz", "mercek", "merkez", "merkür", "metal", "meteor", "mide", "mikroskop", "mikroskopik", "mito", "mitoz", "molekül",
   "nabız", "neptün", "nötron",
   "omurilik", "organ", "organel", "oksijen", "oynar",
   "pankreas", "parlaklık", "pil", "plazma", "protein", "proton",
   "refleks", "roket",
-  "safra", "salgı", "saman yolu", "satürn", "ses", "sıcaklık", "sıvı", "sindirim", "sinir", "sistem", "soluk", "solunum", "su", "sürat", "sürtünme",
+  "safra", "salgı", "saman yolu", "satürn", "ses", "sıcaklık", "sıvı", "sindirim", "sinir", "sistem", "soluk", "solunum", "su", "sürat", "sürtünme", "sürtünme kuvveti",
   "tanecik", "tansiyon", "teleskop", "tepkime", "testis", "titreşim", "tohum", "toplardamar", "tutulma",
   "uranüs", "uydu", "uzay",
   "vakum", "venüs", "vitamin", "vücut",
   "yalıtkan", "yalıtım", "yakıt", "yankı", "yayılma", "yenilenebilir", "yoğunluk", "yörünge", "yumurta", "yumurtalık", "yutak",
-  // Yeni eklemeler
+  // Yeni eklemeler ve MEB kritik terimler
   "adaptasyon", "ametal", "amip", "antikor",
   "bağışıklık", "basit makine", "bileşke kuvvet", "biyoçeşitlilik",
-  "damıtma", "dengelenmiş kuvvet", "diyaliz", "dna",
-  "elektrik devresi", "erime noktası", "esneklik",
-  "fermantasyon", "fotosentez",
-  "gen", "genetik", "geri dönüşüm", "gölge",
+  "damıtma", "dengelenmiş kuvvet", "diyaliz", "dna", "nükleotid",
+  "erime noktası", "esneklik",
+  "fermantasyon", "gen", "genetik", "geri dönüşüm", "gölge",
   "hal değişimi", "hidroliz",
   "iletken", "ivme",
   "kaldırma kuvveti", "kalıtım", "kromozom", "kütle çekim",
   "maden", "manyetizma", "mayoz", "metabolizma", "mitokondri", "mitoz", "mutasyon",
-  "omurgalı",
+  "omurgalı", "omurgasız",
   "parazit", "popülasyon",
   "ribozom",
-  "sitoplazma", "süblimleşme", "sürat", "sürtünme",
+  "sitoplazma", "süblimleşme", "sürat",
   "terleme",
   "yalıtkan", "yenilenebilir", "yoğunlaşma",
-  "zigot"
+  "zigot", "dinamometre", "periyodik tablo", "biyoteknoloji", "modifikasyon", "pascal prensibi", "açık hava basıncı", "asit yağmuru", "makara", "kaldıraç"
 ]);
 
 const mathTerms = prepareList([
@@ -882,7 +882,7 @@ export const CATEGORIES: Category[] = [
   
   // --- EDUCATION GROUP ---
   { id: 'body', label: 'Vücudumuz', icon: '🧠', words: body, group: 'education' },
-  { id: 'science6', label: 'Fen Bilimleri', icon: '🔬', words: science6, group: 'education' },
+  { id: 'science', label: 'Ortaokul Fen Bilimleri', icon: '🔬', words: science, group: 'education' },
   { id: 'space', label: 'Uzay', icon: '🪐', words: space, group: 'education' },
   { id: 'history', label: 'Tarih Terimleri', icon: '📜', words: history, group: 'education' },
   { id: 'chemistry', label: 'Kimya', icon: '🧪', words: chemistry, group: 'education' },
