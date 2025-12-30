@@ -11,6 +11,7 @@ export default defineConfig(() => {
       base: './',
       plugins: [react()],
       build: {
+        target: 'es2018',
         outDir: 'dist',
         assetsDir: 'assets',
         sourcemap: false,

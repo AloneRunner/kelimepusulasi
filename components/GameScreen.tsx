@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Category, GuessResult } from '../types';
 import { playSound } from '../services/audioService';
+import { TurkishKeyboard } from './TurkishKeyboard';
 
 interface GameScreenProps {
   category: Category;
@@ -59,11 +60,13 @@ const GameScreen: React.FC<GameScreenProps> = ({ category, secretWord, onWin, on
     listEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [guesses]);
 
-  // Filter autocomplete
+  // Filter autocomplete (trim & locale-aware so trailing spaces on mobile don't block typing)
   useEffect(() => {
-    if (inputValue.length > 0) {
-      const filtered = category.words.filter(w => 
-        w.toLowerCase().includes(inputValue.toLowerCase())
+    const normalized = inputValue.toLocaleLowerCase('tr-TR').trim();
+
+    if (normalized.length > 0) {
+      const filtered = category.words.filter(w =>
+        w.toLocaleLowerCase('tr-TR').includes(normalized)
       );
       setFilteredSuggestions(filtered.slice(0, 5)); // Limit to 5
       setShowSuggestions(true);
@@ -248,57 +251,43 @@ const GameScreen: React.FC<GameScreenProps> = ({ category, secretWord, onWin, on
         <div ref={listEndRef} />
       </div>
 
-      {/* Input Area (Fixed Bottom) */}
-      <div className="flex-shrink-0 p-4 pb-[max(1rem,env(safe-area-inset-bottom,0.75rem))] bg-white border-t border-slate-200 shadow-lg z-30">
-        <div className="relative">
-            {/* Suggestions Popover */}
-            {showSuggestions && (
-                <div className="absolute bottom-full mb-2 w-full bg-white rounded-lg shadow-xl border border-slate-200 overflow-hidden max-h-48 z-40">
-                {filteredSuggestions.map((s, i) => (
-                    <button
-                        key={i}
-                        className="w-full text-left px-4 py-3 hover:bg-indigo-50 border-b border-slate-100 last:border-0 transition-colors"
-                        onClick={() => handleGuess(s)}
-                    >
-                        {s}
-                    </button>
-                ))}
-                </div>
-            )}
-            
-            <form 
-                onSubmit={(e) => {
-                    e.preventDefault();
-                    if (filteredSuggestions.length > 0 && filteredSuggestions[0].toLowerCase() === inputValue.toLowerCase()) {
-                         handleGuess(filteredSuggestions[0]);
-                    } else if (filteredSuggestions.length === 1) {
-                         handleGuess(filteredSuggestions[0]);
-                    } else if (category.words.includes(inputValue.toLocaleLowerCase('tr-TR'))) {
-                         handleGuess(inputValue);
-                    }
-                }} 
-                className="flex gap-2 items-stretch"
-            >
-            <input
-                ref={inputRef}
-                type="text"
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                placeholder="Kelime yaz..."
-                className="flex-1 min-w-0 px-4 py-3 rounded-xl border-2 border-slate-300 focus:border-indigo-500 focus:ring-0 outline-none transition text-base md:text-lg bg-slate-50"
-                autoComplete="off"
-                autoCorrect="off"
-                spellCheck="false"
-            />
-            <button 
-                type="submit"
-                disabled={!inputValue}
-                className="bg-indigo-600 disabled:bg-slate-300 text-white px-5 md:px-6 py-3 rounded-xl font-bold hover:bg-indigo-700 transition active:scale-95 flex-shrink-0 min-w-[96px] text-sm md:text-base"
-            >
-                Tahmin
-            </button>
-            </form>
-        </div>
+      {/* Input Area (Fixed Bottom) - REPLACED WITH TURKISH KEYBOARD */}
+      <div className="flex-shrink-0 bg-white border-t border-slate-200 shadow-lg z-30">
+        {/* Suggestions Popover */}
+        {showSuggestions && filteredSuggestions.length > 0 && (
+          <div className="px-4 pt-3 max-h-40 overflow-y-auto">
+            <div className="bg-white rounded-lg shadow-lg border border-slate-200 overflow-hidden">
+              {filteredSuggestions.slice(0, 5).map((s, i) => (
+                <button
+                  key={i}
+                  className="w-full text-left px-4 py-2.5 hover:bg-indigo-50 border-b border-slate-100 last:border-0 transition-colors text-sm font-medium"
+                  onClick={() => handleGuess(s)}
+                >
+                  {s}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+        
+        <TurkishKeyboard
+          value={inputValue}
+          onChange={setInputValue}
+          onSubmit={() => {
+            const normalized = inputValue.toLocaleLowerCase('tr-TR').trim();
+            if (!normalized) return;
+
+            if (filteredSuggestions.length > 0 && filteredSuggestions[0].toLocaleLowerCase('tr-TR') === normalized) {
+              handleGuess(filteredSuggestions[0]);
+            } else if (filteredSuggestions.length === 1) {
+              handleGuess(filteredSuggestions[0]);
+            } else if (category.words.includes(normalized)) {
+              handleGuess(normalized);
+            }
+          }}
+          placeholder="Kelime yaz..."
+          maxLength={50}
+        />
       </div>
     </div>
   );

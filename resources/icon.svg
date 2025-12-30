@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Gradient Background -->
+  <defs>
+    <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4F46E5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7C3AED;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="compass-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FBBF24;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F59E0B;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background Circle -->
+  <circle cx="256" cy="256" r="256" fill="url(#bg-gradient)"/>
+  
+  <!-- Compass Background -->
+  <circle cx="256" cy="256" r="140" fill="#FFFFFF" opacity="0.2"/>
+  
+  <!-- Compass Rose -->
+  <g transform="translate(256, 256)">
+    <!-- North Arrow (Red) -->
+    <path d="M 0,-100 L 20,-20 L 0,-30 L -20,-20 Z" fill="#EF4444" stroke="#FFF" stroke-width="3"/>
+    
+    <!-- South Arrow (White) -->
+    <path d="M 0,100 L 20,20 L 0,30 L -20,20 Z" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="3"/>
+    
+    <!-- East-West Lines -->
+    <line x1="-90" y1="0" x2="-30" y2="0" stroke="#FFFFFF" stroke-width="6" opacity="0.6"/>
+    <line x1="30" y1="0" x2="90" y2="0" stroke="#FFFFFF" stroke-width="6" opacity="0.6"/>
+    <line x1="0" y1="-90" x2="0" y2="-40" stroke="#FFFFFF" stroke-width="6" opacity="0.6"/>
+    <line x1="0" y1="40" x2="0" y2="90" stroke="#FFFFFF" stroke-width="6" opacity="0.6"/>
+    
+    <!-- Center Circle -->
+    <circle cx="0" cy="0" r="25" fill="url(#compass-gradient)" stroke="#FFF" stroke-width="4"/>
+    <circle cx="0" cy="0" r="15" fill="#4F46E5" opacity="0.8"/>
+    
+    <!-- Letter "K" in center -->
+    <text x="0" y="8" font-family="Inter, sans-serif" font-size="20" font-weight="bold" fill="#FFFFFF" text-anchor="middle">K</text>
+  </g>
+  
+  <!-- Decorative Stars/Sparkles -->
+  <circle cx="100" cy="100" r="8" fill="#FBBF24" opacity="0.8"/>
+  <circle cx="412" cy="100" r="6" fill="#FBBF24" opacity="0.6"/>
+  <circle cx="100" cy="412" r="7" fill="#FBBF24" opacity="0.7"/>
+  <circle cx="412" cy="412" r="9" fill="#FBBF24" opacity="0.9"/>
+</svg>

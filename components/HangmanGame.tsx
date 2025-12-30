@@ -47,8 +47,8 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ category, secretWord, onWin, 
 
   const buyHint = () => {
     // Find unrevealed letters in secret word
-    const secretLetters = new Set(normalizedSecret.split('').filter(char => char !== ' '));
-    const unrevealed = Array.from(secretLetters).filter(char => !guessedLetters.has(char));
+    const secretLetters = new Set<string>(normalizedSecret.split('').filter((char: string) => char !== ' '));
+    const unrevealed = Array.from(secretLetters).filter((char: string) => !guessedLetters.has(char));
 
     if (unrevealed.length === 0) return; // All revealed already
 

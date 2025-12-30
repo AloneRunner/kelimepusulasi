@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Category } from '../types';
 import { CATEGORIES } from '../data/wordLists';
+import { TurkishKeyboard } from './TurkishKeyboard';
 
 interface ChainGameProps {
   category: Category;
@@ -135,7 +136,7 @@ const ChainGame: React.FC<ChainGameProps> = ({ category, onWin, onLose, onBack }
 
   return (
     <div className="flex flex-col h-full bg-slate-100">
-       <header className="flex items-center justify-between p-4 bg-purple-600 text-white shadow-md z-20">
+       <header className="flex-shrink-0 flex items-center justify-between p-4 bg-purple-600 text-white shadow-md z-20">
         <button onClick={onBack} className="p-1 hover:bg-purple-700 rounded transition">
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
         </button>
@@ -148,7 +149,7 @@ const ChainGame: React.FC<ChainGameProps> = ({ category, onWin, onLose, onBack }
         </div>
       </header>
 
-      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+      <div className="flex-1 overflow-y-auto p-4 space-y-4" style={{ maxHeight: 'calc(100vh - 380px)' }}>
         {messages.map((msg) => {
             const isMe = msg.sender === 'user';
             return (
@@ -175,31 +176,24 @@ const ChainGame: React.FC<ChainGameProps> = ({ category, onWin, onLose, onBack }
         <div ref={messagesEndRef} />
       </div>
 
-      <div className="p-4 bg-white border-t border-slate-200">
-         <div className="relative">
-             <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-bold border-r pr-2 border-slate-300">
-                 {lastLetter.toLocaleUpperCase('tr-TR')}...
+      <div className="bg-white border-t border-slate-200">
+         <div className="p-3 bg-slate-100 border-b border-slate-200">
+             <div className="text-center text-sm font-bold text-purple-600">
+                 <span className="bg-purple-100 px-3 py-1 rounded-full">
+                   Kelime <span className="text-2xl mx-1">{lastLetter.toLocaleUpperCase('tr-TR')}</span> ile başlamalı
+                 </span>
              </div>
-             <form onSubmit={(e) => { e.preventDefault(); handleSend(); }}>
-                <input 
-                    type="text" 
-                    value={inputText}
-                    onChange={e => setInputText(e.target.value)}
-                    placeholder="Kelime türet..."
-                    className="w-full pl-16 pr-14 py-4 rounded-xl border-2 border-slate-300 focus:border-purple-500 outline-none text-lg font-medium"
-                    autoFocus
-                    disabled={turn === 'bot'}
-                />
-                <button 
-                    type="submit" 
-                    disabled={!inputText || turn === 'bot'}
-                    className="absolute right-2 top-2 bottom-2 bg-purple-600 disabled:bg-slate-300 text-white px-4 rounded-lg font-bold hover:bg-purple-700 transition"
-                >
-                    🚀
-                </button>
-             </form>
          </div>
-         <p className="text-center text-xs text-slate-400 mt-2">
+         <TurkishKeyboard
+           value={inputText}
+           onChange={setInputText}
+           onSubmit={handleSend}
+           placeholder="Kelime türet..."
+           disabled={turn === 'bot'}
+           maxLength={30}
+           theme="light"
+         />
+         <p className="text-center text-xs text-slate-400 py-2 px-4 bg-slate-50">
             Sadece "{category.label}" kategorisindeki kelimeler kabul edilir.
          </p>
       </div>

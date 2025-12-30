@@ -1,4 +1,5 @@
 import React from 'react';
+import { Settings } from 'lucide-react';
 import { playSound } from '../services/audioService';
 
 interface MainHubProps {
@@ -8,7 +9,10 @@ interface MainHubProps {
   onSelectChain: () => void;
   onSelectConnect: () => void;
   onSelectLadder: () => void;
+  onSelectKostebek: () => void;
+  onSelectWordle: () => void;
   onOpenShop: () => void;
+  onOpenSettings?: () => void;
   coins: number;
   activeTheme?: string;
 }
@@ -20,14 +24,17 @@ const MainHub: React.FC<MainHubProps> = ({
   onSelectChain, 
   onSelectConnect,
   onSelectLadder,
+  onSelectKostebek,
+  onSelectWordle,
   onOpenShop,
+  onOpenSettings,
   coins,
   activeTheme = 'default'
 }) => {
   
-  const handleGameSelect = (callback: () => void) => {
+  const handleGameSelect = (callback?: () => void) => {
     playSound('click');
-    callback();
+    if (callback) callback();
   };
 
   // Dinamik Stil Belirleyici
@@ -73,14 +80,25 @@ const MainHub: React.FC<MainHubProps> = ({
            <h1 className={`text-2xl font-black ${styles.headerText} tracking-tight`}>Oyun Merkezi</h1>
            <p className={`text-xs ${styles.subText}`}>İyi dersler, iyi eğlenceler!</p>
         </div>
-        <button 
-          onClick={() => { playSound('pop'); onOpenShop(); }}
-          className="flex items-center bg-yellow-100 px-3 py-1.5 rounded-full border border-yellow-200 hover:bg-yellow-200 transition active:scale-95"
-        >
-          <span className="text-xl mr-1">🪙</span>
-          <span className="font-bold text-yellow-800">{coins}</span>
-          <span className="ml-2 text-xs bg-white/50 px-1.5 rounded-md text-yellow-900 font-bold">+</span>
-        </button>
+        <div className="flex items-center gap-2">
+          {onOpenSettings && (
+            <button 
+              onClick={() => { playSound('pop'); onOpenSettings(); }}
+              className="flex items-center justify-center w-10 h-10 bg-slate-100 rounded-full border border-slate-200 hover:bg-slate-200 transition active:scale-95"
+              title="Ayarlar"
+            >
+              <Settings className="w-5 h-5 text-slate-600" />
+            </button>
+          )}
+          <button 
+            onClick={() => { playSound('pop'); onOpenShop(); }}
+            className="flex items-center bg-yellow-100 px-3 py-1.5 rounded-full border border-yellow-200 hover:bg-yellow-200 transition active:scale-95"
+          >
+            <span className="text-xl mr-1">🪙</span>
+            <span className="font-bold text-yellow-800">{coins}</span>
+            <span className="ml-2 text-xs bg-white/50 px-1.5 rounded-md text-yellow-900 font-bold">+</span>
+          </button>
+        </div>
       </header>
 
       {/* Content */}
@@ -122,25 +140,42 @@ const MainHub: React.FC<MainHubProps> = ({
                 </button>
              </div>
           </div>
-          
-          {/* Connect Game Card */}
+
+          {/* Kostebek Game Card */}
           <div 
-            onClick={() => handleGameSelect(onSelectConnect)}
-            className={`group relative ${styles.cardBg} rounded-3xl p-6 shadow-xl border-2 ${styles.cardBorder} cursor-pointer hover:border-pink-500 transition-all duration-300 hover:shadow-2xl overflow-hidden active:scale-98`}
+            onClick={() => handleGameSelect(onSelectKostebek)}
+            className={`group relative ${styles.cardBg} rounded-3xl p-6 shadow-xl border-2 ${styles.cardBorder} cursor-pointer hover:border-red-500 transition-all duration-300 hover:shadow-2xl overflow-hidden active:scale-98`}
           >
              <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                <svg className="w-32 h-32 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" /></svg>
+                <svg className="w-32 h-32 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
              </div>
              <div className="relative z-10">
-                <span className="bg-pink-100 text-pink-700 px-3 py-1 rounded-full text-xs font-bold mb-3 inline-block">Favori</span>
-                <h2 className={`text-3xl font-black ${styles.textColor} mb-2`}>Kelime Kulesi</h2>
-                <p className={`${styles.subText} mb-6`}>Harfleri birleştir, kelimeleri oluştur. Çengel bulmaca keyfi.</p>
-                <button className="bg-pink-500 text-white px-6 py-2 rounded-xl font-bold shadow-lg shadow-pink-200 group-hover:bg-pink-600 transition">
+                <span className="bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs font-bold mb-3 inline-block">Sosyal</span>
+                <h2 className={`text-3xl font-black ${styles.textColor} mb-2`}>Köstebek Avı</h2>
+                <p className={`${styles.subText} mb-6`}>Haini bul veya hain ol! Yapay zekaya karşı blöf yap.</p>
+                <button className="bg-red-500 text-white px-6 py-2 rounded-xl font-bold shadow-lg shadow-red-200 group-hover:bg-red-600 transition">
                     Oyna
                 </button>
              </div>
           </div>
 
+          {/* Word Tower Game Card */}
+          <div 
+            onClick={() => handleGameSelect(onSelectWordle)}
+            className={`group relative ${styles.cardBg} rounded-3xl p-6 shadow-xl border-2 ${styles.cardBorder} cursor-pointer hover:border-purple-500 transition-all duration-300 hover:shadow-2xl overflow-hidden active:scale-98`}
+          >
+             <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                <svg className="w-32 h-32 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" /></svg>
+             </div>
+             <div className="relative z-10">
+                <span className="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs font-bold mb-3 inline-block">Bulmaca</span>
+                <h2 className={`text-3xl font-black ${styles.textColor} mb-2`}>Kelime Kulesi</h2>
+                <p className={`${styles.subText} mb-6`}>Harfleri birleştir, çapraz bulmacayı tamamla!</p>
+                <button className="bg-purple-500 text-white px-6 py-2 rounded-xl font-bold shadow-lg shadow-purple-200 group-hover:bg-purple-600 transition">
+                    Oyna
+                </button>
+             </div>
+          </div>
           {/* Chain Game Card */}
           <div 
             onClick={() => handleGameSelect(onSelectChain)}
