@@ -591,30 +591,7 @@ const mythology = prepareList([
 
 // --- YENİ KATEGORİLER (Uzay, Tarih, Başkentler) ---
 
-const space = prepareList([
-  "asteroid", "astronot", "atmosfer", "ay", 
-  "big bang", "bileşen", "büyük ayı", 
-  "cüce gezegen", 
-  "derin uzay", 
-  "evren", 
-  "fırlatma", "füze", 
-  "galaksi", "gökada", "göktaşı", "güneş", "güneş sistemi", 
-  "hubble", 
-  "ışık yılı", 
-  "istasyon", 
-  "jüpiter", 
-  "kara delik", "karanlık madde", "kayan yıldız", "kozmonot", "kruyer", "kuyruklu yıldız", 
-  "mars", "mekik", "merkür", "meteor", "meteoroloji", 
-  "nasa", "nebula", "neptün", 
-  "orbit", 
-  "parsec", "plüton", "pulsar", 
-  "roket", 
-  "saman yolu", "satellit", "satürn", "süpernova", 
-  "teleskop", 
-  "ufo", "uranüs", "uydu", "uzay", "uzaylı", 
-  "venüs", 
-  "yörünge", "yıldız"
-]);
+// `space` merged into consolidated `science` list
 
 const history = prepareList([
   "abide", "ahilik", "akıncı", "anıt", "anlaşma", "antik", "anzak", "arkeoloji", "asır", "ateşkes", "ayan", "azınlık",
@@ -732,97 +709,35 @@ const turkishGrammar = prepareList([
   "zarf fiil", "zincirleme"
 ]);
 
-const chemistry = prepareList([
-  "ametal", "analiz", "anyon", "asit", "atom", "ayrışma",
-  "bakır", "barut", "baz", "beşer", "bileşik", "buharlaşma",
-  "cıva", "cins",
-  "çinko", "çekirdek", "çökelti", "çözelti", "çözücü",
-  "damıtma", "demir", "deney", "derece", "derişim",
-  "elektroliz", "elektron", "element", "enerji", "erime", "etkileşim",
-  "formül", "fosfor",
-  "gaz", "gümüş",
-  "hal", "hava", "helyum", "hacim", "hidrojen", "heterojen", "homojen",
-  "ısı", "iyon", "izotop",
-  "kalay", "katı", "karbon", "karışım", "kaynama", "kimya", "kimyasal", "klor", "korozyon", "krom", "kurşun", "kükürt", "kütle",
-  "laboratuvar", "lityum",
-  "madde", "magnezyum", "metal", "molekül",
-  "neon", "nötr", "nötron",
-  "oksijen", "oksit", "organik",
-  "periyodik", "platin", "polimer", "potasyum", "proton",
-  "radyoaktif", "reaksiyon",
-  "saf", "sembol", "sıcaklık", "sıvı", "sodyum", "su",
-  "tepkime", "tüp", "tuz",
-  "uranium",
-  "valans",
-  "yoğunluk"
-]);
+// `chemistry` merged into consolidated `science` list
 
-const body = prepareList([
-  "ağız", "akciğer", "alın", "alyuvar", "atardamar", "ayak",
-  "bacak", "bademcik", "bağırsak", "baş", "bel", "beyincik", "beyin", "bilek", "boğaz", "boyun", "böbrek", "bronş", "burun",
-  "cilt",
-  "çene", "çene kemiği",
-  "dalak", "damar", "deri", "dil", "dirsek", "diş", "diş eti", "doku", "dudak", "duyu",
-  "el", "eklem", "elmacık", "enzim",
-  "geniz", "göbek", "göğüs", "göz", "gırtlak",
-  "hormon", "hücre",
-  "iskelet",
-  "kafa", "kafatası", "kalça", "kalp", "kan", "karaciğer", "karın", "kas", "kaş", "kemik", "kıkırdak", "kirpik", "kol", "kulak", "kıl",
-  "lens",
-  "mide", "mimik",
-  "nabız", "nefes",
-  "omuz", "omurga", "omurilik", "organ",
-  "pankreas", "parmak",
-  "retina",
-  "saç", "safra", "sakal", "sinir", "sindirim", "sırt", "soluk",
-  "şakak",
-  "ten", "ter", "tırnak", "toplardamar", "topuk", "tükürük", "tüyler",
-  "uyluk",
-  "vücut",
-  "yanak", "yemek borusu", "yumruk", "yutak", "yüz", "yürek"
-]);
+// `body` merged into consolidated `science` list
 
 const science = prepareList([
-  "akciğer", "akustik", "alyuvar", "ampul", "anatomi", "anüs", "asteroid", "astronomi", "atmosfer", "atom", "atık", "ay",
-  "ayın evreleri", "dolunay",
-  "bağırsak", "basınç", "besin", "beyincik", "beyin", "biyoçeşitlilik", "böbrek", "bronş", "buhar", "burun",
-  "canlı", "ciğer", "cıva",
-  "çekirdek", "çevre", "çevre kirliliği", "çiçek", "çimlenme", "çözelti",
-  "damar", "dengelenmiş", "destek", "devre", "dışkı", "diyafram", "dolaşım", "doku", "dünya", "duyu",
-  "eklem", "ekosistem", "elektrik", "elektrik devresi", "enerji", "enzim", "erozyon", "eşey", "evren",
-  "fen", "fizik", "fotosentez", "fosil",
-  "gaz", "genleşme", "gezegen", "göktaşı", "gölge", "tam gölge", "göz", "gübre", "güneş", "güç",
-  "hacim", "hareket", "hava", "hazımsızlık", "heterojen", "hipofiz", "homojen", "hormon", "hücre",
-  "ısı", "iskelet", "iletim", "iletken", "ince", "izolatör",
-  "jüpiter",
-  "kalın", "kalp", "kan", "karaciğer", "karbondioksit", "kas", "katı", "kaynama", "kemik", "kıkırdak", "kimyasal", "kofoul", "koza", "kulak", "kuyrukluyıldız", "kuvvet", "küf", "kütle",
-  "maça", "madde", "magma", "mantar", "mars", "mayoz", "mercek", "merkez", "merkür", "metal", "meteor", "mide", "mikroskop", "mikroskopik", "mito", "mitoz", "molekül",
-  "nabız", "neptün", "nötron",
-  "omurilik", "organ", "organel", "oksijen", "oynar",
-  "pankreas", "parlaklık", "pil", "plazma", "protein", "proton",
-  "refleks", "roket",
-  "safra", "salgı", "saman yolu", "satürn", "ses", "sıcaklık", "sıvı", "sindirim", "sinir", "sistem", "soluk", "solunum", "su", "sürat", "sürtünme", "sürtünme kuvveti",
-  "tanecik", "tansiyon", "teleskop", "tepkime", "testis", "titreşim", "tohum", "toplardamar", "tutulma",
-  "uranüs", "uydu", "uzay",
-  "vakum", "venüs", "vitamin", "vücut",
-  "yalıtkan", "yalıtım", "yakıt", "yankı", "yayılma", "yenilenebilir", "yoğunluk", "yörünge", "yumurta", "yumurtalık", "yutak",
-  // Yeni eklemeler ve MEB kritik terimler
-  "adaptasyon", "ametal", "amip", "antikor",
-  "bağışıklık", "basit makine", "bileşke kuvvet", "biyoçeşitlilik",
-  "damıtma", "dengelenmiş kuvvet", "diyaliz", "dna", "nükleotid",
-  "erime noktası", "esneklik",
-  "fermantasyon", "gen", "genetik", "geri dönüşüm", "gölge",
-  "hal değişimi", "hidroliz",
-  "iletken", "ivme",
-  "kaldırma kuvveti", "kalıtım", "kromozom", "kütle çekim",
-  "maden", "manyetizma", "mayoz", "metabolizma", "mitokondri", "mitoz", "mutasyon",
-  "omurgalı", "omurgasız",
-  "parazit", "popülasyon",
-  "ribozom",
-  "sitoplazma", "süblimleşme", "sürat",
-  "terleme",
-  "yalıtkan", "yenilenebilir", "yoğunlaşma",
-  "zigot", "dinamometre", "periyodik tablo", "biyoteknoloji", "modifikasyon", "pascal prensibi", "açık hava basıncı", "asit yağmuru", "makara", "kaldıraç"
+  "adaptasyon", "ağız", "akciğer", "akım", "akustik", "alyuvar", "ametal", "amip", "amper", "ampul", "anatomi", "anot", "antikor", "arter", "asit", "asteroid", "astronomi", "atmosfer", "atom", "ay", "ayrışma",
+  "bağırsak", "bağışıklık", "bakteri", "basınç", "baz", "besin", "besin zinciri", "beyin", "beyincik", "bileşik", "bileşke", "biyoçeşitlilik", "biyoteknoloji", "böbrek", "bronş", "buharlaşma", "burun", "buzul",
+  "canlı", "cıva",
+  "çekirdek", "çekim", "çiçek", "çıkrık", "çimlenme", "çözelti", "çözücü", "çözünme",
+  "dalga", "damar", "damıtma", "dengelenmiş", "denklem", "deri", "destek", "devre", "dışkı", "dinamometre", "direnç", "diş", "dişli", "diyafram", "diyaliz", "dizi", "dna", "doğa", "doku", "dolaşım", "dolunay", "donma", "dönme", "dünya",
+  "efor", "eğik düzlem", "eklem", "ekosistem", "eksen", "elektrik", "elektromagnet", "elektron", "element", "embriyo", "enerji", "enzim", "erime", "erozyon", "esneklik", "eşeyli", "eşeysiz", "evren", "evrim",
+  "fermantasyon", "fetüs", "fizik", "fiziksel", "fosil", "fotosentez", "frekans",
+  "galaksi", "gaz", "gen", "genetik", "genleşme", "genotip", "geri dönüşüm", "gerilim", "gezegen", "göktaşı", "gölge", "göz", "gübre", "güç", "güneş",
+  "hacim", "hareket", "hava", "hazımsızlık", "helyum", "heterojen", "heyelan", "hız", "hidroliz", "hidrojen", "hipofiz", "homojen", "hormon", "hücre",
+  "ısı", "iletken", "ince bağırsak", "iskelet", "izolatör", "iş", "ivme",
+  "jeneratör", "jüpiter",
+  "kalın bağırsak", "kaldıraç", "kaldırma kuvveti", "kalıtım", "kalp", "kan", "kapakçık", "karaciğer", "karbondioksit", "karışım", "kas", "kasnak", "katı", "katman", "katot", "kaynama", "kemik", "kıkırdak", "kimya", "kimyasal", "kinetik", "kist", "klorofil", "kloroplast", "koful", "koza", "kromozom", "kulak", "kuyrukluyıldız", "kuvvet", "küf", "küresel ısınma", "kütle",
+  "lav", "lens", "lenf", "lizozom",
+  "madde", "magma", "makara", "manyetizma", "mantar", "mars", "mayoz", "mercek", "merkür", "metal", "metabolizma", "meteor", "mevsim", "mıknatıs", "mide", "mikrop", "mikroskop", "mitokondri", "mitoz", "modifikasyon", "molekül", "mutasyon",
+  "nabız", "nefes", "neptün", "newton", "nötr", "nötron", "nükleotid",
+  "odak", "ohm", "omurga", "omurilik", "omurgalı", "omurgasız", "organ", "organel", "organizma", "oksijen",
+  "pankreas", "paralel", "parazit", "periyodik", "ph", "pil", "plazma", "popülasyon", "potansiyel", "prizma", "protein", "proton",
+  "radyasyon", "reaksiyon", "refleks", "renk", "ribozom", "roket", "rüzgar",
+  "safra", "salgı", "saman yolu", "satürn", "sel", "sembol", "sera etkisi", "seri", "ses", "sıcaklık", "sıvı", "sigorta", "sindirim", "sinir", "sistem", "sitoplazma", "soluk", "solunum", "sperm", "steteskop", "su", "süblimleşme", "sürat", "sürtünme", "süzme",
+  "tanecik", "tansiyon", "teleskop", "tepkime", "termometre", "titreşim", "tohum", "toplardamar", "topraklama", "tutulma", "tür",
+  "uydular", "uzay", "uranüs", "üreme",
+  "vakum", "venüs", "vida", "virüs", "vitamin", "volt", "voltmetre", "volkan", "vücut",
+  "yağış", "yakıt", "yalıtkan", "yankı", "yanma", "yaprak", "yansıma", "yarı iletken", "yerkabuğu", "yenilenebilir", "yoğunlaşma", "yoğunluk", "yörünge", "yük", "yumurta", "yumurtalık", "yutak", "yıldız",
+  "zar", "zigot"
 ]);
 
 const mathTerms = prepareList([
@@ -881,11 +796,9 @@ export const CATEGORIES: Category[] = [
   { id: 'mythology', label: 'Mitoloji & Efsaneler', icon: '🐉', words: mythology, group: 'general' },
   
   // --- EDUCATION GROUP ---
-  { id: 'body', label: 'Vücudumuz', icon: '🧠', words: body, group: 'education' },
   { id: 'science', label: 'Ortaokul Fen Bilimleri', icon: '🔬', words: science, group: 'education' },
-  { id: 'space', label: 'Uzay', icon: '🪐', words: space, group: 'education' },
   { id: 'history', label: 'Tarih Terimleri', icon: '📜', words: history, group: 'education' },
-  { id: 'chemistry', label: 'Kimya', icon: '🧪', words: chemistry, group: 'education' },
+  
   { id: 'math_basic', label: 'Matematik', icon: '📐', words: mathTerms, group: 'education' },
   { id: 'turkish_grammar', label: 'Türkçe Dilbilgisi', icon: '📚', words: turkishGrammar, group: 'education' },
 ];
