@@ -26,7 +26,7 @@ export type CategoryId =
   | 'vehicles' | 'technology' | 'nature' | 'emotions' 
   | 'literature' | 'cinema' | 'mythology'
   | 'science6' | 'math_basic' | 'turkish_grammar' | 'chemistry' | 'body'
-  | 'space' | 'history' | 'world_capitals';
+  | 'space' | 'history' | 'world_capitals' | 'science' | 'geography' | 'arts';
 
 export type CategoryGroup = 'general' | 'education';
 

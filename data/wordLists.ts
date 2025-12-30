@@ -7,32 +7,56 @@ const prepareList = (words: string[]) =>
 
 // --- ANA KATEGORİ LİSTELERİ ---
 
+
+
 const animals = prepareList([
-  // Memeliler
-  "ağaçkakan", "ahtapot", "akbaba", "akrep", "alabalık", "albatros", "alpaka", "antilop", "arı", "armadillo", "aslan", "at", "ateşböceği", "atmaca", "ayı", "aygır", 
-  "babun", "balina", "balık", "bal porsuğu", "barakuda", "baykuş", "böcekçil", "bizon", "bıldırcın", "kunduz", "boa", "boğa", "böcek", "bufalo", "bukalemun", "bülbül", 
-  "canavar", "ceylan", "cırcırböceği", "civciv", "çakal", "çekirge", "çita", "çiyan", "çipura", "çinekop",
-  "dağ keçisi", "dana", "denizatı", "denizanası", "denizyıldızı", "deve", "devekuşu", "domuz", "dodo",
-  "ejderha", "engerek", "eşek", "eşekarısı", 
-  "fare", "fener balığı", "fil", "flamingo", "fok", "fokbalığı",
-  "gaga", "geko", "gelincik", "gergedan", "geyik", "goril", "güvercin", "güve",
-  "hamsi", "hamster", "haşere", "hindi", "hipopotam", "horoz", "sırtlan",
-  "ıstakoz", "iguana", "inek", "istavrit", "istiridye", "ibibik",
-  "jaguar", 
-  "kalkan", "kanguru", "kanarya", "kaplan", "kaplumbağa", "karınca", "karides", "karadul", "karga", "kartal", "katır", "kaz", "keçi", "kedi", "kefal", "keklik", "kelebek", "kene", "kertenkele", "kırlangıç", "kırkayak", "kirpi", "koala", "kobra", "koç", "kokarca", "koyun", "köpek", "köpekbalığı", "köstebek", "kuğu", "kunduz", "kurbağa", "kurt", "kuş", "kuzgun", "kuzu",
-  "lama", "leopar", "leylek", "levrek", "lüfer", "lemur",
-  "mamut", "manda", "mandril", "mantis", "marmoset", "maymun", "martı", "mercan", "mezgit", "mirket", "midye", "müren", "müsk",
-  "nautilus",
-  "orangutan", "orkinos", "öküz", "ördek", "örümcek", 
-  "palamut", "panda", "panter", "papağan", "pavurya", "pelikan", "penguen", "pirana", "pire", "pisi", "piton", "porsuk", "puma", "puhu",
-  "rakun", "vatoz",
-  "saka", "salyangoz", "sardalya", "sansar", "sazan", "semender", "serçe", "sıçan", "sincap", "sinek", "sivrisinek", "solucan", "somon", "su aygırı", "su samuru", "sülün", "sülük",
+  // A
+  "ağaçkakan", "ahtapot", "akbaba", "akrep", "aksolotl", "alabalık", "albatros", "alpaka", "anakonda", "angut", "antilop", "arı", "arıkuşu", "armadillo", "aslan", "at", "ateşböceği", "atmaca", "ayı", "aygır",
+  // B
+  "babun", "bağ ahtapotu", "bal porsuğu", "balarısı", "balık", "balıkçıl", "balina", "barakuda", "barbun", "basilik", "baykuş", "bengal kaplanı", "bıldırcın", "bizon", "boa yılanı", "boğa", "bokböceği", "bonobo", "böcek", "bufalo", "bukalemun", "bülbül",
+  // C - Ç
+  "canavar", "ceylan", "cırcırböceği", "civciv", "ceviz kurdu", "çakal", "çalıkuşu", "çekirge", "çita", "çinekop", "çipura", "çiyan", "çöl tilkisi",
+  // D
+  "dağ keçisi", "dağ aslanı", "dalmaçyalı", "dana", "deniz aslanı", "deniz fili", "deniz ineği", "deniz kaplumbağası", "denizanası", "denizatı", "denizyıldızı", "deve", "devekuşu", "dingo", "dinozor", "dobermani", "doğan", "domuz", "dodo", "dugong",
+  // E
+  "ebabil", "ejderha", "ekidne", "engerek", "eşek", "eşekarısı",
+  // F
+  "fare", "fener balığı", "feret", "fil", "flamingo", "fok", "fokbalığı", "firavun faresi",
+  // G
+  "gaga", "gelincik", "geko", "gergedan", "geyik", "gibon", "goril", "gökkuşağı alabalığı", "güvercin", "güve", "grifon",
+  // H
+  "hamsi", "hamster", "haşere", "hayalet yengeç", "hindi", "hipopotam", "horoz", "husky",
+  // I - İ
+  "ıstakoz", "ıslıkçı", "ibibik", "iguana", "impala", "inek", "insan", "istavrit", "istiridye", "ispinoz",
+  // J
+  "jaguar", "jakana",
+  // K
+  "kakadu", "kalkan", "kanguru", "kanarya", "kapibara", "kaplumbağa", "kaplan", "karadul", "karakulak", "karayel", "karga", "karides", "karınca", "karıncayiyen", "kartal", "katır", "katil balina", "kaz", "keçi", "kedi", "kefal", "keklik", "kelebek", "kene", "kanguru faresi", "kerkenes", "kertenkele", "kırlangıç", "kırkayak", "kısrak", "kızıl geyik", "kirpi", "koala", "kobra", "koç", "kokarca", "kolibri", "komodo ejderi", "koyun", "köpek", "köpekbalığı", "köstebek", "kuğu", "kumru", "kunduz", "kurbağa", "kurt", "kuş", "kuzgun", "kuzu",
+  // L
+  "labrador", "lama", "langust", "lemur", "leopar", "levrek", "leylek", "lüfer", "linet",
+  // M
+  "makak", "mamut", "manda", "mandril", "mantis", "marmoset", "martı", "maymun", "mazgallı", "mercan", "mezgit", "mirket", "midye", "mors", "müren", "müsk",
+  // N
+  "nautilus", "narval",
+  // O - Ö
+  "oğlak", "okapi", "orangutan", "orkinos", "ornitorenk", "otçul", "öküz", "ördek", "örümcek", "ötücü kuş",
+  // P
+  "palamut", "panda", "panter", "papağan", "pars", "patates böceği", "pavurya", "pelikan", "penguen", "pirana", "pire", "pisi balığı", "piton", "plankton", "porsuk", "puma", "puhu",
+  // R
+  "rakun", "red panda", "retriever", "rotvayler",
+  // S - Ş
+  "saka", "salyangoz", "sardalya", "sincap", "sansar", "sazan", "semender", "serçe", "sıçan", "sığır", "sinek", "sivrisinek", "skink", "solucan", "somon", "su aygırı", "su samuru", "sülün", "sülük", "susamuru",
   "şahin", "şempanze", "şebek",
-  "tapir", "tarantula", "tavşan", "tavuk", "tavuskuşu", "tay", "tekir", "termit", "tilki", "timsah", "ton", "turna", "tırtıl",
-  "uğurböceği", "uskumru",
-  "vaşak", "vicuna",
-  "yaban domuzu", "yalıçapkını", "yarasa", "yayın", "yengeç", "yılan", "yunus", "yusufçuk",
-  "zebra", "zürafa", "zargana"
+  // T
+  "takahe", "tamarın", "tapir", "tarantula", "tasman", "tavşan", "tavuk", "tavuskuşu", "tay", "tekir", "tembel hayvan", "tenrek", "termit", "terrier", "tilki", "timsah", "tohum kargası", "ton balığı", "toprak solucanı", "turna", "tırtıl",
+  // U - Ü
+  "uğurböceği", "uskumru", "uzun bacak", "üveyik",
+  // V
+  "vaşak", "vatoz", "vicuna", "viper",
+  // Y
+  "yaban arısı", "yaban domuzu", "yaban keçisi", "yalıçapkını", "yarasa", "yayın balığı", "yengeç", "yılan", "yunus", "yusufçuk",
+  // Z
+  "zargana", "zebra", "zebu", "zürafa"
 ]);
 
 const food = prepareList([
@@ -398,6 +422,17 @@ const technology = prepareList([
   "zoom"
 ]);
 
+// --- Birleştirilmiş Kategoriler ---
+
+// Eşyalar + Mutfak + Taşıtlar
+const generalObjects = prepareList([
+  ...objects,
+  ...kitchen,
+  ...vehicles
+]);
+
+// Coğrafya ve Sanat tanımları daha sonra ilgili listeler tanımlandıktan sonra eklenecek (declaration order düzeltmesi için)
+
 const nature = prepareList([
   "ada", "ağaç", "akarsu", "atmosfer", "ay",
   "bahar", "bataklık", "boğaz", "bulut", "buzul",
@@ -589,6 +624,14 @@ const mythology = prepareList([
   "yada", "yer su", "yutpa"
 ]);
 
+// Sanat = Müzik + Sinema + Edebiyat + (Duygular dahil)
+const arts = prepareList([
+  ...music,
+  ...cinema,
+  ...literature,
+  ...emotions
+]);
+
 // --- YENİ KATEGORİLER (Uzay, Tarih, Başkentler) ---
 
 // `space` merged into consolidated `science` list
@@ -633,6 +676,9 @@ const history = prepareList([
   "sanayi inkılabı", "senediittifak", "soğuk savaş", "sömürgecilik",
   "teokrasi", "teokratik", "töre",
   "yeni çağ", "yerleşik hayat"
+  ,
+  // Kullanıcı tarafından eklenen tarih terimleri
+  "amasya genelgesi", "anadolu ajansı", "ayaklanma", "bağımsızlık", "batı cephesi", "büyük taarruz", "cemiyetler", "cephe", "cumhuriyetçilik", "demokrasi", "devletçilik", "doğu cephesi", "düzenli ordu", "egemenlik", "erzurum kongresi", "genelge", "güney cephesi", "halkçılık", "hıyanet", "hukuk", "inkılap", "istiklal mahkemesi", "itilaf", "ittifak", "kabotaj kanunu", "kapitülasyon", "kongre", "kuvayimilliye", "laiklik", "lozan", "maarif kongresi", "mandater", "mebus", "meclis", "medeni kanun", "misakımilli", "mondros", "mudanya", "muhalefet", "nüfus mübadelesi", "saltanat", "sakarya savaşı", "sivas kongresi", "siyasi parti", "soyadı kanunu", "söylev", "şeriat", "tekalifimilliye", "teşkilat", "temsil heyeti", "tevhiditedrisat", "vilayet"
 ]);
 
 const worldCapitals = prepareList([
@@ -654,6 +700,14 @@ const worldCapitals = prepareList([
   "viyana", 
   "washington", 
   "zagreb"
+]);
+
+// Coğrafya = Ülkeler + Şehirler + Başkentler + Doğa (birleştirilmiş)
+const geography = prepareList([
+  ...countries,
+  ...cities,
+  ...worldCapitals,
+  ...nature
 ]);
 
 // --- EĞİTİM (OKUL) ODAKLI KATEGORİLER ---
@@ -707,6 +761,9 @@ const turkishGrammar = prepareList([
   "vurgu",
   "yapım eki", "yardımcı fiil", "yapıca",
   "zarf fiil", "zincirleme"
+  ,
+  // Kullanıcı tarafından eklenen Türkçe dilbilgisi terimleri
+  "açıklama", "akıcılık", "anı", "arasöz", "bağlaşıklık", "biyografi", "çağrışım", "devrik cümle", "duru", "duyu", "düşünce", "eleştiri", "fıkra", "gezi yazısı", "günlük", "haber metni", "hikaye edici", "içerik", "karşılaştırma", "kişileştirme", "konuşturma", "kurgusal", "makale", "manzum", "mecaz anlam", "nesnel", "noktalı virgül", "otobiyografi", "öznel", "sebep sonuç", "söyleşi", "söz sanatları", "tanık gösterme", "tanımlama", "tartışma", "terim anlam", "tiyatro", "üç nokta", "ünlem", "üslup", "varsayım", "virgül", "yakınma", "yan anlam", "yansıma", "yüklem"
 ]);
 
 // `chemistry` merged into consolidated `science` list
@@ -738,6 +795,14 @@ const science = prepareList([
   "vakum", "venüs", "vida", "virüs", "vitamin", "volt", "voltmetre", "volkan", "vücut",
   "yağış", "yakıt", "yalıtkan", "yankı", "yanma", "yaprak", "yansıma", "yarı iletken", "yerkabuğu", "yenilenebilir", "yoğunlaşma", "yoğunluk", "yörünge", "yük", "yumurta", "yumurtalık", "yutak", "yıldız",
   "zar", "zigot"
+  ,
+  // Kullanıcı tarafından eklenmesi istenen terimler
+  "alaşım", "alkol", "aşı", "ayna", "beher", "büzülme", "çukur ayna", "deney", "doku kültürü", "düz ayna", "erlenmayer", "genlik", "gök cismi", "ışık yılı", "izotop", "kara delik", "kırılma", "klonlama", "kutup yıldızı", "maden", "opak", "ozon", "periskop", "saydam", "soğurulma", "soygaz", "takımyıldız", "tümsek ayna", "tüp", "varyasyon", "yarı saydam",
+  "akyuvar", "başkalaşım", "biyolojik birikim", "döl yatağı", "golgi", "kan pulcuğu", "kapsül", "organ nakli", "plazenta", "sentrozom", "sindirim enzimi", "sperm kanalı", "trombosit", "tozlaşma", "üreter", "üretra", "vajina", "yavru",
+  "aerosol", "süspansiyon", "emülsiyon", "bağ", "buhar", "çiy", "çökelti", "denge sıcaklığı", "destilasyon", "eleme", "endotermik", "ekzotermik", "fiziksel değişim", "ısı yalıtkanı", "ısı iletkeni", "kırağı", "kimyasal bağ", "kimyasal değişim", "kireç suyu", "kolonya", "kovalent", "metalik", "mıknatıslanma", "öz ısı", "sis", "yarı metal",
+  "ağırlık merkezi", "anahtar", "armut ampul", "barometre", "bileşik makine", "çekim potansiyel", "desibel", "duy", "eğik atış", "elektroskop", "floresan", "gerilme", "hava direnci", "hidrolik", "iş birimi", "iletken tel", "joule", "kama", "kiriş", "manometre", "mekanik enerji", "palanga", "pascal", "piston", "reosta", "sabit makara", "serbest düşme", "su direnci", "su cenderesi", "toprak hattı", "torricelli", "watt",
+  "asal eksen", "astronot", "beyaz ışık", "çukur", "dağınık yansıma", "doğrusal", "düzgün yansıma", "fiber optik", "gök", "gökbilim", "gökada", "ışık kirliliği", "ışık spektrumu", "ışık ışını", "kalın kenarlı", "karanlık oda", "kırılma açısı", "kırmızı", "mercek", "mor", "normal", "odak noktası", "orion", "renk tayfı", "rasathane", "sanal görüntü", "ses yalıtımı", "soğurma", "soner", "spektrum", "tam gölge", "teleskop", "tümsek", "uydu", "uzay mekiği", "uzay sondası", "uzay istasyonu", "yarı gölge", "yansıtıcı", "yapay uydu", "yıldız kayması",
+  "asit yağmuru", "ayrıştırıcı", "besin ağı", "biyokütle", "çevre kirliliği", "doğal seçilim", "ekolojik ayak izi", "endemik", "enerji piramidi", "fosil yakıt", "küresel iklim", "ozon tabakası", "sera gazı", "su döngüsü", "sürdürülebilir"
 ]);
 
 const mathTerms = prepareList([
@@ -762,7 +827,9 @@ const mathTerms = prepareList([
   "uzay", "uzunluk",
   "üçgen", "üs", "üslü",
   "vektör", "verim",
-  "yamuk", "yarıçap", "yay", "yedigen", "yükseklik", "yüzde", "yüzey"
+  "yamuk", "yarıçap", "yay", "yedigen", "yükseklik", "yüzde", "yüzey",
+  // Kullanıcı tarafından eklenen matematik terimleri
+  "araştırma sorusu", "aritmetik ortalama", "arazi", "basit olay", "birim küp", "birim kesir", "bütünler açı", "cebirsel ifade", "çetele tablosu", "çevre uzunluğu", "dal", "dar açı", "dekar", "desimetre", "dik prizma", "dik üçgen", "dönme", "dönüşüm", "eşlik", "eşitsizlik", "evrensel küme", "geniş açı", "geometrik cisim", "grafik", "hektar", "hektolitre", "histogram", "imkansız olay", "izometrik kağıt", "kare prizma", "kareli kağıt", "kesin olay", "koni", "koordinat sistemi", "köşe", "köşegen", "küp açılımı", "litre", "metrekare", "mililitre", "mutlak değer", "olasılık", "ondalık gösterim", "orijin", "ortak bölen", "ortak kat", "öteleme", "özdeşlik", "paralelkenar", "pay", "payda", "pergel", "piramit", "pisagor", "poligon", "sabit terim", "santimetre", "sayı doğrusu", "sıklık tablosu", "silindir", "simetri", "sütun grafiği", "ters açı", "ters orantı", "tümler açı", "veri", "veri analizi", "yamuk", "yay", "yok etme", "yüzde", "yüzey alanı"
 ]);
 
 // --- DIŞA AKTARILAN KATEGORİ LİSTESİ ---
@@ -771,28 +838,23 @@ export const CATEGORIES: Category[] = [
   // --- GENERAL GROUP ---
   { id: 'animals', label: 'Hayvanlar Alemi', icon: '🦁', words: animals, group: 'general' },
   { id: 'food', label: 'Yiyecek & İçecek', icon: '🍎', words: food, group: 'general' },
-  { id: 'objects', label: 'Eşyalar', icon: '🎒', words: objects, group: 'general' },
+  // Eşyalara mutfak ve taşıtları da ekledim
+  { id: 'objects', label: 'Eşyalar', icon: '🎒', words: generalObjects, group: 'general' },
   { id: 'clothes', label: 'Kıyafet & Moda', icon: '👕', words: clothes, group: 'general' },
-  { id: 'kitchen', label: 'Mutfak', icon: '🍳', words: kitchen, group: 'general' },
   { id: 'colors', label: 'Renkler', icon: '🎨', words: colors, group: 'general' },
-  { id: 'music', label: 'Müzik Dünyası', icon: '🎸', words: music, group: 'general' },
   { id: 'sports', label: 'Sporlar', icon: '⚽', words: sports, group: 'general' },
   { id: 'professions', label: 'Meslekler', icon: '🧑‍⚕️', words: professions, group: 'general' },
-  
-  // Yeni Eklenen Genel Kategoriler
-  { id: 'vehicles', label: 'Taşıtlar', icon: '🚗', words: vehicles, group: 'general' },
   { id: 'technology', label: 'Teknoloji', icon: '💻', words: technology, group: 'general' },
-  { id: 'nature', label: 'Doğa & Coğrafya', icon: '🌲', words: nature, group: 'general' },
-  { id: 'emotions', label: 'Duygular', icon: '🎭', words: emotions, group: 'general' },
-  { id: 'world_capitals', label: 'Dünya Başkentleri', icon: '🏙️', words: worldCapitals, group: 'general' },
 
-  // Coğrafya
-  { id: 'countries', label: 'Ülkeler', icon: '🌍', words: countries, group: 'general' },
-  { id: 'cities', label: 'Şehirler (TR)', icon: '🇹🇷', words: cities, group: 'general' },
+  // Yeni: Coğrafya (Ülkeler + Şehirler + Başkentler + Doğa)
+  { id: 'geography', label: 'Coğrafya & Seyahat', icon: '🗺️', words: geography, group: 'general' },
 
-  // --- CULTURE GROUP ---
-  { id: 'literature', label: 'Edebiyat & Sanat', icon: '✒️', words: literature, group: 'general' },
-  { id: 'cinema', label: 'Sinema & TV', icon: '🎬', words: cinema, group: 'general' },
+  // --- SANAT & EĞLENCE ---
+  { id: 'arts', label: 'Sanat & Eğlence', icon: '🎭', words: arts, group: 'general' },
+
+  // --- CULTURE GROUP (Diğer alt başlık kalmadı) ---
+  
+
   { id: 'mythology', label: 'Mitoloji & Efsaneler', icon: '🐉', words: mythology, group: 'general' },
   
   // --- EDUCATION GROUP ---
