@@ -169,6 +169,7 @@ const ConnectGame: React.FC<ConnectGameProps> = ({ category, onWin, onBack, coin
 
   // Hint State
   const [activeHint, setActiveHint] = useState<{ word: string, fact: string } | null>(null);
+  const [revealedCells, setRevealedCells] = useState<Set<string>>(new Set()); // "row,col" format
   const [hintLoading, setHintLoading] = useState(false);
 
   // Wheel Interaction State
@@ -183,6 +184,7 @@ const ConnectGame: React.FC<ConnectGameProps> = ({ category, onWin, onBack, coin
     const idx = Math.floor(Math.random() * LEVELS.length);
     setLevelIndex(idx);
     setFoundWords(new Set());
+    setRevealedCells(new Set()); // Reset revealed cells
     setCurrentPath([]);
     setTempWord('');
     setActiveHint(null);
@@ -266,14 +268,15 @@ const ConnectGame: React.FC<ConnectGameProps> = ({ category, onWin, onBack, coin
   // HINT LOGIC
   // ----------------------------------------------------------------------
 
-  const handleHint = async () => {
+  // 1. FACT HINT (Kelime İpucu) - 20 Coins
+  const handleFactHint = async () => {
     if (hintLoading) return;
 
-    // 1. Bulunmamış kelimeleri listele
+    // Bulunmamış kelimeleri listele
     const unfoundWords = targetWords.filter(w => !foundWords.has(w));
     if (unfoundWords.length === 0) return;
 
-    // 2. Para kontrolü
+    // Para kontrolü
     if (!onSpendCoins(20)) {
       return; // Yetersiz bakiye
     }
@@ -281,10 +284,10 @@ const ConnectGame: React.FC<ConnectGameProps> = ({ category, onWin, onBack, coin
     playSound('pop');
     setHintLoading(true);
 
-    // 3. Rastgele bir kelime seç
+    // Rastgele bir kelime seç
     const randomWord = unfoundWords[Math.floor(Math.random() * unfoundWords.length)];
 
-    // 4. Gemini'den bilgi al
+    // Gemini'den bilgi al
     try {
       const fact = await getFunFactFromGemini(randomWord);
       setActiveHint({ word: randomWord, fact });
@@ -293,6 +296,44 @@ const ConnectGame: React.FC<ConnectGameProps> = ({ category, onWin, onBack, coin
     } finally {
       setHintLoading(false);
     }
+  };
+
+  // 2. LETTER HINT (Harf Al) - 50 Coins
+  const handleLetterHint = () => {
+    // Reveal a random unrevealed cell
+    if (hintLoading) return;
+
+    // Find all unrevealed cells that are NOT part of already found words
+    // Actually, simply finding any unrevealed cell is fine, but priority should be given to unfound words if possible.
+    // Let's just gather ALL cells. If a word is found, its cells are visually revealed anyway.
+    // So we just need cells that are NOT visually revealed yet.
+    // A cell is visible if: revealedCells.has(key) OR parent word in foundWords.
+
+    const candidates: string[] = [];
+
+    gridMap.forEach((data, key) => {
+      const isAlreadyRevealed = revealedCells.has(key);
+      const isWordFound = data.words.some(w => foundWords.has(w));
+
+      if (!isAlreadyRevealed && !isWordFound) {
+        candidates.push(key);
+      }
+    });
+
+    if (candidates.length === 0) return; // Nothing left to reveal
+
+    // Cost check
+    if (!onSpendCoins(50)) {
+      // alert("Yetersiz bakiye!"); // Optional feedback
+      return;
+    }
+
+    playSound('pop');
+
+    const randomKey = candidates[Math.floor(Math.random() * candidates.length)];
+    const newRevealed = new Set(revealedCells);
+    newRevealed.add(randomKey);
+    setRevealedCells(newRevealed);
   };
 
   const closeHint = () => {
@@ -419,16 +460,32 @@ const ConnectGame: React.FC<ConnectGameProps> = ({ category, onWin, onBack, coin
           <p className="text-xs text-pink-100 opacity-90">{foundWords.size} / {targetWords.length} Kelime</p>
         </div>
 
-        {/* HINT BUTTON */}
-        <button
-          onClick={handleHint}
-          disabled={hintLoading || coins < 20}
-          className={`flex items-center gap-1 bg-yellow-400 text-yellow-900 px-3 py-1 rounded-full font-bold text-sm shadow-sm active:scale-95 transition-all
-            ${(hintLoading || coins < 20) ? 'opacity-50 grayscale' : 'hover:bg-yellow-300'}`}
-        >
-          <span>💡</span>
-          <span>20</span>
-        </button>
+        {/* HINT BUTTONS */}
+        <div className="flex gap-2">
+          {/* Letter Hint (50) */}
+          <button
+            onClick={handleLetterHint}
+            disabled={coins < 50}
+            className={`flex flex-col items-center justify-center bg-violet-500 text-white w-10 h-10 rounded-full shadow-sm active:scale-95 transition-all
+                ${(coins < 50) ? 'opacity-50 grayscale' : 'hover:bg-violet-400'}`}
+            title="Harf Al (50)"
+          >
+            <span className="font-bold text-lg leading-none">A</span>
+            <span className="text-[9px] font-bold leading-none">50</span>
+          </button>
+
+          {/* Fact Hint (20) */}
+          <button
+            onClick={handleFactHint}
+            disabled={hintLoading || coins < 20}
+            className={`flex flex-col items-center justify-center bg-yellow-400 text-yellow-900 w-10 h-10 rounded-full shadow-sm active:scale-95 transition-all
+                ${(hintLoading || coins < 20) ? 'opacity-50 grayscale' : 'hover:bg-yellow-300'}`}
+            title="İpucu Al (20)"
+          >
+            <span className="font-bold text-lg leading-none">?</span>
+            <span className="text-[9px] font-bold leading-none">20</span>
+          </button>
+        </div>
       </header>
 
       {/* CROSSWORD GRID AREA (Flexible) */}
@@ -449,14 +506,17 @@ const ConnectGame: React.FC<ConnectGameProps> = ({ category, onWin, onBack, coin
             const [r, c] = key.split(',').map(Number);
             const relR = r - minR;
             const relC = c - minC;
-            const isRevealed = data.words.some(w => foundWords.has(w));
+
+            const isWordFound = data.words.some(w => foundWords.has(w));
+            const isRevealed = revealedCells.has(key);
+            const isVisible = isWordFound || isRevealed;
 
             return (
               <div
                 key={key}
                 className={`absolute w-10 h-10 rounded-md border flex items-center justify-center font-bold text-xl transition-all duration-500 shadow-sm
-                            ${isRevealed
-                    ? 'bg-pink-500 border-pink-600 text-white scale-100'
+                            ${isVisible
+                    ? (isWordFound ? 'bg-pink-500 border-pink-600 text-white scale-100' : 'bg-pink-200 border-pink-300 text-pink-700 scale-100')
                     : 'bg-white border-slate-300 text-transparent'}`}
                 style={{
                   top: `${relR * cellSize}px`,

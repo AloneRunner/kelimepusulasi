@@ -1223,11 +1223,7 @@ export const WORD_FACTS: Record<string, string[]> = {
         "Ofislerin ve okulların en küçük ama en işlevsel kırtasiye malzemesidir.",
         "İcadından beri şekli neredeyse hiç değişmeyen dahi bir tasarım örneğidir."
     ],
-    "ayakkabı": [
-        "Ayağı dış etkenlerden, soğuktan ve sert zeminlerden korumak için giyilen eşyadır.",
-        "Topuklu, spor, bot veya kundura gibi pek çok farklı çeşidi bulunur.",
-        "Numarasına göre ayağa tam oturması gereken en temel giyim ihtiyacıdır."
-    ],
+
     "ayna": [
         "Işığı %100'e yakın oranda yansıtarak karşısındakinin görüntüsünü veren camdır.",
         "Camın arkasının 'sır' adı verilen gümüş veya alüminyum tabakayla kaplanmasıyla yapılır.",
@@ -1474,11 +1470,7 @@ export const WORD_FACTS: Record<string, string[]> = {
         "Tarih boyunca ipekten yüne kadar pek çok farklı malzemeden, her kültüre özgü dikilmiştir.",
         "Özel davetlerde veya günlük hayatta şıklığı tamamlayan en temel parçadır."
     ],
-    "eldiven": [
-        "Elleri soğuktan korumak veya iş yaparken zarar görmesini engellemek için giyilen eşyadır.",
-        "Beş parmağın her biri için ayrı bölmeleri olan veya sadece baş parmağı ayıran modelleri vardır.",
-        "Yün, deri veya lateks gibi kullanım amacına göre değişen malzemelerden üretilir."
-    ],
+
     "el feneri": [
         "Karanlıkta yolumuzu aydınlatan, pille çalışan taşınabilir ve küçük ışık kaynağıdır.",
         "İçindeki ampulden çıkan ışığı merceği sayesinde tek bir noktaya odaklayarak uzağı görmeyi sağlar.",
@@ -1548,11 +1540,7 @@ export const WORD_FACTS: Record<string, string[]> = {
         "Çerçeve içine yerleştirilen iki camdan oluşur ve kulaklara asılan sapları vardır.",
         "Bazı insanlar sadece şıklık için takarken, bazıları için dünyayı net görmenin tek yoludur."
     ],
-    "gitar": [
-        "Üzerindeki teller parmakla veya pena yardımıyla titretilerek çalınan, gövdesi sekiz şeklinde olan müzik aletidir.",
-        "Akustik, elektro ve klasik gibi pek çok çeşidi bulunan dünyanın en popüler enstrümanıdır.",
-        "Genellikle altı teli bulunur ve ritim tutmak için her müzik türünde kullanılır."
-    ],
+
     "gramofon": [
         "Üzerine konulan plakların iğne yardımıyla döndürülerek ses çıkardığı nostaljik müzik kutusudur.",
         "Büyük bir borusu (hunisi) vardır ve bu parça sesi yükselterek dışarı verir.",
@@ -1921,11 +1909,7 @@ export const WORD_FACTS: Record<string, string[]> = {
         "Özellikle buzlu içeceklerde ve paketli sütlerde kullanılan pratik bir araçtır.",
         "Sıvıyı hava basıncı yardımıyla yukarı çeken, çocuklar tarafından çok sevilen gereçtir."
     ],
-    "piyano": [
-        "Tuşlarına basıldığında içindeki tellere küçük çekiçlerin vurmasıyla ses çıkaran devasa çalgıdır.",
-        "Siyah ve beyaz tuşlardan oluşan karmaşık bir mekanizmaya ve eşsiz bir tınıya sahiptir.",
-        "Klasik müziğin en soylu ve en geniş ses aralığına sahip enstrümanı kabul edilir."
-    ],
+
     "priz": [
         "Elektrikli cihazların fişini takarak şebekeden enerji almasını sağlayan duvardaki yuvadır.",
         "İçinde akım geçen metal delikleri bulunan, evlerin her odasında mevcut olan bağlantı noktasıdır.",
@@ -1944,11 +1928,7 @@ export const WORD_FACTS: Record<string, string[]> = {
         "Guglielmo Marconi tarafından icat edilen bu aygıt, 'kablosuz telgraf' olarak tarihe geçmiştir."
     ],
 
-    "robot": [
-        "Belirli görevleri yerine getirmek için programlanabilen, sensörleri olan otomatik makinedir.",
-        "Kelime kökeni Çekçede 'zorla çalıştırma' veya 'köle' anlamına gelen 'robota' kelimesinden gelir.",
-        "Günümüzde fabrikalarda üretim yapmaktan evlerde yerleri süpürmeye kadar pek çok işi üstlenmiştir."
-    ],
+
     "ruj": [
         "Dudakları renklendirmek ve korumak için kullanılan, genellikle silindirik bir kutu içindeki kozmetik maddedir.",
         "Antik Mezopotamya'da kadınların değerli taşları ezerek dudaklarına sürmesiyle ortaya çıkmıştır.",
@@ -2693,11 +2673,7 @@ export const WORD_FACTS: Record<string, string[]> = {
         "Başkentindeki modern mimariyle tarihi kalelerin iç içe geçtiği, kardeşlik bağlarımızın en güçlü olduğu topraklardır.",
         "Petrol rezervleri ve zengin kültürel mirasıyla Kafkasya'nın en önemli stratejik merkezidir."
     ],
-    "ankara": [
-        "Anadolu'nun kalbinde yer alan bu merkez, milli mücadelenin yönetildiği ve cumhuriyetin ilan edildiği şehirdir.",
-        "Modern mimarisiyle yükselen bu yerleşim, meşhur kedisi, keçisi ve beyaz tavşanıyla da bilinir.",
-        "Ülkemizin yönetim merkezi olan bu şehir, bozkırın ortasında planlı gelişimiyle dikkat çeker."
-    ],
+
     "ada": [
         "Dört tarafı tamamen sularla çevrili olan, ana karadan kopuk kara parçasıdır.",
         "Dünyanın en büyüğü Grönland iken, en turistik olanları genellikle tropikal bölgelerde yer alır.",
@@ -2909,11 +2885,7 @@ export const WORD_FACTS: Record<string, string[]> = {
         "Matematik ve geometri bilgisinin en çok kullanıldığı, açıların hayati önem taşıdığı bir zeka oyunudur.",
         "Amerikan, 3-Bant ve Snooker gibi dünyaca ünlü farklı türleri bulunur."
     ],
-    "bisiklet": [
-        "İki tekerlekli bir araç üzerinde pedal çevirerek en hızlı şekilde bitiş çizgisine ulaşma sporudur.",
-        "Fransa Bisiklet Turu gibi organizasyonlarla dünyanın en zorlu dayanıklılık testlerinden biri kabul edilir.",
-        "Hem bireysel hem de takım halinde yapılabilen, en çevreci ulaşım yöntemidir."
-    ],
+
     "boks": [
         "İki sporcunun özel eldivenlerle bir ring içerisinde birbirlerine yumruk atarak puan topladığı dövüş dalıdır.",
         "Ağır sıklet ve tüy sıklet gibi farklı kilo kategorilerinde yapılan olimpik bir spordur.",
@@ -3232,16 +3204,470 @@ export const WORD_FACTS: Record<string, string[]> = {
         "Sümela Manastırı gibi tarihi yapılara ev sahipliği yapan, limanıyla bölgenin en büyük ticaret merkezidir.",
         "Futbol tutkusunun en yoğun yaşandığı, kendine has lehçesi ve mısır ekmeğiyle tanınan liman kentidir."
     ],
-    "paris": [
-        "Işıklar Şehri olarak anılan, meşhur kulesi ve dev sanat müzeleriyle dünyanın en romantik merkezidir.",
-        "Modanın ve gastronominin başkenti kabul edilen, içinden nehir geçen tarihi Avrupa kentidir.",
-        "Geniş bulvarları ve kafe kültürüyle tanınan, dünyanın en çok turist çeken yerlerinden biridir."
+
+    // --- KIYAFET & MODA ---
+    "ayakkabı": [
+        "Yürürken ayakları dış etkenlerden, sert zeminlerden ve soğuktan koruyan temel giyim eşyasıdır.",
+        "Numarasına göre ayağa tam oturması beklenen, spor, klasik veya bot gibi çeşitleri olan aksesuardır.",
+        "İnsanlık tarihinin en eski buluşlarından biridir ve ilk örnekleri hayvan derisinden yapılmıştır."
     ],
-    "roma": [
-        "Yedi tepe üzerine kurulu, tarihin en büyük imparatorluklarından birine merkezlik yapmış 'Ebedi Şehir'dir.",
-        "Kolezyum ve Aşk Çeşmesi gibi ikonik yapılarıyla açık hava müzesini andıran turizm noktasıdır.",
-        "Modern şehir yaşamının binlerce yıllık antik kalıntılarla iç içe geçtiği İtalya'nın kalbidir."
+    "ceket": [
+        "Gömlek veya kazak üzerine giyilen, önü düğmeli ya da fermuarlı olan kollu dış giyim ürünüdür.",
+        "Resmi toplantılarda takım elbisenin en önemli parçası olarak şıklığı tamamlar.",
+        "Kumaş türüne göre hem mevsimlik hem de kışlık olarak kullanılan, cepleri olan bir kıyafettir."
     ],
+    "eldiven": [
+        "Elleri soğuktan korumak veya iş yaparken zarar görmesini engellemek için kullanılan bir aksesuardır.",
+        "Beş parmağın her biri için ayrı bölmesi olan veya sadece baş parmağı ayıran modelleri vardır.",
+        "Tıpta hijyen sağlamak, mutfakta ise sıcak tepsileri tutmak için özel materyallerden üretilir."
+    ],
+    "kravat": [
+        "Gömlek yakasının altından geçirilerek boyna bağlanan, ucu göğse doğru sarkan kumaş aksesuardır.",
+        "Hırvat askerlerinin boyunlarına taktıkları bezlerden esinlenerek dünya modasına girmiştir.",
+        "İş dünyasında ve resmi törenlerde ciddiyetin ve prestijin sembolü kabul edilir."
+    ],
+    "mayo": [
+        "Deniz veya havuzda yüzmek için tasarlanmış, su tutmayan özel kumaşlardan yapılan giysidir.",
+        "Güneşlenirken ve su sporları yaparken vücudun rahat hareket etmesini sağlayan esnek yapısı vardır.",
+        "Tek parça veya iki parça (bikini) gibi farklı kesimlerde üretilen yazlık bir kıyafettir."
+    ],
+    "pijama": [
+        "Uyurken rahat etmek için giyilen, genellikle yumuşak ve bol kesimli iki parçalı settir.",
+        "Evin içinde dinlenirken kullanılan, pamuklu veya saten kumaşlardan dikilen konfor ürünüdür.",
+        "Kelime kökeni Farsçaya dayanır ve 'ayak giysisi' anlamına gelen bir tabirden türemiştir."
+    ],
+
+    // --- RENKLER ---
+    "mavi": [
+        "Gökyüzünün ve denizlerin hakim olduğu, huzur ve dinginlik veren soğuk bir tondur.",
+        "Dünya genelinde insanların en sevdiği renk olarak istatistiklere yansıyan popüler bir seçenektir.",
+        "Işığın üç ana renginden biridir ve nazar boncuklarının en bilinen zemin rengidir."
+    ],
+    "kırmızı": [
+        "Trafik ışıklarında 'dur' anlamına gelen, iştah açıcı ve dikkat çekici en canlı tondur.",
+        "Gökkuşağının en dış halkasında yer alan ve aşk, heyecan gibi duygularla özdeşleşen renktir.",
+        "Boğaların bu renge saldırdığı sanılsa da aslında onlar bu tonu ayırt edemez, sadece harekete tepki verirler."
+    ],
+    "yeşil": [
+        "Doğanın, yaprakların ve ormanların temsilcisi olan, tazelik hissi veren bir tondur.",
+        "Sarı ve mavinin karışımıyla elde edilen, gözü en az yoran ve güven veren renktir.",
+        "Ekoloji ve çevre koruma hareketlerinin dünya çapındaki sembolüdür."
+    ],
+    "beyaz": [
+        "Güneş ışığını tamamen yansıtan, saflığı ve barışı temsil eden en açık tondur.",
+        "Tüm renklerin birleşimiyle oluşur ve sıcak havalarda serin tuttuğu için çok tercih edilir.",
+        "Kış mevsiminde yağan karın o meşhur görüntüsünü oluşturan renktir."
+    ],
+
+    // --- MÜZİK ---
+    "gitar": [
+        "Genellikle altı teli bulunan ve hem parmakla hem de pena ile çalınan dünyanın en popüler çalgısıdır.",
+        "Klasik, akustik ve elektro gibi pek çok türü olan, ritim tutmak için her müzik türünde kullanılan bir enstrümandır.",
+        "Sekiz şeklindeki gövdesi ve uzun sapı üzerindeki perdeleriyle notaların yerini belirleyen telli bir araçtır."
+    ],
+    "piyano": [
+        "Siyah ve beyaz tuşlardan oluşan devasa bir mekanizmaya sahip, en soylu enstrümanlardan biridir.",
+        "Tuşlarına basıldığında içerideki küçük çekiçlerin tellere vurmasıyla ses çıkaran bir çalgıdır.",
+        "Klasik müzikten popa kadar her tarzda merkezi rol üstlenen, 88 tuşlu bir müzik aletidir."
+    ],
+    "nota": [
+        "Müzikteki seslerin yüksekliğini ve süresini belirten evrensel yazım işaretleridir.",
+        "Do, re, mi gibi isimlerle anılan ve porte (dizek) üzerine yazılan müzik dilinin alfabeleridir.",
+        "Müzisyenlerin bir eseri aynı şekilde çalabilmesini sağlayan kağıt üzerindeki sembollerdir."
+    ],
+    "konser": [
+        "Bir müzik topluluğunun veya sanatçının dinleyiciler önünde canlı olarak performans sergilemesidir.",
+        "Stadyumlarda, salonlarda veya meydanlarda binlerce insanın müzik için toplandığı büyük organizasyondur.",
+        "Işık şovları ve yüksek ses sistemleriyle görsel bir şölene dönüşen sahne etkinliğidir."
+    ],
+
+    // --- TAŞITLAR ---
+    "bisiklet": [
+        "İki tekerlekli, pedalla çevrilen ve tamamen kas gücüyle ilerleyen en çevreci ulaşım aracıdır.",
+        "Denge kurmayı öğrenmenin çocukluktaki en büyük heyecan olduğu, zincir ve dişli sistemli bir aygıttır.",
+        "Hem spor yapmak hem de şehir trafiğinden kurtulmak için dünya genelinde milyonlarca kişi tarafından kullanılır."
+    ],
+    "uçak": [
+        "Kanatları sayesinde havada süzülerek kıtalar arası yolculuğu saatlere indiren devasa ulaşım aracıdır.",
+        "Kokpitinde görev yapan uzmanlar tarafından yönetilen, jet motorlarıyla itiş gücü kazanan bir taşıttır.",
+        "Gökyüzünde beyaz çizgiler bırakarak yol alan, modern ulaşımın en hızlı yöntemidir."
+    ],
+    "gemi": [
+        "Denizlerde ve okyanuslarda ağır yükleri veya yolcuları taşımak için kullanılan büyük su taşıtıdır.",
+        "Limanlara demir atan, suyun kaldırma kuvvetinden yararlanarak yüzen devasa bir yapıdır.",
+        "Kaptan köşkünden yönetilen ve pusula yardımıyla rotasını çizen bir ulaşım aracıdır."
+    ],
+
+    // --- TEKNOLOJİ ---
+    "internet": [
+        "Dünya genelindeki tüm bilgisayarları birbirine bağlayan devasa bilgi ve iletişim ağıdır.",
+        "Bilgiye saniyeler içinde ulaşmamızı, dünyanın öbür ucuyla görüntülü konuşmamızı sağlayan görünmez bir köprüdür.",
+        "Web siteleri, sosyal medya ve e-postaların üzerinde çalıştığı modern çağın en büyük icadıdır."
+    ],
+    "robot": [
+        "Belirli görevleri yerine getirmek için programlanabilen, sensörleri olan otomatik makinedir.",
+        "Fabrikalarda üretim yapmaktan evlerde yerleri süpürmeye kadar insan işlerini kolaylaştıran teknolojidir.",
+        "Yapay zeka ile birleştiğinde öğrenme ve karar verme yeteneği kazanan mekanik sistemdir."
+    ],
+    "batarya": [
+        "Elektronik cihazların prizden bağımsız çalışabilmesi için enerji depolayan parçadır.",
+        "Telefonların ve dizüstü bilgisayarların 'şarj' dediğimiz gücünü saklayan kimyasal ünitedir.",
+        "Ömrü bittiğinde yenilenmesi gereken veya şarj edilerek tekrar kullanılan güç kaynağıdır."
+    ],
+
+
+
+    // --- FEN BİLİMLERİ (A-E) ---
+    "adaptasyon": [
+        "Canlıların belirli bir çevrede yaşama ve üreme şansını artıran kalıtsal özellikler kazanmasıdır.",
+        "Bukalemunların renk değiştirmesi veya develerin hörgüçlerinde yağ depolaması bu duruma örnektir.",
+        "Nesiller boyu süren, türün hayatta kalmasını sağlayan biyolojik bir uyum sürecidir."
+    ],
+    "akciğer": [
+        "Göğüs boşluğunda bulunan, kanın temizlenmesini ve solunumu sağlayan temel organdır.",
+        "Havadan alınan oksijeni kana verirken, kandaki karbondioksiti dışarı atan bir filtre gibidir.",
+        "Süngerimsi bir yapıya sahiptir ve sağ-sol olmak üzere iki parçadan oluşur."
+    ],
+    "amip": [
+        "Tatlı sularda yaşayan, belirli bir şekli olmayan, tek hücreli mikroskobik bir canlıdır.",
+        "Vücudundaki geçici uzantılar (yalancı ayaklar) sayesinde hareket eder ve beslenir.",
+        "Bölünerek çoğalan, biyoloji derslerinin en bilinen mikroskop örneklerinden biridir."
+    ],
+    "asit": [
+        "Sulu çözeltilerinde hidrojen iyonu veren, tadı ekşi olan kimyasal maddelerdir.",
+        "Mavi turnusol kağıdını kırmızıya çeviren ve mermer gibi yüzeyleri aşındırabilen maddelerdir.",
+        "pH değeri 0 ile 7 arasında olan, limonda ve midede doğal olarak bulunan bileşiklerdir."
+    ],
+    "asteroid": [
+        "Güneş sisteminde, genellikle Mars ve Jüpiter arasında dolanan irili ufaklı kaya parçalarıdır.",
+        "Gezegen olamayacak kadar küçük ama gök taşlarından çok daha büyük olan gök cisimleridir.",
+        "Milyarlarca yıl önceki oluşumdan kalan, uzayda başıboş gezen taş yığınlarıdır."
+    ],
+    "atom": [
+        "Maddenin yapı taşı kabul edilen, kimyasal özelliklerini taşıyan en küçük birimidir.",
+        "Merkezindeki çekirdekte proton ve nötronlar, çevresinde ise hızla dönen elektronlar bulunur.",
+        "Gözle görülemeyecek kadar küçük olan bu yapı, evrendeki her şeyin temel içeriğidir."
+    ],
+    "baz": [
+        "Sulu çözeltilerinde hidroksit iyonu veren, tadı acı ve ele kayganlık hissi veren maddelerdir.",
+        "Kırmızı turnusol kağıdını maviye çeviren, genellikle temizlik ürünlerinde (sabun, deterjan) bulunan bileşiklerdir.",
+        "pH değeri 7 ile 14 arasında olan kimyasal maddeler grubudur."
+    ],
+    "beyin": [
+        "Vücudun tüm hayati fonksiyonlarını yöneten, sinir sisteminin ana komuta merkezidir.",
+        "Duyguları, düşünceleri, hafızayı ve hareketleri koordine eden milyarlarca nöronun bulunduğu organdır.",
+        "Kafatası içinde korunan, vücudun en karmaşık ve enerji tüketen yapısıdır."
+    ],
+    "dna": [
+        "Hücrenin yönetim merkezinde bulunan ve canlıya ait tüm kalıtsal bilgileri taşıyan dev moleküldür.",
+        "Çift sarmal yapısı sayesinde genetik kodları nesilden nesile aktaran biyolojik bir veritabanıdır.",
+        "Göz renginden boy uzunluğuna kadar her türlü özelliğimizin planını içeren moleküler zincirdir."
+    ],
+    "ekosistem": [
+        "Belirli bir alandaki canlı varlıklar ile cansız çevrenin birbirleriyle etkileşim içinde olduğu yapıdır.",
+        "Bir orman, bir göl veya koca bir okyanus bu dengeli yaşam birliğine örnek gösterilebilir.",
+        "Enerji akışının ve madde döngüsünün kusursuz bir şekilde işlediği doğal düzendir."
+    ],
+    "elektrik": [
+        "Elektronların bir iletken üzerinden akmasıyla oluşan bir enerji türüdür.",
+        "Cihazlarımızın çalışmasını, şehirlerimizin aydınlanmasını sağlayan modern çağın vazgeçilmez gücüdür.",
+        "Barajlarda, güneş panellerinde veya rüzgar güllerinde üretilebilen temel fiziksel olgudur."
+    ],
+    "element": [
+        "Aynı cins atomlardan oluşan, fiziksel veya kimyasal yollarla daha basit maddelere ayrılamayan saf maddedir.",
+        "Hidrojen, oksijen ve altın gibi doğada bulunan veya laboratuvarda üretilen temel birimlerdir.",
+        "Periyodik tabloda belirli bir numara ve sembolle temsil edilen maddelerdir."
+    ],
+    "enerji": [
+        "Fizikte iş yapabilme yeteneği olarak tanımlanan, asla yok olmayan sadece biçim değiştiren olgudur.",
+        "Potansiyel, kinetik, ısı ve ışık gibi pek çok farklı türde karşımıza çıkabilir.",
+        "Canlıların yaşamını sürdürmesi, makinelerin çalışması için gereken temel yakıttır."
+    ],
+
+    // --- FEN BİLİMLERİ (F-M) ---
+    "fotosentez": [
+        "Yeşil bitkilerin güneş ışığı yardımıyla su ve karbondioksiti şeker ve oksijene dönüştürmesi sürecidir.",
+        "Dünyadaki oksijen döngüsünün temelini oluşturan, bitkilerin kendi besinini üretme mucizesidir.",
+        "Kloroplast adı verilen organellerde gerçekleşen, ışık enerjisini kimyasal enerjiye çeviren olaydır."
+    ],
+    "galaksi": [
+        "Milyarlarca yıldızın, gezegen sistemlerinin ve gaz bulutlarının kütle çekimiyle bir arada durduğu dev sistemdir.",
+        "Güneş sistemimizin içinde bulunduğu Samanyolu bu yapıların milyarlarca örneğinden sadece biridir.",
+        "Uzay boşluğunda sarmal, elliptik veya düzensiz şekillerde bulunan devasa gök topluluklarıdır."
+    ],
+    "genetik": [
+        "Canlılardaki kalıtım kurallarını ve özelliklerin nesillere nasıl aktarıldığını inceleyen bilim dalıdır.",
+        "DNA yapısını, genleri ve mutasyonları analiz ederek yaşamın şifrelerini çözer.",
+        "Tıptan tarıma kadar pek çok alanda devrim yaratan modern biyolojinin temel taşıdır."
+    ],
+    "hücre": [
+        "Tüm canlıların yapısal ve işlevsel en küçük yapı birimidir.",
+        "Zar, çekirdek ve sitoplazma olmak üzere üç temel kısımdan oluşan mikroskobik yaşam alanıdır.",
+        "Milyonlarcası bir araya gelerek dokuları, organları ve nihayetinde organizmayı oluşturur."
+    ],
+    "ışık": [
+        "Dünyayı görmemizi sağlayan, saniyede yaklaşık 300.000 km hızla yol alan elektromanyetik dalgalardır.",
+        "Prizmadan geçtiğinde yedi renge ayrılan, hem dalga hem de parçacık özelliği gösteren enerjidir.",
+        "Evrendeki en yüksek hıza sahip olan, yaşamın devamı için gereken temel kaynaktır."
+    ],
+    "kalp": [
+        "Göğüs kafesinin merkezinde bulunan ve kanı tüm vücuda pompalayan kaslı hayati organdır.",
+        "Dakikada ortalama 70-80 kez kasılarak yaşamın ritmini tutan, bir pompa gibi çalışan yapıdır.",
+        "Dört odacıktan oluşan ve damarlar aracılığıyla besin ile oksijeni hücrelere ulaştıran merkezdir."
+    ],
+    "kimya": [
+        "Maddelerin yapısını, özelliklerini, birbirleriyle etkileşimlerini ve dönüşümlerini inceleyen bilim dalıdır.",
+        "Laboratuvarlarda deneyler yaparak bileşiklerin ve elementlerin gizemini çözen araştırma alanıdır.",
+        "İlaçtan plastiğe, gıdadan kozmetiğe kadar kullandığımız her ürünün temelindeki bilimdir."
+    ],
+
+    // --- FEN BİLİMLERİ (N-Z) ---
+    "oksijen": [
+        "Atmosferin %21'ini oluşturan, yanıcı olmayan ama yakıcı özelliği olan hayati gazdır.",
+        "Canlıların solunum yaparak enerji üretmesi için hücrelerine çekmesi gereken temel elementtir.",
+        "Bitkiler tarafından gündüzleri üretilen ve suyun yapısında da bulunan renksiz, kokusuz maddedir."
+    ],
+    "periyodik tablo": [
+        "Doğadaki tüm elementlerin atom numaralarına göre dizildiği, özelliklerinin gösterildiği çizelgedir.",
+        "Kimyacıların 'yol haritası' kabul edilen, her kutucuğunda farklı bir maddenin simgesi olan tablodur.",
+        "Maddelerin metal, ametal veya soygaz olarak sınıflandırıldığı bilimsel şemadır."
+    ],
+    "radyasyon": [
+        "Dalga veya parçacık formunda yayılan enerjidir; güneşten, röntgen cihazlarından veya nükleer maddelerden yayılabilir.",
+        "Yüksek dozda maruz kalındığında canlı dokularına zarar verebilen ama tıpta teşhis için de kullanılan etkidir.",
+        "Uzay boşluğunda serbestçe dolaşan ve özel giysilerle korunulması gereken enerji akımıdır."
+    ],
+    "sindirim": [
+        "Büyük besin maddelerinin hücrelerin kullanabileceği kadar küçük parçalara ayrılması işlemidir.",
+        "Ağızda başlayıp midede devam eden ve bağırsaklarda tamamlanan biyolojik bir parçalama sürecidir.",
+        "Vücuda alınan gıdaların enerjiye dönüşmesi için gereken ilk ve en önemli aşamadır."
+    ],
+    "teleskop": [
+        "Uzaktaki gök cisimlerini, yıldızları ve galaksileri mercekler yardımıyla yaklaştırıp incelemeyi sağlayan cihazdır.",
+        "Astronomların gökyüzünü keşfetmek için kullandığı, devasa aynalı modelleri de bulunan gözlem aracıdır.",
+        "Uzayın derinliklerini görmemizi sağlayarak evren hakkındaki bilgilerimizi genişleten optik aygıttır."
+    ],
+    "virüs": [
+        "Kendi başına çoğalamayan, yaşamak için mutlaka bir canlı hücreye ihtiyaç duyan mikroskobik varlıktır.",
+        "Bakterilerden bile küçük olan ve hastalıklara yol açabilen genetik paketlerdir.",
+        "Antibiyotiklerin etki etmediği, vücuda girdiğinde bağışıklık sistemini zorlayan organizmalardır."
+    ],
+    "yer çekimi": [
+        "Kütlesi olan tüm cisimlerin birbirini çekmesi sonucunda oluşan, bizi yere sabitleyen kuvvettir.",
+        "Dünyanın atmosferini ve ayı yörüngesinde tutan, yukarı atılan her şeyin düşmesine neden olan güçtür.",
+        "Gezegenlerin güneş etrafında, uyduların gezegenler etrafında dolanmasını sağlayan evrensel etkidir."
+    ],
+    "vitamin": [
+        "Vücudun sağlıklı kalması ve dirençli olması için besinlerden alınan, düzenleyici organik bileşiklerdir.",
+        "A, B, C, D ve E gibi isimlerle anılan, eksikliğinde çeşitli hastalıklara yol açan mikro besinlerdir.",
+        "Meyve ve sebzelerde bolca bulunan, vücudun kendini yenilemesine yardımcı olan maddelerdir."
+    ],
+
+    // --- MATEMATİK TERİMLERİ (A-D) ---
+    "açı": [
+        "Başlangıç noktaları aynı olan iki ışının arasındaki açıklıktır.",
+        "İletki adı verilen araçla ölçülür ve değeri 'derece' cinsinden ifade edilir.",
+        "Dik, dar veya geniş gibi türleri bulunan, geometrinin en temel kavramıdır."
+    ],
+    "algoritma": [
+        "Bir problemi çözmek veya bir amaca ulaşmak için tasarlanan adım adım yoldur.",
+        "Sadece matematik değil, modern bilgisayar yazılımlarının da temel çalışma mantığıdır.",
+        "Belirli bir başlangıcı ve sonu olan, her adımda ne yapılacağı kesin olarak belirtilen işlemler dizisidir."
+    ],
+    "asal sayı": [
+        "Sadece 1'e ve kendisine tam bölünebilen, 1'den büyük doğal sayılardır.",
+        "2, bu gruptaki tek çift sayıdır; diğer tüm üyeleri tek sayıdır.",
+        "Sonsuz olduğu kanıtlanmış olan, sayı sistemlerinin en gizemli yapı taşlarıdır."
+    ],
+    "cebir": [
+        "Sayılar yerine harfler ve semboller kullanarak denklemler kuran matematik dalıdır.",
+        "İsmi, 'parçaların birleşmesi' anlamına gelen Arapça 'El-Cebir' kelimesinden türetilmiştir.",
+        "Bilinmeyen değerleri bulmak için kullanılan matematiksel dildir."
+    ],
+    "daire": [
+        "Bir çemberin ve bu çemberin iç bölgesinin oluşturduğu kapalı alandır.",
+        "Merkezi ile kenarı arasındaki her nokta eşit uzaklıktadır.",
+        "Alanı 'pi sayısı çarpı yarıçapın karesi' formülüyle hesaplanan geometrik şekildir."
+    ],
+    "denklem": [
+        "İçinde en az bir bilinmeyen bulunan ve iki ifadenin birbirine eşitliğini gösteren bağıntıdır.",
+        "Genellikle 'x' harfiyle temsil edilen gizli değeri bulmaya dayalı matematiksel bilmecedir.",
+        "Terazinin iki kefesi gibi çalışan, dengenin bozulmaması için her iki tarafa da aynı işlemin yapıldığı yapıdır."
+    ],
+    "doğal sayı": [
+        "Sıfırdan başlayıp sonsuza kadar giden, negatif değer içermeyen sayılar topluluğudur.",
+        "Günlük hayatta varlıkları saymak için kullandığımız en temel sayı grubudur.",
+        "Büyük 'N' harfi ile sembolize edilen, tam birimlerden oluşan kümedir."
+    ],
+
+    // --- MATEMATİK TERİMLERİ (E-K) ---
+    "ebob": [
+        "İki veya daha fazla sayıyı aynı anda bölebilen en büyük tam sayıya verilen isimdir.",
+        "Genellikle parçalara ayırma, bölme ve paylaştırma sorularında kullanılan bir hesaplama yöntemidir.",
+        "Sayıların ortak çarpanlarının en büyüğünü belirleyen matematiksel terimdir."
+    ],
+    "ekok": [
+        "İki veya daha fazla sayının ortak olan katları arasında en küçük olanıdır.",
+        "Genellikle zamanlama, birleşme ve periyodik olayların çakışması sorularında kullanılan yöntemdir.",
+        "Farklı aralıklarla tekrar eden olayların ne zaman aynı anda gerçekleşeceğini hesaplamaya yarar."
+    ],
+    "fonksiyon": [
+        "Bir kümedeki her bir elemanı, başka bir kümedeki yalnız bir elemanla eşleştiren kuraldır.",
+        "Bir 'girdi' değerini alıp belirli işlemlerden geçirerek bir 'çıktı' üreten matematiksel makinedir.",
+        "Grafiklerde bir eğri veya doğru olarak görselleştirilen bağıntı türüdür."
+    ],
+    "geometri": [
+        "Nokta, çizgi, yüzey ve hacim gibi kavramları, şekillerin özelliklerini inceleyen matematik dalıdır.",
+        "İsmi Yunancada 'yer ölçümü' anlamına gelir ve mimariden sanata kadar her yerde kullanılır.",
+        "Öklid'in temellerini attığı, dünyayı şekiller üzerinden anlamamızı sağlayan bilimdir."
+    ],
+    "hipotenüs": [
+        "Bir dik üçgende 90 derecelik açının tam karşısında yer alan kenardır.",
+        "Üçgenin diğer iki kenarından her zaman daha uzun olan kısımdır.",
+        "Meşhur antik yunan matematikçisinin formülünde, karesi diğer kenarların karesinin toplamına eşit olan yerdir."
+    ],
+    "istatistik": [
+        "Verilerin toplanması, analiz edilmesi ve sonuçların grafiklerle yorumlanması bilimidir.",
+        "Geleceğe dair tahminler yapmak ve karmaşık bilgileri sadeleştirmek için kullanılır.",
+        "Anket sonuçlarından hava durumuna kadar pek çok alanda doğruluğu kanıtlanmış veriler sunar."
+    ],
+    "karekök": [
+        "Hangi sayının kendisiyle çarpıldığını bulmaya yarayan matematiksel işlemdir.",
+        "Sembolü bir onay işaretine benzeyen, sayıyı 'kök'üne indiren işlemdir.",
+        "Örneğin 25 sayısını 5'e dönüştüren fonksiyondur."
+    ],
+    "küme": [
+        "İyi tanımlanmış, birbirinden farklı nesneler topluluğuna verilen isimdir.",
+        "İçindeki elemanların liste yöntemiyle veya şemalarla gösterildiği matematiksel yapıdır.",
+        "Kesişim, birleşim ve fark gibi işlemlerle analiz edilen gruplardır."
+    ],
+
+    // --- MATEMATİK TERİMLERİ (L-Z) ---
+    "olasılık": [
+        "Bir olayın gerçekleşme şansını 0 ile 1 arasında bir değerle gösteren ölçüdür.",
+        "0 olması durumunda 'imkansız', 1 olması durumunda 'kesin' olarak adlandırılır.",
+        "Zar atma veya yazı-tura gibi şansa dayalı olayların matematiksel tahminidir."
+    ],
+    "oran": [
+        "İki farklı büyüklüğün birbirine bölünerek karşılaştırılmasıdır.",
+        "Birbirine eşitliği durumunda 'orantı' kavramını doğuran matematiksel ilişkidir.",
+        "Hız, yoğunluk veya ölçek gibi pek çok kavramın temelini oluşturan kıyaslama yöntemidir."
+    ],
+    "paralel": [
+        "Aynı düzlemde bulunan ve sonsuza kadar uzatılsalar bile asla birbirini kesmeyen doğrulardır.",
+        "Aralarındaki mesafe her zaman aynı kalan, tren rayları gibi birbirine eşlik eden çizgilerdir.",
+        "Geometride birbirine asla dokunmayan ama aynı yönde ilerleyen yapıların özelliğidir."
+    ],
+    "pisagor bağıntısı": [
+        "Bir dik üçgende dik kenarların uzunluklarının kareleri toplamının, en uzun kenarın karesine eşit olmasıdır.",
+        "İnşaat ve mimaride açıların tam doğruluğunu kontrol etmek için binlerce yıldır kullanılır.",
+        "En bilinen örneği 3-4-5 olan, antik bir matematikçinin ismiyle anılan kuraldır."
+    ],
+    "rasyonel sayı": [
+        "İki tam sayının birbirine oranı şeklinde (a/b) yazılabilen sayılardır.",
+        "Payı ve paydası olan, sayı doğrusu üzerindeki kesirli ifadelerdir.",
+        "Gündelik dilde 'oranlı' veya 'akla uygun' anlamında da kullanılan sayı kümesidir."
+    ],
+    "simetri": [
+        "Bir cismin bir doğruya göre katlandığında çakışan, birbirinin aynısı olan iki parçaya sahip olmasıdır.",
+        "Doğada, sanat ve mimaride dengeyi sağlayan kusursuz yansıma özelliğidir.",
+        "Aynadaki görüntümüzün aslına göre sahip olduğu geometrik ilişkidir."
+    ],
+    "sonsuzluk": [
+        "Ucu bucağı olmayan, bitmeyen, ölçülemeyecek kadar büyük olan kavramdır.",
+        "Sembolü yan yatmış bir sekiz (8) rakamına benzeyen matematiksel durumdur.",
+        "Sayıların hiçbir zaman bitmeyeceğini ifade eden soyut büyüklüktür."
+    ],
+    "üçgen": [
+        "Aynı doğru üzerinde olmayan üç noktanın birleştirilmesiyle oluşan en basit kapalı şekildir.",
+        "İç açılarının toplamı her zaman 180 derece olan geometrik figürdür.",
+        "Kenarlarına göre eşkenar, ikizkenar veya çeşitkenar olarak türlere ayrılır."
+    ],
+    "yüzde": [
+        "Bir bütünün yüz eş parçaya bölündüğü varsayılarak ifade edilen miktardır.",
+        "İndirimlerden sınav sonuçlarına kadar her alanda karşılaştırma yapmak için kullanılır.",
+        "Özel bir sembolle (%) gösterilen, ondalık kesirlerin farklı bir ifade biçimidir."
+    ],
+
+    // --- DUYGULAR ---
+    "acı": [
+        "Vücudun veya ruhun bir zarar karşısında verdiği en temel uyarı sinyalidir.",
+        "Fiziksel olanı beynin savunma mekanizmasını çalıştırırken, ruhsal olanı sanatta en çok işlenen temadır.",
+        "Biberde bulunan 'kapsaisin' maddesi, dildeki reseptörleri kandırarak bu hissin oluşmasına neden olur."
+    ],
+    "aşk": [
+        "Beyinde dopamin, oksitosin ve adrenalin salgılanmasına neden olan çok güçlü bir kimyasal reaksiyondur.",
+        "Antik Yunanlılar bu hissi; tutku, dostluk ve şefkat gibi farklı isimlerle kategorize etmişlerdir.",
+        "Kalp atışlarını hızlandıran, iştahı kapatan ve uykuları kaçıran evrensel bir duygudur."
+    ],
+    "korku": [
+        "Tehlike anında vücudun 'savaş ya da kaç' tepkisini veren ilkel ve hayati bir savunma hissidir.",
+        "Bu his anında göz bebekleri genişler, kalp atışı hızlanır ve kaslara daha fazla kan pompalanır.",
+        "Bilinmeyene karşı duyulanı, tarih boyunca efsanelerin doğmasına neden olmuştur."
+    ],
+    "mutluluk": [
+        "Beyindeki serotonin ve endorfin seviyesinin yükselmesiyle hissedilen genel bir esenlik halidir.",
+        "Yapılan araştırmalara göre bulaşıcıdır; etrafınızda bu modda biri varsa sizin de öyle hissetme ihtimaliniz artar.",
+        "Bağışıklık sistemini güçlendirdiği ve ömrü uzattığı bilimsel olarak kanıtlanmış en pozitif duygudur."
+    ],
+
+    // --- EDEBİYAT ---
+    "şiir": [
+        "Duyguların, düşüncelerin ve hayallerin ritmik bir dille, imgeler kullanılarak aktarıldığı yazın türüdür.",
+        "İnsanlık tarihinin en eski edebiyat türüdür; yazı icat edilmeden önce sözlü gelenekle aktarılmıştır.",
+        "Kafiye ve ölçü gibi kuralları olan modelleri olduğu gibi, tamamen özgür yapıda olanları da vardır."
+    ],
+    "roman": [
+        "Gerçek ya da kurgulanmış olayların; yer, zaman ve karakterlerle detaylı anlatıldığı uzun edebi türdür.",
+        "Okuyucuyu karakterin iç dünyasına sokan, sayfalar ilerledikçe başka bir hayatı yaşatan geniş yapıttır.",
+        "Dünya edebiyatındaki modern anlamdaki ilk örneği Cervantes'in 'Don Kişot' eseri kabul edilir."
+    ],
+
+    // --- SİNEMA ---
+    "yeşilçam": [
+        "Türk sinemasının altın çağını yaşadığı döneme ve o dönemin merkezi olan sokağa verilen isimdir.",
+        "Samimi hikayeleri, imkansız aşkları ve ikonik karakterleriyle halkın gönlünde taht kurmuş bir ekoldür.",
+        "Adile Naşit ve Münir Özkul gibi isimlerin simgeleştiği, aile bağlarını yücelten bir film dönemidir."
+    ],
+    "film": [
+        "Ardışık fotoğrafların saniyede belirli bir hızla yansıtılmasıyla oluşan hareketli görüntüler bütünüdür.",
+        "Yedinci sanat olarak kabul edilen, ses ve görüntünün birleşmesiyle hikaye anlatan devasa endüstridir.",
+        "İlk örneği bir trenin gara girişini gösteren sadece birkaç saniyelik bir siyah-beyaz kayıttır."
+    ],
+
+    // --- MİTOLOJİ ---
+    "anka": [
+        "Küllerinden yeniden doğmasıyla bilinen, efsanevi, ölümsüz ve devasa bir kuş figürüdür.",
+        "Batı mitolojisinde 'Phoenix', Doğu'da ise 'Simurg' isimleriyle bilinen efsanevi varlıktır.",
+        "Bilgi ağacının dallarında yaşadığına inanılan, sabrın ve yeniden doğuşun sembolüdür."
+    ],
+    "şahmeran": [
+        "Anadolu mitolojisinde yer alan, belden yukarısı dünya güzeli bir kadın, belden aşağısı ise yılan olan varlıktır.",
+        "İsmi Farsçada 'Yılanların Şahı' anlamına gelir ve büyük bir tıp bilgisine sahip olduğuna inanılır.",
+        "İyilik yaptığı bir insan tarafından ihanete uğramasıyla sonuçlanan trajik bir efsanenin baş kahramanıdır."
+    ],
+
+    // --- TARİH (Önemli Özet) ---
+    "osmanlı": [
+        "1299 yılında Söğüt'te kurulan ve üç kıtaya yayılarak 600 yılı aşkın süre hüküm süren devasa imparatorluktur.",
+        "İstanbul'u fethederek bir çağın kapanıp yenisinin açılmasına neden olan medeniyettir.",
+        "Hukuktan mimariye, gastronomiden diplomasiye kadar dünya kültür mirasına muazzam eserler bırakmış devlettir."
+    ],
+    "yeniçeri": [
+        "İmparatorluğun devşirme sistemiyle oluşturulan, profesyonel ve daimi yaya ordusudur.",
+        "Savaşlarda padişahın merkezinde yer alan, barış zamanında ise başkentin güvenliğini sağlayan askeri sınıftır.",
+        "1826 yılında kaldırılan, tarihimizin en bilinen profesyonel askeri birliğidir."
+    ],
+    "lozan antlaşması": [
+        "Yeni kurulan Türk Devleti'nin sınırlarının ve tam bağımsızlığının dünya tarafından resmen tanındığı belgedir.",
+        "İsviçre'nin bir şehrinde imzalanan, 'Türkiye'nin tapusu' olarak nitelendirilen tarihi barış belgesidir.",
+        "Kapitülasyonların kaldırılması gibi hayati konuların çözüldüğü büyük bir diploması zaferidir."
+    ],
+    "nutuk": [
+        "Milli Mücadele'nin lideri tarafından kaleme alınan, 1919-1927 arası olayları anlatan dev eserdir.",
+        "Cumhuriyet Halk Fırkası'nın kurultayında 36 saat süren bir konuşmayla okunmuş tarihi bir hesaptır.",
+        "Yeni devletin hangi zorluklarla kurulduğunu birinci ağızdan anlatan en önemli yakın tarih kaynağıdır."
+    ]
 };
 
 // Kategori id'lerine göre genel şablonlar
