@@ -44,7 +44,7 @@ const App: React.FC = () => {
   // Economy & Persistence State
   const [coins, setCoins] = useState(() => {
     const saved = localStorage.getItem('kelime_coins');
-    return saved ? parseInt(saved, 10) : 100;
+    return saved ? parseInt(saved, 10) : 10000;
   });
 
   const [inventory, setInventory] = useState<string[]>(() => {
@@ -496,6 +496,8 @@ const App: React.FC = () => {
             category={currentCategory}
             onWin={handleConnectWin}
             onBack={navigateBackToCategories}
+            coins={coins}
+            onSpendCoins={handleSpendCoins}
           />
         </div>
       )}

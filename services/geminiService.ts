@@ -1102,16 +1102,43 @@ export const simulateAiVotes = async (
 };
 
 // Fun Fact Generator
+
+import { WORD_FACTS, CATEGORY_TEMPLATES } from "../data/wordFacts";
+import { CATEGORIES } from "../data/wordLists";
+
+// Fun Fact Generator
 export const getFunFactFromGemini = async (word: string): Promise<string> => {
-  const funFacts = [
-    `"${word}" kelimesi hakkında ilginç bir bilgi: Türkçe'de çok yaygın kullanılan kelimelerden biridir!`,
-    `Tahmin et bakalım! "${word}" kelimesi günlük konuşmada en çok kullanılan ilk 1000 kelime arasında.`,
-    `"${word}" kelimesiyle ilgili eğlenceli gerçek: Birçok deyim ve atasözünde geçer!`,
-    `Biliyor muydun? "${word}" kelimesi farklı lehçelerde değişik şekillerde telaffuz edilir.`,
-    `"${word}" kelimesi, Türkçe'nin zengin kelime hazinesinin güzel bir örneğidir!`
-  ];
+  const normalizedWord = normalize(word);
+
+  // 1. Önce özel veritabanımızda var mı bakalım
+  if (WORD_FACTS[normalizedWord]) {
+    const facts = WORD_FACTS[normalizedWord];
+    await new Promise(resolve => setTimeout(resolve, 600)); // "Yükleniyor" hissi için kısa bekleme
+    return facts[Math.floor(Math.random() * facts.length)];
+  }
+
+  // 2. Yoksa, kelimenin kategorisini bulup ona uygun genel bir bilgi verelim
+  let categoryId = 'default';
+
+  // Kelimeyi kategorilerde ara
+  for (const cat of CATEGORIES) {
+    // wordLists.ts'deki kelimeler zaten küçük harf ama normalize edilmiş olmayabilir, kontrol edelim
+    // Ancak prepareList() kullandığımız için lowercase tr-TR yapılmış durumdalar.
+    if (cat.words.includes(normalizedWord)) {
+      categoryId = cat.id;
+      break;
+    }
+  }
+
+  // Kategoriye uygun şablonları al, yoksa default'a düş
+  const templates = CATEGORY_TEMPLATES[categoryId] || CATEGORY_TEMPLATES['default'];
+  const template = templates[Math.floor(Math.random() * templates.length)];
+
+  // Şablondaki {word} yer tutucusunu kelimenin kendisiyle değiştir (Baş harfi büyük olsun)
+  const displayWord = word.charAt(0).toLocaleUpperCase('tr-TR') + word.slice(1).toLocaleLowerCase('tr-TR');
+  const fact = template.replace('{word}', displayWord);
 
   await new Promise(resolve => setTimeout(resolve, 500));
-
-  return funFacts[Math.floor(Math.random() * funFacts.length)];
+  return fact;
 };
+

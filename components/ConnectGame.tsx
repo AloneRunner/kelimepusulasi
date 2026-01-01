@@ -1,10 +1,14 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { Category } from '../types';
+import { getFunFactFromGemini } from '../services/geminiService';
+import { playSound } from '../services/audioService';
 
 interface ConnectGameProps {
   category: Category;
   onWin: () => void;
   onBack: () => void;
+  coins: number;
+  onSpendCoins: (amount: number) => boolean;
 }
 
 // ----------------------------------------------------------------------
@@ -157,11 +161,15 @@ const LEVELS: Level[] = [
   }
 ];
 
-const ConnectGame: React.FC<ConnectGameProps> = ({ category, onWin, onBack }) => {
+const ConnectGame: React.FC<ConnectGameProps> = ({ category, onWin, onBack, coins, onSpendCoins }) => {
   // Game State
   const [levelIndex, setLevelIndex] = useState(0);
   const [foundWords, setFoundWords] = useState<Set<string>>(new Set());
   const [gridScale, setGridScale] = useState(1);
+
+  // Hint State
+  const [activeHint, setActiveHint] = useState<{ word: string, fact: string } | null>(null);
+  const [hintLoading, setHintLoading] = useState(false);
 
   // Wheel Interaction State
   const [currentPath, setCurrentPath] = useState<number[]>([]);
@@ -177,6 +185,7 @@ const ConnectGame: React.FC<ConnectGameProps> = ({ category, onWin, onBack }) =>
     setFoundWords(new Set());
     setCurrentPath([]);
     setTempWord('');
+    setActiveHint(null);
     const lvl = LEVELS[idx];
     console.log('🏰 KELIME KULESI - BOLUM YUKLENDI');
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
@@ -254,6 +263,43 @@ const ConnectGame: React.FC<ConnectGameProps> = ({ category, onWin, onBack }) =>
   }, [gridCols, gridRows, levelIndex]);
 
   // ----------------------------------------------------------------------
+  // HINT LOGIC
+  // ----------------------------------------------------------------------
+
+  const handleHint = async () => {
+    if (hintLoading) return;
+
+    // 1. Bulunmamış kelimeleri listele
+    const unfoundWords = targetWords.filter(w => !foundWords.has(w));
+    if (unfoundWords.length === 0) return;
+
+    // 2. Para kontrolü
+    if (!onSpendCoins(20)) {
+      return; // Yetersiz bakiye
+    }
+
+    playSound('pop');
+    setHintLoading(true);
+
+    // 3. Rastgele bir kelime seç
+    const randomWord = unfoundWords[Math.floor(Math.random() * unfoundWords.length)];
+
+    // 4. Gemini'den bilgi al
+    try {
+      const fact = await getFunFactFromGemini(randomWord);
+      setActiveHint({ word: randomWord, fact });
+    } catch (error) {
+      console.error("Hint error:", error);
+    } finally {
+      setHintLoading(false);
+    }
+  };
+
+  const closeHint = () => {
+    setActiveHint(null);
+  };
+
+  // ----------------------------------------------------------------------
   // WHEEL LOGIC
   // ----------------------------------------------------------------------
 
@@ -312,6 +358,7 @@ const ConnectGame: React.FC<ConnectGameProps> = ({ category, onWin, onBack }) =>
         newFound.add(word);
         setFoundWords(newFound);
         console.log(`✅ Doğru kelime bulundu: "${word}" (${newFound.size}/${targetWords.length})`);
+        playSound('correct'); // Assuming 'correct' sound exists or similar
 
         if (newFound.size === targetWords.length) {
           console.log('🎉 Tüm kelimeler bulundu, bölüm kazanıldı!');
@@ -365,13 +412,23 @@ const ConnectGame: React.FC<ConnectGameProps> = ({ category, onWin, onBack }) =>
       {/* Header */}
       <header className="flex items-center justify-between p-4 bg-pink-600 text-white shadow-md z-20 shrink-0">
         <button onClick={onBack} className="p-1 hover:bg-pink-700 rounded transition">
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7 7-7m7 7h18" /></svg>
         </button>
         <div className="text-center">
           <h1 className="font-bold text-lg">Bölüm {currentLevel.id}</h1>
           <p className="text-xs text-pink-100 opacity-90">{foundWords.size} / {targetWords.length} Kelime</p>
         </div>
-        <div className="w-8"></div>
+
+        {/* HINT BUTTON */}
+        <button
+          onClick={handleHint}
+          disabled={hintLoading || coins < 20}
+          className={`flex items-center gap-1 bg-yellow-400 text-yellow-900 px-3 py-1 rounded-full font-bold text-sm shadow-sm active:scale-95 transition-all
+            ${(hintLoading || coins < 20) ? 'opacity-50 grayscale' : 'hover:bg-yellow-300'}`}
+        >
+          <span>💡</span>
+          <span>20</span>
+        </button>
       </header>
 
       {/* CROSSWORD GRID AREA (Flexible) */}
@@ -437,6 +494,31 @@ const ConnectGame: React.FC<ConnectGameProps> = ({ category, onWin, onBack }) =>
           </div>
         </div>
       </div>
+
+      {/* HINT MODAL OVERLAY */}
+      {activeHint && (
+        <div className="absolute inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
+          <div className="bg-white rounded-2xl shadow-2xl p-6 max-w-sm w-full text-center relative overflow-hidden animate-bounce-in">
+
+            <h3 className="text-pink-600 font-black text-xl mb-1 uppercase tracking-wider">İpucu</h3>
+            <p className="text-slate-400 text-xs font-bold uppercase mb-4">Aradığın Kelime Hakkında</p>
+
+            <div className="bg-pink-50 p-4 rounded-xl border border-pink-100 mb-6">
+              <p className="text-slate-700 italic text-lg leading-relaxed">
+                "{activeHint.fact}"
+              </p>
+            </div>
+
+            <button
+              onClick={closeHint}
+              className="w-full py-3 bg-pink-600 text-white rounded-xl font-bold hover:bg-pink-700 transition transform hover:scale-[1.02]"
+            >
+              Tamam, Buldum!
+            </button>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 };

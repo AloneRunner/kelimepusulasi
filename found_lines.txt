@@ -1,0 +1,43 @@
+15:basilik
+17:dobermani
+30:red panda
+57:deniz anası
+62:hava cıvası
+73:sosis köpek
+77:urkeklik
+108:üryani
+121:karnıyarık
+138:hoşbeş
+150:karnıyarık
+156:çedar
+156:cheddar
+167:nescafe
+169:oktay usta
+206:rimel
+209:tesbih
+218:traş
+219:proyektör
+255:rimel
+255:r.a.m
+259:tesbih
+291:tesbih
+310:kentsel tasarımcı
+453:zip
+660:civert
+668:civert
+688:benetton
+690:civert
+700:civert
+707:rimel
+731:lehim
+880:zoom
+914:skype
+924:zoom
+924:zip
+1003:lodosp
+1112:trajed
+1133:trajed
+1169:trajed
+1169:tesbih
+1194:subtitl
+1200:zoom
