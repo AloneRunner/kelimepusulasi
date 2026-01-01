@@ -164,11 +164,7 @@ export const WORD_FACTS: Record<string, string[]> = {
     ],
 
     // --- E HARFİ ---
-    "ebabil": [
-        "Hayatlarının neredeyse %90'ını havada geçirirler; uçarken uyuyabilir ve beslenebilirler.",
-        "Yere indiklerinde bacakları çok kısa olduğu için tekrar havalanmakta zorlanırlar.",
-        "Yılda bir kez üremek için yere inerler, geri kalan 10 ayı havada geçirebilirler."
-    ],
+
     "ekidne": [
         "Platypus (Ornitorenk) ile birlikte yumurtlayan tek memeli türüdür.",
         "Vücutları dikenlerle kaplıdır ve tehlike anında top gibi yuvarlanırlar.",
@@ -230,11 +226,7 @@ export const WORD_FACTS: Record<string, string[]> = {
         "Terleri 'kanlı ter' olarak bilinir; aslında cildi güneşten koruyan kırmızımsı doğal bir sıvıdır.",
         "Gün boyu serinlemek için suda kalırlar, su altında yürüyebilirler."
     ],
-    "ıstakoz": [
-        "Aslında biyolojik olarak ölümsüz olabilirler; yaşlandıkça zayıflamaz, daha güçlü ve doğurgan olurlar.",
-        "Tehlike hissettiklerinde kıskaçlarını feda edip kaçabilirler, kıskaçları sonradan geri çıkar.",
-        "Tat alma duyuları ayaklarındaki kıllardadır."
-    ],
+
     "ipekböceği": [
         "Sadece 1 kilogram ipek üretmek için yaklaşık 5000 adet koza gereklidir.",
         "Sadece dut yaprağı yiyerek beslenirler.",
@@ -821,11 +813,7 @@ export const WORD_FACTS: Record<string, string[]> = {
     ],
 
     // --- H HARFİ ---
-    "hamsi": [
-        "Karadeniz kültürünün sembolüdür; bölgede hamsili pilavdan tatlısına kadar 40'tan fazla yemeği yapılır.",
-        "Hamsi aslında bir balık ismi değil, bir hamsigiller familyasının genel adıdır ve kışın yağlandığında en lezzetli halini alır.",
-        "Romalılar döneminde hamsi, 'Garum' adı verilen ve çok değerli olan bir balık sosunun ana maddesiydi."
-    ],
+
     "havuç": [
         "Havuçlar aslında başlangıçta mor veya beyaz renkliydi; bugün bildiğimiz turuncu havuçlar 17. yüzyılda Hollandalı çiftçiler tarafından geliştirilmiştir.",
         "Havuç, şeker içeriği bakımından pancardan sonra ikinci sırada yer alan sebzedir.",
@@ -836,11 +824,7 @@ export const WORD_FACTS: Record<string, string[]> = {
         "Osmanlı'da 'Helva Sohbetleri' adı verilen sosyal toplantılar yapılır, bu gecelerde şiirler okunur ve felsefi tartışmalar dönerdi.",
         "Türk kültüründe doğumdan ölüme, zaferlerden hüzünlere kadar her önemli olayda paylaşılan tek yemektir."
     ],
-    "hindi": [
-        "Hindilerin ismi Türkçede 'Hindistan'dan gelen' anlamındadır; ancak İngilizcede 'Turkey' (Türkiye) olarak adlandırılmalarının sebebi, Avrupa'ya ilk kez Osmanlı tüccarları tarafından getirilmiş olmalarıdır.",
-        "Vahşi hindiler saatte 40 kilometre hızla koşabilir ve kısa mesafeli de olsa uçabilirler.",
-        "Kızılgerdanlı hindiler duygularına göre kafa ve boyun renklerini kırmızıdan maviye veya beyaza dönüştürebilirler."
-    ],
+
 
     // --- I - İ HARFİ ---
     "ıhlamur": [
@@ -3667,8 +3651,252 @@ export const WORD_FACTS: Record<string, string[]> = {
         "Milli Mücadele'nin lideri tarafından kaleme alınan, 1919-1927 arası olayları anlatan dev eserdir.",
         "Cumhuriyet Halk Fırkası'nın kurultayında 36 saat süren bir konuşmayla okunmuş tarihi bir hesaptır.",
         "Yeni devletin hangi zorluklarla kurulduğunu birinci ağızdan anlatan en önemli yakın tarih kaynağıdır."
+    ],
+    // --- HAYVANLAR (EKSİKLERİ TAMAMLAMA - 1. GRUP) ---
+    "akbaş": [
+        "Anadolu'ya has bir çoban köpeği ırkıdır ve tamamen beyaz kürk boyuyla tanınır.",
+        "Sürüsünü kurtlara karşı korurken son derece cesur ve korumacı davranan bir bekçidir.",
+        "Geceleri çok keskin bir görüşe sahip olan, iri gövdeli bir dostumuzdur."
+    ],
+    "akkuş": [
+        "Genellikle sulak alanlarda yaşayan, ince uzun gagalı ve bembeyaz tüyleri olan bir kanatlıdır.",
+        "Zarafetiyle bilinen bu canlı, su kenarlarında balık avlayarak beslenir.",
+        "Göç yolları üzerinde sıkça rastlanan, uzun bacaklı bir kuş türüdür."
+    ],
+    "alakarga": [
+        "Meşe palamutlarını toprağa gömüp yerini unutması sayesinde binlerce yeni ağacın yetişmesini sağlayan zeki bir kuştur.",
+        "Diğer kuşların ve hatta yırtıcıların seslerini mükemmel bir şekilde taklit edebilme yeteneğine sahiptir.",
+        "Mavi kanat tüyleriyle ormanlarda hemen fark edilen, oldukça gürültücü bir canlıdır."
+    ],
+    "angut": [
+        "Eşine olan sadakatiyle bilinen bu kanatlı, eşi öldüğünde onun yanında günlerce yas tutmasıyla tanınır.",
+        "Ördekgiller ailesinden olan, turuncumsu tüylere sahip bir kuş türüdür.",
+        "Halk arasında bazen 'şaşkın' anlamında kullanılsa da aslında doğanın en sadık üyelerinden biridir."
+    ],
+    "aygır": [
+        "Vahşi doğada sürünün liderliğini yapan, güçlü ve yetişkin erkek ata verilen isimdir.",
+        "Sürüsünü korumak için diğer rakipleriyle amansız bir mücadeleye giren, heybetli bir canlıdır.",
+        "Asaleti ve hızıyla bilinen bu memeli, gücün ve özgürlüğün sembolüdür."
+    ],
+    "balarısı": [
+        "Bir kilogram ürün üretebilmek için dünyanın çevresini dört kez dönecek kadar yol kat eden çalışkan böcektir.",
+        "Birbirleriyle 'dans ederek' haberleşen ve yemeğin yerini tarif eden muazzam bir sosyal yapıya sahiptirler.",
+        "Doğadaki tozlaşmanın %80'inden sorumlu olan, eko sistemin devamlılığı için hayati önem taşıyan canlıdır."
+    ],
+    "balıkçıl": [
+        "Sığ sularda saatlerce heykel gibi hareketsiz bekleyerek balık avlayan, uzun boyunlu bir kuştur.",
+        "Gagası bir mızrak kadar keskindir ve avını saniyeler içinde yakalayabilir.",
+        "Uçarken boynunu 'S' şeklinde geriye doğru bükmesiyle diğer benzer kuşlardan ayrılır."
+    ],
+    "barakuda": [
+        "Denizlerin kurdu olarak bilinen, çok keskin dişlere ve uzun, silindirik bir vücuda sahip yırtıcı balıktır.",
+        "Parlak nesnelere karşı aşırı ilgisi vardır ve su altında inanılmaz bir hıza ulaşabilir.",
+        "Pusu kurarak avlanan, korkutucu görünüşlü bir deniz canlısıdır."
+    ],
+    "bıldırcın": [
+        "Yere yakın uçan, tombul gövdeli ve benekli tüyleri olan küçük bir kuş türüdür.",
+        "Yumurtaları, tavuk yumurtasına göre çok daha küçük ama besin değeri açısından çok zengindir.",
+        "Çalılıkların arasına saklanarak yaşayan ve göç yollarında yorgun düşmesiyle bilinen bir canlıdır."
+    ],
+    "bizon": [
+        "Kuzey Amerika'nın en büyük kara memelisidir ve devasa omuz hörgücüyle tanınır.",
+        "Kalın kürkü sayesinde dondurucu kar fırtınalarında bile hayatta kalabilen güçlü bir hayvandır.",
+        "Toplu halde koştuklarında yer sarsıntısına neden olan, dev boynuzlu bir yaban sığırı türüdür."
+    ],
+    "bonobo": [
+        "İnsanlarla en yakın DNA benzerliğine sahip olan, barışçıl ve sosyal şempanze türüdür.",
+        "Grup içindeki sorunları kavga ederek değil, paylaşarak ve oyun oynayarak çözen duygusal bir primattır.",
+        "Zekası ve alet kullanma yeteneğiyle bilim dünyasını şaşırtan bir maymun türüdür."
+    ],
+    "cırcırböceği": [
+        "Özellikle yaz gecelerinde kanatlarını birbirine sürterek yüksek ses çıkaran küçük bir böcektir.",
+        "Hava sıcaklığı arttıkça bu canlının çıkardığı sesin hızı da artar; adeta doğal bir termometre gibidir.",
+        "Sadece erkekleri ses çıkararak eşlerini etkilemeye çalışır."
+    ],
+    "çipura": [
+        "Ege ve Akdeniz mutfağının en gözde balıklarından biridir; yanaklarındaki altın rengi leke ile tanınır.",
+        "Kabuklu deniz canlılarını kolayca kırabilen çok güçlü dişlere ve çeneye sahiptir.",
+        "Gümüşi renkli, yassı gövdeli ve denizlerin en lezzetli üyelerinden biri kabul edilen balıktır."
+    ],
+    "çiyan": [
+        "Her bir gövde halkasında bir çift bacağı bulunan, çok hızlı hareket eden zehirli bir eklem bacaklıdır.",
+        "Kırkayak ile sıkça karıştırılsa da ondan çok daha hızlı ve avcı bir yapıya sahiptir.",
+        "Karanlık ve nemli yerleri seven, geceleri avlanmaya çıkan korkutucu bir canlıdır."
+    ],
+    "dağ keçisi": [
+        "Neredeyse dikey kayalıklara ve uçurumlara hiç kaymadan tırmanabilen muazzam bir denge ustasıdır.",
+        "Ayak tabanlarındaki vakum benzeri yapı, en kaygan zeminlere bile tutunmasını sağlar.",
+        "Yüksek zirvelerde yaşayan, görkemli boynuzları olan dayanıklı bir memelidir."
+    ],
+    "deniz fili": [
+        "Burnunun şekli bir hortumu andıran, dünyanın en büyük fok türlerinden biridir.",
+        "Su altında nefesini iki saatten fazla tutabilir ve binlerce metre derinliğe dalabilir.",
+        "Erkekleri devasa cüsseleriyle plajlarda egemenlik kavgası veren, okyanusun ağır sıklet üyesidir."
+    ],
+    "denizyıldızı": [
+        "Beyni ve kanı olmayan, ancak kopan kollarını tamamen yeniden üretebilen mucizevi bir deniz canlısıdır.",
+        "Vücutlarının altındaki yüzlerce minik tüp ayak sayesinde su altında yavaşça hareket eder.",
+        "Gözleri kollarının en ucunda bulunur ve sadece ışığı algılayabilir."
+    ],
+    "dodo": [
+        "İnsanlar tarafından avlanarak nesli tükenmiş, uçamayan efsanevi bir kuş türüdür.",
+        "Mauritius adasına has bir canlıydı ve hiçbir doğal düşmanı olmadığı için çok uysal bir yapıya sahipti.",
+        "Günümüzde soyu tükenen canlıların en bilinen sembolü haline gelmiştir."
+    ],
+    "dugong": [
+        "Deniz ineği olarak da bilinen, sadece deniz bitkileriyle beslenen uysal bir devdir.",
+        "Denizkızı efsanelerinin, bu canlıyı uzaktan gören denizciler tarafından uydurulduğu sanılmaktadır.",
+        "Su altında yaşayan ama nefes almak için yüzeye çıkan, kuyruğu balinayı andıran bir memelidir."
+    ],
+    "ebabil": [
+        "Geceleri havada uyuyabilen ve hayatının neredeyse tamamını uçarak geçiren gizemli bir kuştur.",
+        "Yere indiklerinde bacakları çok kısa olduğu için tekrar havalanmakta zorlanırlar, bu yüzden yüksek yerleri tercih ederler.",
+        "Tarihi anlatılarda büyük ordulara karşı savunma yapan mucizevi bir kuş olarak da geçer."
+    ],
+
+    // --- HAYVANLAR (EKSİKLERİ TAMAMLAMA - F'DEN K'YE) ---
+    "feret": [
+        "Vücutları o kadar esnektir ki, kendi vücut uzunluklarından çok daha dar ve kıvrımlı deliklerden kolayca geçebilirler.",
+        "Günde 18-20 saat uyuyan bu meraklı canlılar, isimlerini Latince 'küçük hırsız' kelimesinden alırlar.",
+        "Evcilleştirilmiş gelincik türü olan bu hayvanlar, bir şeyler saklamaya bayılırlar."
+    ],
+    "fırtınakuşu": [
+        "Okyanusların üzerinde binlerce kilometre uçabilen ve suyun üzerindeki planktonlarla beslenen bir kanatlıdır.",
+        "Kötü bir hava durumundan önce gemilerin etrafında toplandıkları için denizciler arasında uğursuz veya uyarıcı kabul edilirler.",
+        "Burun deliklerindeki özel bir yapı sayesinde deniz suyundaki tuzu dışarı püskürtebilirler."
+    ],
+    "firavun faresi": [
+        "Kobra yılanlarına karşı olan bağışıklığı ve onlarla yaptığı amansız dövüşlerle tanınan çok çevik bir avcıdır.",
+        "Antik Mısır'da kutsal kabul edilen bu canlı, hiyerogliflerde sıkça resmedilmiştir.",
+        "Zehirli yılanları yormak için yıldırım hızında manevralar yapabilen, cesur bir memelidir."
+    ],
+    "gelincik": [
+        "Kendi vücut ağırlığından 10 kat daha büyük avları bile alt edebilen, doğanın en hırslı yırtıcılarından biridir.",
+        "Kışın bazı türlerinin tüyleri tamamen beyaza dönerken, sadece kuyruk ucu siyah kalır.",
+        "Metabolizması o kadar hızlıdır ki, hayatta kalmak için her gün vücut ağırlığının yarısı kadar yemek yemelidir."
+    ],
+    "gibon": [
+        "Kollarını bir sarkaç gibi kullanarak ağaçtan ağaca saatte 55 km hızla uçarcasına geçebilirler.",
+        "Primatlar arasında 'en iyi şarkı söyleyen' canlılardır; sabahları ormanda kilometrelerce öteden duyulan düetler yaparlar.",
+        "Hayatları boyunca tek eşli yaşayan ve çekirdek aile yapısına sahip olan nadir maymun türlerindendir."
+    ],
+    "grifon": [
+        "Aslan gövdeli ve kartal kanatlı olarak tasvir edilen efsanevi bir mitolojik varlıktır.",
+        "Hazinelerin koruyucusu ve adaletin sembolü olarak pek çok antik kültürün sanatında yer alır.",
+        "Göklerin ve yerin gücünü kendinde birleştirdiğine inanılan görkemli bir yaratıktır."
+    ],
+    "güvercin": [
+        "Dünya üzerindeki yönlerini, dünyanın manyetik alanını algılayarak bulan muazzam gezginlerdir.",
+        "Tarih boyunca mesaj taşımak için kullanılmış, barışın ve sadakatin evrensel sembolü haline gelmiştir.",
+        "Aynada kendilerini tanıyabilen ve karmaşık matematiksel kavramları öğrenebilen nadir kuşlardandır."
+    ],
+    "güve": [
+        "Kelebeklere çok benzeseler de genellikle gece aktiftirler ve dinlenirken kanatlarını düz tutarlar.",
+        "Bazı türlerinin yetişkin hallerinde ağızları yoktur; hiç yemek yemezler, sadece üremek için yaşarlar.",
+        "Işığa karşı aşırı duyarlıdırlar ve navigasyon sistemleri yapay ışıklar nedeniyle bozulur."
+    ],
+    "hamamböceği": [
+        "Kafaları kopsa bile bir hafta daha yaşayabilirler; çünkü vücutlarındaki küçük deliklerden nefes alırlar.",
+        "Radyasyona karşı insanlardan 15 kat daha dayanıklı olan, 300 milyon yıldır değişmeyen bir canlıdır.",
+        "Nefeslerini 40 dakika boyunca tutabilir ve suyun altında uzun süre kalabilirler."
+    ],
+    "hamsi": [
+        "Karadeniz mutfağının başrol oyuncusudur ve kış aylarında dev sürüler halinde göç eder.",
+        "Küçük boyutuna rağmen omega-3 açısından en zengin ve en ekonomik deniz ürünlerinden biridir.",
+        "Halk kültüründe fıkralara, türkülere ve hatta heykellere konu olmuş simgesel bir balıktır."
+    ],
+    "hindi": [
+        "Kızdığında veya heyecanlandığında boyun derisi kırmızıdan maviye veya beyaza dönebilen ilginç bir kanatlıdır.",
+        "İngilizcede bir ülke ismiyle anılsa da aslında ana vatanı Kuzey Amerika olan bir yaban kuşudur.",
+        "Görüş alanı 270 derecedir ve arkasından gelen tehlikeleri kafasını çok az çevirerek görebilir."
+    ],
+    "horoz": [
+        "Sabahın ilk ışıklarıyla birlikte biyolojik saatleri sayesinde yüksek sesle öterek bölge hakimiyetini ilan eder.",
+        "Gözleri aynı anda hem yakını hem de uzağı net görebilecek şekilde tasarlanmıştır.",
+        "Sürüsünü korumak için kendinden çok daha büyük yırtıcılara bile korkusuzca saldırabilen bir kanatlıdır."
+    ],
+    "ıstakoz": [
+        "Biyolojik olarak yaşlanmayan nadir canlılardandır; zaman geçtikçe daha güçlü ve daha doğurgan hale gelirler.",
+        "Tat alma organları ayaklarındaki minik kıllarda bulunur ve idrarlarıyla birbirlerine mesaj gönderirler.",
+        "Eskiden 'deniz böceği' denilerek fakir yiyeceği sayılırken, günümüzde lüks mutfağın vazgeçilmezidir."
+    ],
+    "ibibik": [
+        "Kafasındaki yelpaze şeklindeki tüy tacı ile tanınan, mitolojide ve edebiyatta bilge kabul edilen bir kuştur.",
+        "Yavrularını ve yuvasını korumak için yırtıcılara karşı çok kötü kokulu bir sıvı salgılayabilir.",
+        "Topraktaki böcekleri yakalamak için uzun ve kavisli gagasını bir cımbız gibi kullanır."
+    ],
+    "iguana": [
+        "Tehlike anında suyun altına atlayıp 30 dakikadan fazla nefes almadan orada kalabilen dev bir sürüngendir.",
+        "Kafalarının üzerinde 'üçüncü göz' denilen ve sadece ışık değişimlerini algılayan özel bir organları vardır.",
+        "Çok yüksekten sert zemine düşseler bile hiçbir zarar görmeden yürümeye devam edebilirler."
+    ],
+    "impala": [
+        "Kaçarken havada 3 metre yüksekliğe ve 10 metre uzağa sıçrayabilen, Afrika savanlarının en zarif canlısıdır.",
+        "Vücutlarındaki siyah çizgiler sayesinde birbirlerini sürünün içinde kolayca takip edebilirler.",
+        "Su içmek için aslanların en çok pusu kurduğu noktalarda en uyanık davranan hayvandır."
+    ],
+    "istiridye": [
+        "Vücuduna giren kum tanesi gibi yabancı maddelerden kurtulamadığında, etrafını sedefle kaplayarak yıllar içinde mücevher üretir.",
+        "Deniz suyunu süzerek temizleyen, ekosistem için hayati önem taşıyan bir filtre sistemine sahiptir.",
+        "Hayatı boyunca tek bir yere yapışık yaşar ve binlerce litre suyu temizleyebilir."
+    ],
+    "japon balığı": [
+        "Hafızalarının 3 saniye olduğu bilgisi tamamen yanlıştır; olayları ve kişileri aylarca hatırlayabilirler.",
+        "Sahiplerinin sesini tanıyabilen ve farklı renkleri ayırt edebilen, oldukça sosyal bir su canlısıdır.",
+        "Vücutlarındaki pigmentler sayesinde ışık almadıkları karanlık ortamlarda renkleri solarak beyaza döner."
+    ],
+    "kakadu": [
+        "Kafasındaki hareketli tüy tacı ile duygularını belli eden, 80 yıla kadar yaşayabilen çok zeki bir kuş türüdür.",
+        "İnsan yapımı kilitleri açmayı öğrenebilir ve müzik ritmine göre gerçekten dans edebilir.",
+        "Eşlerine çok bağlıdırlar ve yalnız kaldıklarında üzüntüden kendi tüylerini yolabilirler."
+    ],
+    "kalkan": [
+        "Deniz tabanında kumun altına gizlenen, vücudu tamamen yassı ve iki gözü de aynı tarafta olan ilginç bir balıktır.",
+        "Deri rengini saniyeler içinde üzerinde bulunduğu kumun rengine uydurabilen bir kamuflaj ustasıdır.",
+        "Üzerindeki düğme benzeri sert kemiksi yapılar nedeniyle 'çivili' türü oldukça meşhurdur."
+    ],
+    "kanarya": [
+        "Eski dönemlerde maden ocaklarında zehirli gazları önceden tespit etmek için kullanılan 'canlı alarm' sistemidir.",
+        "Parlak sarı rengi ve eşsiz ötüşüyle bilinen bu kuş, ismini Afrika açıklarındaki takımadalardan almıştır.",
+        "Kendi şarkılarını besteleyebilir ve çevresindeki diğer melodileri taklit ederek geliştirebilir."
+    ],
+    "kapibara": [
+        "Dünyanın en büyük kemirgenidir ve o kadar uysaldır ki diğer tüm hayvanlarla dostça yaşayabilir.",
+        "Yarı sucul bir hayat sürer; ayaklarındaki perdeler sayesinde harika yüzer ve su altında uyuyabilir.",
+        "Gövdesi bir köpeği andıran bu dev canlı, Güney Amerika'nın nehir kıyılarında sürüler halinde yaşar."
+    ],
+    "karga": [
+        "Problem çözme yeteneği 7 yaşındaki bir çocukla eşdeğer olan, alet yapıp kullanabilen en zeki kuşlardan biridir.",
+        "Kendisine kötülük yapan bir insanın yüzünü yıllarca unutmaz ve bunu diğer grup üyelerine de öğretir.",
+        "Ölen arkadaşları için bir araya toplanarak 'cenaze töreni' benzeri bir sosyal davranış sergilerler."
+    ],
+    "katır": [
+        "At ve eşeğin çiftleşmesinden doğan, her iki ebeveyninden de daha dayanıklı ve güçlü olan bir canlıdır.",
+        "Yorgunluğa karşı inanılmaz dirençlidir ve en dik dağ yollarında bile yük taşımakta ustadır.",
+        "Kendisi üreyemeyen (kısır) bir türdür ancak zekası ve dikkatli adımlarıyla bilinir."
+    ],
+    "kelaynak": [
+        "Dünyada sadece Türkiye ve Fas'ta yaşayan, kafasında hiç tüy bulunmayan, nesli kritik tehlike altındaki bir kuştur.",
+        "Bereketin sembolü kabul edilen bu canlılar, her yıl göç yollarından dönmeleriyle baharın müjdecisi sayılırlar.",
+        "Birecik'teki özel istasyonlarda koruma altına alınan, gagasının şekliyle ikonikleşmiş bir türdür."
+    ],
+    "kertenkele": [
+        "Yırtıcılardan kaçmak için kendi kuyruğunu koparıp feda edebilir ve bu kuyruk daha sonra yeniden uzar.",
+        "Bazı türleri gözlerinden kan fışkırtarak düşmanlarını korkutabilir.",
+        "Göz kapakları olmadığı için gözlerini dilleriyle yalayarak temizleyen türleri de mevcuttur."
+    ],
+    "kırlangıç": [
+        "Çamur ve tükürüklerini karıştırarak binaların saçaklarına kase şeklinde sağlam yuvalar yapan ustadır.",
+        "Hayatının neredeyse tamamını havada böcek avlayarak geçiren, çatallı kuyruğuyla tanınan bir gezgindir.",
+        "Fırtınalı havaları önceden sezip çok alçaktan uçarak yağmurun haberini veren canlıdır."
+    ],
+    "köstebek": [
+        "Yerin altında kazdığı tünellerde yaşayan, neredeyse tamamen kör olan ama koku duyusu muazzam gelişmiş bir memelidir.",
+        "Ön ayakları kürek gibi dışa dönüktür; bu sayede bir gecede 50 metre tünel kazabilir.",
+        "Toprağın altındaki titreşimleri hissederek solucan ve böceklerin yerini kolayca tespit eder."
     ]
 };
+
 
 // Kategori id'lerine göre genel şablonlar
 export const CATEGORY_TEMPLATES: Record<string, string[]> = {
