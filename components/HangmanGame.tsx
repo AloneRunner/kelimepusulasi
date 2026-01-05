@@ -12,13 +12,14 @@ interface HangmanGameProps {
   onBack: () => void;
   coins: number;
   onSpendCoins: (amount: number) => boolean;
+  level: number;
 }
 
 const ALPHABET = "ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZ".split("");
 
 const MAX_ERRORS = 6;
 
-const HangmanGame: React.FC<HangmanGameProps> = ({ category, secretWord, onWin, onLose, onBack, coins, onSpendCoins }) => {
+const HangmanGame: React.FC<HangmanGameProps> = ({ category, secretWord, onWin, onLose, onBack, coins, onSpendCoins, level }) => {
   const [guessedLetters, setGuessedLetters] = useState<Set<string>>(new Set());
   const [errorCount, setErrorCount] = useState(0);
   const [isShaking, setIsShaking] = useState(false);
@@ -58,13 +59,13 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ category, secretWord, onWin, 
 
     if (unrevealed.length === 0) return; // All revealed already
 
-    if (onSpendCoins(50)) {
+    if (onSpendCoins(40)) {
       playSound('win');
       // Reveal a random unrevealed letter
       const randomChar = unrevealed[Math.floor(Math.random() * unrevealed.length)];
       handleGuess(randomChar);
     } else {
-      // alert("Yetersiz bakiye! (50 Coin)");
+      // alert("Yetersiz bakiye! (40 Coin)");
     }
   };
 
@@ -72,7 +73,7 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ category, secretWord, onWin, 
   const handleFactHint = async () => {
     if (hintLoading) return;
 
-    if (!onSpendCoins(20)) {
+    if (!onSpendCoins(100)) {
       return;
     }
 
@@ -224,34 +225,36 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ category, secretWord, onWin, 
           <div className="flex items-center justify-center gap-2 text-xs text-orange-100 opacity-80">
             <span>{coins} 🪙</span>
             <span>•</span>
+            <span>Level {level}</span>
+            <span>•</span>
             <span>Hata: {errorCount}/{MAX_ERRORS}</span>
           </div>
         </div>
 
         {/* HINT BUTTONS */}
         <div className="flex gap-2">
-          {/* Letter Hint (50) */}
+          {/* Letter Hint (40) */}
           <button
             onClick={handleLetterHint}
-            disabled={coins < 50}
+            disabled={coins < 40}
             className={`flex flex-col items-center justify-center bg-violet-600 text-white w-10 h-10 rounded-full shadow-md transition active:scale-95
-                ${(coins < 50) ? 'opacity-50 grayscale' : 'hover:bg-violet-500'}`}
-            title="Harf Al (50)"
+                ${(coins < 40) ? 'opacity-50 grayscale' : 'hover:bg-violet-500'}`}
+            title="Harf Al (40)"
           >
             <span className="font-bold text-lg leading-none">A</span>
-            <span className="text-[9px] font-bold leading-none mt-0.5">50</span>
+            <span className="text-[9px] font-bold leading-none mt-0.5">40</span>
           </button>
 
-          {/* Fact Hint (20) */}
+          {/* Fact Hint (100) */}
           <button
             onClick={handleFactHint}
-            disabled={hintLoading || coins < 20}
+            disabled={hintLoading || coins < 100}
             className={`flex flex-col items-center justify-center bg-yellow-400 text-orange-900 w-10 h-10 rounded-full shadow-md transition active:scale-95
-                ${(hintLoading || coins < 20) ? 'opacity-50 grayscale' : 'hover:bg-yellow-300'}`}
-            title="İpucu Al (20)"
+                ${(hintLoading || coins < 100) ? 'opacity-50 grayscale' : 'hover:bg-yellow-300'}`}
+            title="İpucu Al (100)"
           >
             <span className="font-bold text-lg leading-none">?</span>
-            <span className="text-[9px] font-bold leading-none mt-0.5">20</span>
+            <span className="text-[9px] font-bold leading-none mt-0.5">100</span>
           </button>
         </div>
       </header>
@@ -267,8 +270,9 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ category, secretWord, onWin, 
         <div className="flex flex-wrap justify-center gap-2 mb-8 min-h-[3rem]">
           {normalizedSecret.split('').map((char, idx) => (
             <div key={idx} className="flex flex-col items-center">
-              <div className={`w-8 h-10 flex items-end justify-center text-2xl font-bold border-b-4 transition-all duration-300 ${guessedLetters.has(char) ? 'text-slate-800 border-slate-800' : 'text-transparent border-slate-300'}`}>
-                {char === ' ' ? ' ' : (guessedLetters.has(char) ? char : '_')}
+              <div className={`w-8 h-10 flex items-end justify-center text-2xl font-bold border-b-4 transition-all duration-300 
+                  ${char === ' ' ? 'border-transparent mb-2' : (guessedLetters.has(char) ? 'text-slate-800 border-slate-800' : 'text-transparent border-slate-300')}`}>
+                {char === ' ' ? '/' : (guessedLetters.has(char) ? char : '_')}
               </div>
             </div>
           ))}

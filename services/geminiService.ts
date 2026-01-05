@@ -36,55 +36,163 @@ const GAME_DATABASE: CategoryData[] = [
     clusters: [
       {
         id: "sicak_icecekler",
+        // Common: Hainin sığınacağı, tüm içeceklere uyan "güvenli" limanlar (Eski + Yeni birleşik)
         common: [
+          // Eski temel ipuçları
           "Sıcak", "Bardak", "İçmek", "Sıvı", "Keyif", "Kafe", "Dumanı", "Şeker",
           "Kaşık", "Yudum", "Kahvaltı", "Akşam", "İkram", "Kupa", "Termos",
           "Boğaz", "Sohbet", "Misafir", "Hararet", "Kış", "Rahatlamak", "Fincan",
-          "Aromalı", "Taze", "Sütlü", "Şekersiz", "Acı", "Tiryaki", "Sabah"
+          "Aromalı", "Taze", "Sütlü", "Şekersiz", "Acı", "Tiryaki", "Sabah",
+          "Demlik", "Doldur", "Koku", "Canlandırıcı", "Mola", "Dinlen", "Ismarlamak",
+          // Yeni yaratıcı eklemeler
+          "İçini ısıtır", "Dumanı üstünde", "Dudak payı", "Kış günü",
+          "Sohbet bahanesi", "Kaynar", "Boğazı yumuşatır", "Sabah rutini"
         ],
         variants: [
           {
             word: "Çay",
-            specific: ["Demlik", "Rize", "Tavşan", "Simit", "Bitki", "Tirebolu", "Çaykur", "Poşet", "İnce belli", "Bergamot", "Kaçak", "Limonlu", "Nane", "Açık", "Koyu", "Demleme"]
+            specific: [
+              // Eski temel
+              "Demlik", "Rize", "Simit", "Bitki", "Tirebolu", "Çaykur", "Poşet",
+              "İnce belli", "Bergamot", "Kaçak", "Limonlu", "Nane", "Açık", "Koyu", "Demleme",
+              // Yeni yaratıcı (Türk kültürü, pop-kültür)
+              "Tavşan kanı",    // Klasik deyim
+              "Ajda",           // (İnce belli bardak - Ajda Pekkan)
+              "Kıtlama",        // (Erzurum kültürü)
+              "Erdal Bakkal",   // (İsmail Abi / Leyla ile Mecnun)
+              "Çernobil",       // (80'ler radyasyon olayı)
+              "Simit sarayı",   // (Eşlikçi)
+              "İki şeker",      // (Klasik sipariş)
+              "Hararet alır",   // (Yazın içilme sebebi)
+              "Paşa"            // (Ilık çay)
+            ]
           },
           {
             word: "Kahve",
-            specific: ["Telve", "Fal", "Türk", "Espresso", "Starbucks", "Çekirdek", "Kavrulmuş", "Dibek", "Latte", "Barista", "Köpük", "Filtre", "Nescafe", "Ayıltır", "Kafein", "Kırk yıl"]
+            specific: [
+              // Eski temel
+              "Telve", "Fal", "Türk", "Espresso", "Çekirdek", "Kavrulmuş", "Dibek",
+              "Latte", "Barista", "Köpük", "Filtre", "Nescafe", "Kafein",
+              // Yeni yaratıcı
+              "40 yıl hatır",   // (Atasözü)
+              "Kız isteme",     // (Tuzlu kahve ritüeli)
+              "Yemen",          // (Türkü: Kahve Yemenden gelir)
+              "Üç vakte kadar", // (Fal kültürü)
+              "Ayıltır",        // (Fonksiyon)
+              "Starbucks",      // (Popüler kültür/Beyaz yaka)
+              "Orta",           // (Şeker oranı)
+              "Menengiç",       // (Yöresel çeşit)
+              "Uykusuzluk"      // (Yan etki)
+            ]
           },
           {
             word: "Sıcak Çikolata",
-            specific: ["Kakao", "Şanti", "Marshmallow", "Belçika", "Tatlı", "Kahverengi", "Çocuk", "Kremsi", "Yoğun", "İsviçre", "Krem", "Bitter", "Sütlü"]
+            specific: [
+              // Eski temel
+              "Kakao", "Şanti", "Belçika", "Tatlı", "Kahverengi", "Kremsi", "Yoğun", "Krem", "Bitter",
+              // Yeni yaratıcı
+              "Mutluluk",       // (Serotonin etkisi)
+              "Battaniye",      // (Kış modu klişesi)
+              "Marshmallow",    // (Amerikan tarzı sunum)
+              "Kayak merkezi",  // (Uludağ'da içilir)
+              "Kalori bombası", // (Diyet düşmanı)
+              "İsviçre",        // (Çikolata ülkesi)
+              "Sütlü",          // (Yapılışı)
+              "Çocuk"           // (Hedef kitle)
+            ]
           },
           {
             word: "Salep",
-            specific: ["Tarçın", "Orkide", "Maraş", "Beyaz", "Kıvamlı", "Şifa", "Toz", "Osmanlı", "Geleneksel", "Kar", "Dondurma yapımı"]
+            specific: [
+              // Eski temel
+              "Tarçın", "Maraş", "Beyaz", "Kıvamlı", "Şifa", "Toz", "Osmanlı", "Geleneksel", "Kar", "Dondurma yapımı",
+              // Yeni yaratıcı
+              "Orkide",         // (Hammaddesi - Zor bilgi)
+              "Vapur",          // (İstanbul klasiği)
+              "Seyyar"          // (Sokak satıcısı)
+            ]
           }
         ]
       },
       {
         id: "fast_food",
+        // Common: Eski + Yeni birleşik
         common: [
+          // Eski temel
           "Hızlı", "Yemek", "Paket", "Kalori", "Doyurucu", "Kola", "Elle", "Sıcak",
           "Yağlı", "Sos", "Öğle", "Sipariş", "Kurye", "Lezzetli", "Zararlı",
           "Tuzlu", "Getir", "Menü", "Abur cubur", "Sokak", "Ucuz", "Lokanta",
-          "Acıktım", "Patates", "Ketçap", "Mayonez", "Turşu", "Marul"
+          "Acıktım", "Patates", "Ketçap", "Mayonez", "Turşu", "Marul",
+          "Gece açık", "Aklıma geldi", "Zincir", "Menü kombin", "Kampanya", "2 al 1 öde",
+          // Yeni yaratıcı
+          "Kalori bombası", "Ayaküstü", "Bol soslu", "Öğrenci dostu",
+          "Paket servis", "Karbonhidrat", "Zincir restoran", "Gece yarısı"
         ],
         variants: [
           {
             word: "Pizza",
-            specific: ["Dilim", "İtalyan", "Yuvarlak", "Kutu", "Peynir", "Sucuk", "Mantar", "Kenar", "Margarita", "Acılı", "Dominos", "Hamur", "Fırın"]
+            specific: [
+              // Eski temel
+              "Dilim", "İtalyan", "Yuvarlak", "Kutu", "Peynir", "Sucuk", "Mantar",
+              "Kenar", "Acılı", "Dominos", "Hamur", "Fırın",
+              // Yeni yaratıcı
+              "Ninja Kaplumbağalar", // (Pop Kültür - Çizgi Film)
+              "Napoli",              // (Ansiklopedik - Köken Şehir)
+              "Kule",                // (Çağrışım - Pisa Kulesi/İtalya)
+              "Margarita",           // (Tarih - Kraliçe Margarita'dan gelir)
+              "30 dakika kuralı",    // (Sektör Efsanesi)
+              "İnce hamur",          // (Fiziksel Özellik)
+              "Fırın küreği",        // (Alet)
+              "Mozzarella"           // (Malzeme Bilgisi)
+            ]
           },
           {
             word: "Hamburger",
-            specific: ["Köfte", "Amerikan", "McDonald's", "Whopper", "Çift katlı", "Soğan halkası", "Ekmeği yumuşak", "Burger King", "Mangal", "Izgara"]
+            specific: [
+              // Eski temel
+              "Köfte", "Amerikan", "McDonald's", "Whopper", "Çift katlı",
+              "Soğan halkası", "Ekmeği yumuşak", "Burger King", "Mangal", "Izgara",
+              // Yeni yaratıcı
+              "Hamburg",             // (Ansiklopedik - Şehir Kökeni)
+              "Palyaço",             // (Pop Kültür - Ronald McDonald)
+              "Susamlı ekmek",       // (Fiziksel Özellik)
+              "Amerika",             // (Kültürel Çağrışım)
+              "Turşu",               // (Ayırt edici detay)
+              "Big Mac",             // (Marka/Ekonomi indeksi)
+              "Obezite",             // (Tıbbi Sonuç)
+              "İki ekmek arası"      // (Tanım)
+            ]
           },
           {
             word: "Lahmacun",
-            specific: ["Limon", "Maydanoz", "Dürüm", "Kıyma", "Çıtır", "İnce", "Taş fırın", "Antep", "Urfa", "Ayran yanı", "Acılı biber"]
+            specific: [
+              // Eski temel
+              "Limon", "Maydanoz", "Dürüm", "Kıyma", "Çıtır", "İnce",
+              "Taş fırın", "Antep", "Urfa", "Ayran yanı", "Acılı biber",
+              // Yeni yaratıcı
+              "İmparator",           // (Pop Kültür - İbrahim Tatlıses)
+              "Türk Pizzası",        // (Turistik Tanım)
+              "Şanlıurfa",           // (Coğrafya - Acılı köken)
+              "Soğanlı mı soğansız mı", // (Toplumsal Tartışma)
+              "Kıymalı harç",        // (İçerik)
+              "Kürek"                // (Alet)
+            ]
           },
           {
             word: "Döner",
-            specific: ["Şiş", "Usta", "Büfe", "Hatay", "Dikey", "Tavuk", "Et", "Lavaş", "Tombik", "Ekmek arası", "Kesmek", "İskender"]
+            specific: [
+              // Eski temel
+              "Şiş", "Usta", "Büfe", "Hatay", "Tavuk", "Et", "Lavaş",
+              "Tombik", "Ekmek arası", "Kesmek", "İskender",
+              // Yeni yaratıcı
+              "Dikey",               // (Teknik Bilgi - Pişirme açısı)
+              "Almanya",             // (Sosyolojik - Gurbetçilerin milli yemeği)
+              "Bursa",               // (Tarih - İskender Efendi)
+              "Satır",               // (Alet - Et döner için)
+              "Hatay usulü",         // (Yöresel Varyasyon - Soslu)
+              "Ayran",               // (Kimyasal Uyum/Eşlikçi)
+              "Yaprak"               // (Kesim Tekniği)
+            ]
           }
         ]
       },
@@ -353,7 +461,9 @@ const GAME_DATABASE: CategoryData[] = [
         id: "bocekler",
         common: [
           "Küçük", "Böcek", "Bacak", "Kanat", "Uçar", "Yaz", "Bahçe",
-          "Korku", "Ilaç", "Zararlı", "Faydalı", "Doğa", "Ekosistem"
+          "Korku", "Ilaç", "Zararlı", "Faydalı", "Doğa", "Ekosistem",
+          "Anten", "Göz", "Larvadan", "Metamorfoz", "Kış uykusu", "Yuva", "Koloni",
+          "Uğuldamak", "Sürüngen değil", "Omurgasız", "Toplanmak", "Tedirgin eden"
         ],
         variants: [
           {
@@ -937,6 +1047,313 @@ const GAME_DATABASE: CategoryData[] = [
         ]
       }
     ]
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // 17. KATEGORİ: SOSYAL MEDYA & İNTERNET
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "sosyal_medya",
+    name: "Sosyal Medya",
+    clusters: [
+      {
+        id: "platformlar",
+        common: [
+          "İnternet", "Uygulama", "Paylaşım", "Takipçi", "Beğeni", "Telefon",
+          "Bildirim", "Gençler", "Bağımlılık", "Ekran", "Hesap", "Profil", "Online"
+        ],
+        variants: [
+          {
+            word: "Instagram",
+            specific: ["Fotoğraf", "Story", "Reels", "Filtre", "DM", "Keşfet", "Influencer", "Hashtag", "Hikaye"]
+          },
+          {
+            word: "TikTok",
+            specific: ["Video", "Dans", "Trend", "Müzik", "15 saniye", "FYP", "Çin", "Viral", "Challenge"]
+          },
+          {
+            word: "YouTube",
+            specific: ["Video", "Abone ol", "Kanal", "İzlemek", "Youtuber", "Reklam", "Canlı yayın", "Shorts", "Google"]
+          },
+          {
+            word: "Twitter",
+            specific: ["Tweet", "Gündem", "Kuş", "Mavi tik", "Elon Musk", "X", "RT", "Mention", "Thread"]
+          }
+        ]
+      }
+    ]
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // 18. KATEGORİ: BİLGİSAYAR & OYUN
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "bilgisayar_oyun",
+    name: "Bilgisayar & Oyun",
+    clusters: [
+      {
+        id: "cihazlar",
+        common: [
+          "Elektrik", "Şarj", "Ekran", "Tuş", "Kablo", "Teknoloji", "Pahalı",
+          "Marka", "Model", "Yeni nesil", "Taşınabilir", "Oyun"
+        ],
+        variants: [
+          {
+            word: "PlayStation",
+            specific: ["Sony", "Konsol", "PS5", "Controller", "Joystick", "Oyun", "TV", "Mavi ışık", "Exclusive"]
+          },
+          {
+            word: "Laptop",
+            specific: ["Dizüstü", "Taşınabilir", "Pil", "Çalışma", "MacBook", "Windows", "Klavye", "Ekran parlaklığı"]
+          },
+          {
+            word: "Klavye",
+            specific: ["Tuş", "Mekanik", "RGB", "Yazmak", "Enter", "Backspace", "Türkçe Q", "Gaming"]
+          },
+          {
+            word: "Kulaklık",
+            specific: ["Müzik", "Kulak üstü", "bluetooth", "Gürültü engelleme", "AirPods", "Kablo", "Ses", "Oyun"]
+          }
+        ]
+      },
+      {
+        id: "oyunlar",
+        common: [
+          "Oynamak", "Eğlence", "Rekabet", "Skor", "Seviye", "Karakter", "Online",
+          "Arkadaş", "Takım", "Turnuva", "Strateji", "Aksiyon"
+        ],
+        variants: [
+          {
+            word: "Minecraft",
+            specific: ["Blok", "Madencilik", "İnşa", "Creeper", "Steve", "Pixel", "Hayatta kalma", "Elmas", "Küp"]
+          },
+          {
+            word: "Fortnite",
+            specific: ["Battle Royale", "Dans", "V-bucks", "Skin", "Epic Games", "Silah", "Fırtına", "100 kişi"]
+          },
+          {
+            word: "GTA",
+            specific: ["Araba çalmak", "Açık dünya", "Los Santos", "Rockstar", "Suç", "Polis", "18+", "Online"]
+          },
+          {
+            word: "FIFA",
+            specific: ["Futbol", "EA Sports", "Ultimate Team", "Maç", "Gol", "Takım kurma", "Paket açma", "Yıllık"]
+          }
+        ]
+      }
+    ]
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // 19. KATEGORİ: DOĞA & HAVA
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "doga_hava",
+    name: "Doğa & Hava",
+    clusters: [
+      {
+        id: "hava_durumlari",
+        common: [
+          "Gökyüzü", "Dışarı", "Meteoroloji", "Tahmin", "Sıcaklık", "Derece",
+          "Mevsim", "Giyinmek", "Haber", "Doğa", "İklim"
+        ],
+        variants: [
+          {
+            word: "Yağmur",
+            specific: ["Şemsiye", "Damla", "Bulut", "Islak", "Su birikintisi", "Çamur", "Gök gürültüsü", "Evde kalmak"]
+          },
+          {
+            word: "Kar",
+            specific: ["Beyaz", "Soğuk", "Kardan adam", "Kayak", "Kaymak", "Kış tatili", "Lapa lapa", "Tipi"]
+          },
+          {
+            word: "Fırtına",
+            specific: ["Rüzgar", "Tehlike", "Şiddetli", "Ağaç devrilme", "Elektrik kesintisi", "Kasırga", "Hortum"]
+          },
+          {
+            word: "Güneş",
+            specific: ["Sıcak", "Yaz", "Güneş kremi", "Bronzlaşma", "Gözlük", "Terleme", "Bunaltıcı", "Plaj"]
+          }
+        ]
+      },
+      {
+        id: "dogal_afetler",
+        common: [
+          "Tehlike", "Felaket", "AFAD", "Kurtarma", "Hasar", "Enkaz", "Yardım",
+          "Deprem çantası", "Göç", "Haber", "Ölüm", "Kayıp"
+        ],
+        variants: [
+          {
+            word: "Deprem",
+            specific: ["Sarsıntı", "Büyüklük", "Fay hattı", "Çökme", "7.8", "Kahramanmaraş", "Tsunami", "Bina"]
+          },
+          {
+            word: "Sel",
+            specific: ["Su baskını", "Taşkın", "Ev boşaltma", "Çamur", "Dere", "Karadeniz", "Altyapı", "Otomobil"]
+          }
+        ]
+      }
+    ]
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // 20. KATEGORİ: SPOR DALLARI (GENİŞLETİLMİŞ)
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "spor_dallari",
+    name: "Spor Dalları",
+    clusters: [
+      {
+        id: "raket_sporlari",
+        common: [
+          "Raket", "Top", "Kort", "Sayı", "Maç", "Servis", "Ağ", "Tek veya çift",
+          "Wimbledon", "Profesyonel", "Turnuva"
+        ],
+        variants: [
+          {
+            word: "Tenis",
+            specific: ["Sarı top", "Deuce", "Grand Slam", "Nadal", "Federer", "Çim kort", "Love", "40-30"]
+          },
+          {
+            word: "Badminton",
+            specific: ["Tüylü top", "Hafif", "Hızlı", "Kapalı salon", "Olimpik", "Smash", "Uzun raket"]
+          },
+          {
+            word: "Masa Tenisi",
+            specific: ["Ping pong", "Küçük top", "Çinliler", "Yıldırım hızı", "Spin", "Backhand", "Turuncu top"]
+          }
+        ]
+      },
+      {
+        id: "dovus_sporlari",
+        common: [
+          "Ring", "Dövüş", "Rakip", "Kemer", "Hakem", "Yenmek", "Antrenman",
+          "Güç", "Teknik", "Nakavt", "UFC"
+        ],
+        variants: [
+          {
+            word: "Boks",
+            specific: ["Yumruk", "Eldiven", "Round", "Kanca", "Mike Tyson", "Köşe", "Ağır siklet", "Sayı ile"]
+          },
+          {
+            word: "Güreş",
+            specific: ["Minder", "Tutuş", "Türk sporu", "Kıran kırana", "Sırtını yere", "Yağlı güreş", "Kıspet"]
+          },
+          {
+            word: "Tekvando",
+            specific: ["Tekme", "Kore", "Kuşak", "Poom", "Kafa koruyucu", "Sayı sistemi", "Ayak vuruşu"]
+          }
+        ]
+      }
+    ]
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // 21. KATEGORİ: ÜLKELER & ŞEHİRLER
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "ulkeler",
+    name: "Ülkeler & Şehirler",
+    clusters: [
+      {
+        id: "avrupa",
+        common: [
+          "Avrupa", "Turist", "Vize", "Uçak", "Tatil", "Kültür", "Tarih",
+          "Euro", "Müze", "Eski", "Mimari", "Yurtdışı"
+        ],
+        variants: [
+          {
+            word: "Paris",
+            specific: ["Eyfel Kulesi", "Fransa", "Aşk şehri", "Luvre", "Croissant", "Sena Nehri", "Moda"]
+          },
+          {
+            word: "İtalya",
+            specific: ["Roma", "Pizza", "Makarna", "Kolezyum", "Vatikan", "Venedik", "Gondol", "Çizme şekli"]
+          },
+          {
+            word: "İspanya",
+            specific: ["Madrid", "Barselona", "Boğa güreşi", "Flamenko", "Paella", "Siesta", "Güneş"]
+          }
+        ]
+      },
+      {
+        id: "asya",
+        common: [
+          "Asya", "Uzak doğu", "Kalabalık", "Farklı kültür", "Yemek", "Teknoloji",
+          "Ucuz üretim", "Tarih", "Antik"
+        ],
+        variants: [
+          {
+            word: "Japonya",
+            specific: ["Tokyo", "Suşi", "Samuray", "Anime", "Sakura", "Teknoloji", "Deprem", "Ada ülkesi"]
+          },
+          {
+            word: "Çin",
+            specific: ["Pekin", "Çin Seddi", "Pirinç", "Chopstick", "Nüfus", "Panda", "Döviz", "Fabrika"]
+          },
+          {
+            word: "Hindistan",
+            specific: ["Tac Mahal", "Kalabalık", "Bollywood", "Baharat", "Yoga", "Ganj Nehri", "İnek", "Curry"]
+          }
+        ]
+      }
+    ]
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // 22. KATEGORİ: TÜRK YEMEKLERİ (GENİŞLETİLMİŞ)
+  // ═══════════════════════════════════════════════════════════════
+  {
+    id: "turk_yemekleri",
+    name: "Türk Yemekleri",
+    clusters: [
+      {
+        id: "et_yemekleri",
+        common: [
+          "Et", "Pişirmek", "Lezzet", "Baharat", "Geleneksel", "Ev yapımı",
+          "Tencere", "Ocak", "Pazar", "Misafir", "Sofra", "Aile"
+        ],
+        variants: [
+          {
+            word: "Kebap",
+            specific: ["Adana", "Urfa", "Şiş", "Mangal", "Kıyma", "Acılı", "Pide", "Lahmacun", "Lavaş"]
+          },
+          {
+            word: "Köfte",
+            specific: ["Yuvarlak", "Izgara", "Ekmek arası", "İnegöl", "Akçaabat", "Soğan", "Maydanoz", "Sade"]
+          },
+          {
+            word: "Döner",
+            specific: ["Dürüm", "Duran çevirme", "Et veya tavuk", "Ekmek", "Sos", "Ayran", "Gece atıştırma"]
+          },
+          {
+            word: "İskender",
+            specific: ["Bursa", "Yoğurt", "Tereyağı", "Domates sosu", "Pide", "Porsiyon", "İskenderoğlu"]
+          }
+        ]
+      },
+      {
+        id: "kahvaltilik",
+        common: [
+          "Sabah", "Kahvaltı", "Sofra", "Ekmek", "Peynir", "Zeytin", "Çay",
+          "Hafta sonu", "Serpme", "Köy", "Organik"
+        ],
+        variants: [
+          {
+            word: "Menemen",
+            specific: ["Yumurta", "Domates", "Biber", "Tavada", "Sıcak sıcak", "Kaşıkla", "Pişirmek", "Sucuklu"]
+          },
+          {
+            word: "Simit",
+            specific: ["Halka", "Susam", "Çay yanına", "Gel simitçi", "Gevrek", "Taze", "Fırın", "Peynirli"]
+          },
+          {
+            word: "Börek",
+            specific: ["Yufka", "Peynir", "Kıyma", "Fırın", "Tepsi", "Su böreği", "Sigara böreği", "Islatmak"]
+          }
+        ]
+      }
+    ]
   }
 ];
 
@@ -945,6 +1362,37 @@ const GAME_DATABASE: CategoryData[] = [
 // Helper: Diziyi karıştır
 const shuffleArray = <T>(array: T[]): T[] => {
   return [...array].sort(() => Math.random() - 0.5);
+};
+
+// Helper: Levenshtein mesafesi (yazım hatası toleransı için)
+const levenshteinDistance = (a: string, b: string): number => {
+  const matrix: number[][] = [];
+
+  if (a.length === 0) return b.length;
+  if (b.length === 0) return a.length;
+
+  for (let i = 0; i <= b.length; i++) {
+    matrix[i] = [i];
+  }
+  for (let j = 0; j <= a.length; j++) {
+    matrix[0][j] = j;
+  }
+
+  for (let i = 1; i <= b.length; i++) {
+    for (let j = 1; j <= a.length; j++) {
+      if (b.charAt(i - 1) === a.charAt(j - 1)) {
+        matrix[i][j] = matrix[i - 1][j - 1];
+      } else {
+        matrix[i][j] = Math.min(
+          matrix[i - 1][j - 1] + 1, // substitution
+          matrix[i][j - 1] + 1,     // insertion
+          matrix[i - 1][j] + 1      // deletion
+        );
+      }
+    }
+  }
+
+  return matrix[b.length][a.length];
 };
 
 export const generateGameSession = async (mode: GameMode, customTopic?: string): Promise<GameData> => {
@@ -988,17 +1436,17 @@ export const generateAiClue = async (
 
     let useCommonClue = false;
 
-    // --- SİNSİ HAİN MANTIĞI ---
+    // --- GELİŞTİRİLMİŞ HAİN MANTIĞI ---
     if (bot.role === 'imposter') {
-      if (previousClues.length > 0) {
-        // Hainler artık %85 ihtimalle geniş ORTAK havuzdan seçer
-        useCommonClue = Math.random() < 0.85;
-      } else {
-        useCommonClue = Math.random() < 0.4;
-      }
+      // HAİN STRATEJİSİ:
+      // Hainin hayatta kalmasının tek yolu "Ortak" kelimeleri kullanmaktır.
+      // Kendi spesifik kelimesini kullanırsa anında yakalanır.
+      // Bu yüzden %90 ihtimalle ortak kelime seçmeli.
+      useCommonClue = Math.random() < 0.90;
     } else {
-      // Masumlar genelde kendi specific listelerinden seçer
-      useCommonClue = Math.random() < 0.15;
+      // MASUM STRATEJİSİ:
+      // Masumlar %25 ihtimalle ortak, %75 ihtimalle spesifik kelime kullanır.
+      useCommonClue = Math.random() < 0.25;
     }
 
     let targetList = (useCommonClue && commonClues.length > 0) ? commonClues : mySpecificClues;
@@ -1010,7 +1458,20 @@ export const generateAiClue = async (
       availableClues = targetList.filter(c => !usedClues.includes(normalize(c)));
     }
 
-    const finalList = availableClues.length > 0 ? availableClues : mySpecificClues;
+    // GİZLİ KELİME FİLTRESİ: Botlar yanlışlıkla gizli kelimeyi söylemesin!
+    const secretWordNorm = normalize(gameData.secretWord);
+    const imposterWordNorm = normalize(gameData.imposterWord);
+
+    // Gizli kelimeyi veya hain kelimesini içeren ipuçlarını filtrele
+    const safeClues = availableClues.filter(c => {
+      const clueNorm = normalize(c);
+      // İpucu gizli kelimeyi içeriyorsa veya gizli kelime ipucunu içeriyorsa filtrele
+      if (clueNorm.includes(secretWordNorm) || secretWordNorm.includes(clueNorm)) return false;
+      if (clueNorm.includes(imposterWordNorm) || imposterWordNorm.includes(clueNorm)) return false;
+      return true;
+    });
+
+    const finalList = safeClues.length > 0 ? safeClues : availableClues;
     const selectedClue = finalList[Math.floor(Math.random() * finalList.length)];
 
     resolve(selectedClue);
@@ -1028,74 +1489,122 @@ export const simulateAiVotes = async (
   const results: VoteResult[] = [];
 
   bots.forEach(bot => {
-    const myExpectedClues = bot.role === 'civilian' ? gameData.secretClues : gameData.imposterClues;
-    const enemyClues = bot.role === 'civilian' ? gameData.imposterClues : gameData.secretClues;
-    const commonClues = gameData.commonClues;
+    // ------------------------------------------
+    // SENARYO A: BOT BİR MASUMSA (Dedektif Modu)
+    // ------------------------------------------
+    if (bot.role === 'civilian') {
+      const myExpectedClues = gameData.secretClues;
+      const enemyClues = gameData.imposterClues;
+      const commonClues = gameData.commonClues;
 
-    let suspectId = '';
-    let maxSuspicion = -1;
-    let bestReason = "Şüpheli davrandı.";
+      let suspectId = '';
+      let maxSuspicion = -1;
+      let bestReason = "Şüpheli davrandı.";
 
-    allPlayers.forEach(target => {
-      if (target.id === bot.id) return;
+      allPlayers.forEach(target => {
+        if (target.id === bot.id) return;
 
-      const targetClues = clues.filter(c => c.playerId === target.id);
-      let suspicionScore = 0;
-      let reasons: string[] = [];
+        const targetClues = clues.filter(c => c.playerId === target.id);
+        let suspicionScore = 0;
+        let reasons: string[] = [];
 
-      targetClues.forEach(clue => {
-        const textLower = normalize(clue.text);
+        targetClues.forEach(clue => {
+          const textLower = normalize(clue.text);
 
-        const checkMatch = (list: string[]) => list.some(c => {
-          const cNorm = normalize(c);
-          return textLower.includes(cNorm) || cNorm.includes(textLower);
+          // Fuzzy matching: Tam eşleşme veya 2 karaktere kadar yazım hatası toleransı
+          const checkMatch = (list: string[]) => list.some(c => {
+            const cNorm = normalize(c);
+            // Tam eşleşme veya içerme kontrolü
+            if (textLower.includes(cNorm) || cNorm.includes(textLower)) return true;
+            // Levenshtein mesafesi kontrolü (2 karaktere kadar hata toleransı)
+            if (levenshteinDistance(textLower, cNorm) <= 2) return true;
+            return false;
+          });
+
+          const isEnemySpecific = checkMatch(enemyClues);
+          const isFriendSpecific = checkMatch(myExpectedClues);
+          const isCommon = checkMatch(commonClues);
+
+          if (isEnemySpecific) {
+            suspicionScore += 150;
+            reasons.push("Verdiği ipucu bizim konuyla tamamen alakasız!");
+          }
+          else if (isFriendSpecific) {
+            suspicionScore -= 50;
+          }
+          else if (isCommon) {
+            suspicionScore += 10;
+            reasons.push("Çok yuvarlak konuşuyor, risk almıyor.");
+          }
+          else {
+            // BİLİNMEYEN/SAÇMA KELİME - ÇOK ŞÜPHELİ!
+            // Eğer birisi hiçbir listeyle eşleşmeyen bir şey söylüyorsa,
+            // ya haini ya da konuyu bilmiyor.
+            suspicionScore += 80;
+            reasons.push("Söylediği kelime tamamen alakasız!");
+          }
         });
 
-        const isEnemySpecific = checkMatch(enemyClues);
-        const isFriendSpecific = checkMatch(myExpectedClues);
-        const isCommon = checkMatch(commonClues);
+        suspicionScore += (Math.random() * 20) - 10;
 
-        if (isEnemySpecific) {
-          suspicionScore += 100;
-          reasons.push("Bizim kelimemizle alakası yok!");
-        }
-        else if (isFriendSpecific) {
-          suspicionScore -= 40;
-        }
-        else if (isCommon) {
-          suspicionScore += 10;
-          reasons.push("Çok genel konuşuyor.");
-        }
-        else {
-          suspicionScore += 15 + (Math.random() * 10);
-          reasons.push("Ne dediğini anlamadım.");
+        if (suspicionScore > maxSuspicion) {
+          maxSuspicion = suspicionScore;
+          suspectId = target.id;
+          if (reasons.length > 0) bestReason = reasons[Math.floor(Math.random() * reasons.length)];
+          else bestReason = "İçgüdülerime güveniyorum.";
         }
       });
 
-      suspicionScore += (Math.random() * 30) - 15;
-
-      if (suspicionScore > maxSuspicion) {
-        maxSuspicion = suspicionScore;
-        suspectId = target.id;
-
-        if (reasons.some(r => r.includes("alakası"))) bestReason = "Söylediği kelime bizim konumuzla çelişiyor.";
-        else if (reasons.some(r => r.includes("genel"))) bestReason = "Hep yuvarlak cevaplar verdi.";
-        else if (reasons.some(r => r.includes("anlamadım"))) bestReason = "Verdiği ipucu çok saçmaydı.";
-        else bestReason = "İçimden bir ses o diyor.";
+      if (!suspectId || maxSuspicion < 20) {
+        const others = allPlayers.filter(p => p.id !== bot.id);
+        suspectId = others[Math.floor(Math.random() * others.length)].id;
+        bestReason = "Çok sessiz kaldı.";
       }
-    });
 
-    if (!suspectId || maxSuspicion < 10) {
-      const others = allPlayers.filter(p => p.id !== bot.id);
-      suspectId = others[Math.floor(Math.random() * others.length)].id;
-      bestReason = "Sessiz kaldı, ondan şüpheleniyorum.";
+      results.push({
+        voterId: bot.id,
+        suspectId: suspectId,
+        reason: bestReason
+      });
     }
+    // ------------------------------------------
+    // SENARYO B: BOT BİR HAİNSE (Sabotaj Modu)
+    // ------------------------------------------
+    else {
+      const others = allPlayers.filter(p => p.id !== bot.id);
+      const commonClues = gameData.commonClues;
 
-    results.push({
-      voterId: bot.id,
-      suspectId: suspectId,
-      reason: bestReason
-    });
+      const potentialVictims = others.map(p => {
+        const pClues = clues.filter(c => c.playerId === p.id);
+        let vagueCount = 0;
+        pClues.forEach(clue => {
+          const text = normalize(clue.text);
+          if (commonClues.some(c => normalize(c) === text || text.includes(normalize(c)))) {
+            vagueCount++;
+          }
+        });
+        return { player: p, score: vagueCount };
+      });
+
+      potentialVictims.sort((a, b) => b.score - a.score);
+
+      let targetToFrame: Player;
+      let reason: string;
+
+      if (potentialVictims.length > 0 && potentialVictims[0].score > 0) {
+        targetToFrame = potentialVictims[0].player;
+        reason = "Çok genel konuşuyor, sanki kelimeyi bilmiyor gibi.";
+      } else {
+        targetToFrame = others[Math.floor(Math.random() * others.length)];
+        reason = "İçgüdülerim onu gösteriyor.";
+      }
+
+      results.push({
+        voterId: bot.id,
+        suspectId: targetToFrame.id,
+        reason: reason
+      });
+    }
   });
 
   return results;

@@ -61,6 +61,24 @@ const App: React.FC = () => {
     return saved !== null ? saved === 'true' : true; // Default: true (oyun klavyesi)
   });
 
+  // Level State
+  const [compassLevel, setCompassLevel] = useState(() => parseInt(localStorage.getItem('kelime_level_compass') || '1'));
+  const [hangmanLevel, setHangmanLevel] = useState(() => parseInt(localStorage.getItem('kelime_level_hangman') || '1'));
+  const [wordHuntLevel, setWordHuntLevel] = useState(() => parseInt(localStorage.getItem('kelime_level_wordhunt') || '1'));
+  const [chainLevel, setChainLevel] = useState(() => parseInt(localStorage.getItem('kelime_level_chain') || '1'));
+  const [connectLevel, setConnectLevel] = useState(() => parseInt(localStorage.getItem('kelime_level_connect') || '1'));
+  const [ladderLevel, setLadderLevel] = useState(() => parseInt(localStorage.getItem('kelime_level_ladder') || '1'));
+  const [kostebekLevel, setKostebekLevel] = useState(() => parseInt(localStorage.getItem('kelime_level_kostebek') || '1'));
+
+  // Save Levels
+  useEffect(() => { localStorage.setItem('kelime_level_compass', compassLevel.toString()); }, [compassLevel]);
+  useEffect(() => { localStorage.setItem('kelime_level_hangman', hangmanLevel.toString()); }, [hangmanLevel]);
+  useEffect(() => { localStorage.setItem('kelime_level_wordhunt', wordHuntLevel.toString()); }, [wordHuntLevel]);
+  useEffect(() => { localStorage.setItem('kelime_level_chain', chainLevel.toString()); }, [chainLevel]);
+  useEffect(() => { localStorage.setItem('kelime_level_connect', connectLevel.toString()); }, [connectLevel]);
+  useEffect(() => { localStorage.setItem('kelime_level_ladder', ladderLevel.toString()); }, [ladderLevel]);
+  useEffect(() => { localStorage.setItem('kelime_level_kostebek', kostebekLevel.toString()); }, [kostebekLevel]);
+
   // Daily Reward Check on Mount
   useEffect(() => {
     const lastClaimDate = localStorage.getItem('kelime_last_claim');
@@ -219,8 +237,38 @@ const App: React.FC = () => {
 
   const startGame = useCallback((category: Category) => {
     playSound('click');
-    const randomIndex = Math.floor(Math.random() * category.words.length);
-    setSecretWord(category.words[randomIndex]);
+
+    // Determine current level based on selected game type
+    let currentLevel = 1;
+    switch (selectedGameType) {
+      case 'compass': currentLevel = compassLevel; break;
+      case 'hangman': currentLevel = hangmanLevel; break;
+      // Other games like ladder/word_hunt/connect handle level internally via props
+      default: currentLevel = 1; break;
+    }
+
+    // Filter words based on difficulty (Level) for single-word games
+    let candidateWords = category.words;
+
+    // Difficulty Logic
+    if (selectedGameType === 'compass' || selectedGameType === 'hangman') {
+      if (currentLevel <= 3) {
+        // Easy: Short words (3-5 chars)
+        candidateWords = category.words.filter(w => w.length >= 3 && w.length <= 5);
+      } else if (currentLevel <= 8) {
+        // Medium: Medium words (5-7 chars)
+        candidateWords = category.words.filter(w => w.length >= 5 && w.length <= 7);
+      } else {
+        // Hard: Long words (7+ chars)
+        candidateWords = category.words.filter(w => w.length >= 7);
+      }
+
+      // Fallback if no words match filter (should rarely happen)
+      if (candidateWords.length === 0) candidateWords = category.words;
+    }
+
+    const randomIndex = Math.floor(Math.random() * candidateWords.length);
+    setSecretWord(candidateWords[randomIndex]);
     setCurrentCategory(category);
     setStatus(GameStatus.PLAYING);
     setFinalGuessCount(0);
@@ -234,13 +282,31 @@ const App: React.FC = () => {
       case 'chain': setView(AppView.GAME_CHAIN); break;
       case 'connect': setView(AppView.GAME_CONNECT); break;
     }
-  }, [selectedGameType]);
+  }, [selectedGameType, compassLevel, hangmanLevel]);
 
   const handleWin = (bonus = 0) => {
     playSound('win');
     setIsGameWon(true);
     setStatus(GameStatus.WON);
     setCoins(prev => prev + WIN_REWARD + bonus);
+  };
+
+  const handleNextLevel = () => {
+    playSound('click');
+
+    // Increment level based on current game view
+    switch (view) {
+      case AppView.GAME_COMPASS: setCompassLevel(prev => prev + 1); break;
+      case AppView.GAME_HANGMAN: setHangmanLevel(prev => prev + 1); break;
+      case AppView.GAME_WORD_HUNT: setWordHuntLevel(prev => prev + 1); break;
+      case AppView.GAME_CHAIN: setChainLevel(prev => prev + 1); break;
+      case AppView.GAME_CONNECT: setConnectLevel(prev => prev + 1); break;
+      case AppView.GAME_LADDER: setLadderLevel(prev => prev + 1); break;
+      case AppView.GAME_KOSTEBEK: setKostebekLevel(prev => prev + 1); break;
+    }
+
+    // Reset and start next game
+    handleReset();
   };
 
   const handleLose = () => {
@@ -435,6 +501,8 @@ const App: React.FC = () => {
             onBack={navigateBackToCategories}
             coins={coins}
             onSpendCoins={handleSpendCoins}
+            level={compassLevel}
+            useGameKeyboard={useGameKeyboard}
           />
         </div>
       )}
@@ -453,6 +521,7 @@ const App: React.FC = () => {
             onBack={navigateBackToCategories}
             coins={coins}
             onSpendCoins={handleSpendCoins}
+            level={hangmanLevel}
           />
         </div>
       )}
@@ -467,6 +536,9 @@ const App: React.FC = () => {
             category={currentCategory}
             onWin={handleWordHuntWin}
             onBack={navigateBackToCategories}
+            coins={coins}
+            onSpendCoins={handleSpendCoins}
+            level={wordHuntLevel}
           />
         </div>
       )}
@@ -482,6 +554,7 @@ const App: React.FC = () => {
             onWin={handleChainWin}
             onLose={handleChainLose}
             onBack={navigateBackToCategories}
+            useGameKeyboard={useGameKeyboard}
           />
         </div>
       )}
@@ -498,6 +571,7 @@ const App: React.FC = () => {
             onBack={navigateBackToCategories}
             coins={coins}
             onSpendCoins={handleSpendCoins}
+            level={connectLevel}
           />
         </div>
       )}
@@ -513,6 +587,8 @@ const App: React.FC = () => {
             onBack={navigateBackToCategories}
             coins={coins}
             onSpendCoins={handleSpendCoins}
+            level={ladderLevel}
+            useGameKeyboard={useGameKeyboard}
           />
         </div>
       )}
@@ -522,6 +598,7 @@ const App: React.FC = () => {
         <div className="h-full relative">
           <KostebekAviGame
             onBack={navigateBackToCategories}
+            useGameKeyboard={useGameKeyboard}
           />
         </div>
       )}
@@ -548,6 +625,7 @@ const App: React.FC = () => {
             }
             isWin={status === GameStatus.WON}
             onReset={handleReset}
+            onNextLevel={handleNextLevel}
             onChangeCategory={navigateBackToCategories}
           />
         </>

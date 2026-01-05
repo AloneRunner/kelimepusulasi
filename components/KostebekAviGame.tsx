@@ -28,9 +28,10 @@ const BOT_NAMES = ["Ahmet", "Ayşe", "Mehmet", "Fatma", "Can", "Zeynep", "Barı�
 
 interface KostebekAviGameProps {
   onBack: () => void;
+  useGameKeyboard?: boolean;
 }
 
-const KostebekAviGame: React.FC<KostebekAviGameProps> = ({ onBack }) => {
+const KostebekAviGame: React.FC<KostebekAviGameProps> = ({ onBack, useGameKeyboard = true }) => {
   // --- State ---
   const [phase, setPhase] = useState<GamePhase>(GamePhase.SETUP);
   const [players, setPlayers] = useState<Player[]>([]);
@@ -69,11 +70,31 @@ const KostebekAviGame: React.FC<KostebekAviGameProps> = ({ onBack }) => {
   }, [clues]);
 
   // --- AI Turn Logic ---
-  useEffect(() => {
-    if (phase === GamePhase.GAMEPLAY) {
-      const currentPlayer = players[currentTurnIndex];
+  // Track if we're currently processing an AI turn to prevent race conditions
+  const isProcessingAiTurn = useRef(false);
+  // Track which turns have been processed to prevent duplicate AI triggers
+  const processedTurns = useRef<Set<string>>(new Set());
 
-      if (!currentPlayer.isHuman && !isAiThinking) {
+  useEffect(() => {
+    if (phase === GamePhase.GAMEPLAY && players.length > 0 && gameData) {
+      const currentPlayer = players[currentTurnIndex];
+      const turnKey = `${currentRound}-${currentTurnIndex}`;
+
+      // Only trigger AI turn if:
+      // 1. Current player exists and is not human
+      // 2. Not already thinking
+      // 3. Not currently processing an AI turn (prevents race conditions)
+      // 4. This specific turn hasn't been processed yet
+      if (
+        currentPlayer &&
+        !currentPlayer.isHuman &&
+        !isAiThinking &&
+        !isProcessingAiTurn.current &&
+        !processedTurns.current.has(turnKey)
+      ) {
+        isProcessingAiTurn.current = true;
+        processedTurns.current.add(turnKey); // Mark this turn as being processed
+
         // Trigger AI Turn
         const playAiTurn = async () => {
           setIsAiThinking(true);
@@ -82,17 +103,27 @@ const KostebekAviGame: React.FC<KostebekAviGameProps> = ({ onBack }) => {
           const delay = Math.random() * 1500 + 1000;
           await new Promise(r => setTimeout(r, delay));
 
-          if (gameData) {
+          // Double-check we're still in GAMEPLAY phase before submitting
+          if (phase === GamePhase.GAMEPLAY && gameData) {
             const clueText = await generateAiClue(currentPlayer, gameData, clues, GameMode.VARIANT);
             addClue(currentPlayer, clueText);
           }
 
           setIsAiThinking(false);
+          isProcessingAiTurn.current = false;
         };
         playAiTurn();
       }
     }
-  }, [phase, currentTurnIndex, players, gameData, clues, isAiThinking]);
+  }, [phase, currentTurnIndex, currentRound, isAiThinking]); // Added currentRound to dependencies
+
+  // Reset processed turns when starting a new game
+  useEffect(() => {
+    if (phase === GamePhase.ROLE_REVEAL) {
+      processedTurns.current.clear();
+      isProcessingAiTurn.current = false;
+    }
+  }, [phase]);
 
   // --- Handlers: Setup ---
 
@@ -365,17 +396,28 @@ const KostebekAviGame: React.FC<KostebekAviGameProps> = ({ onBack }) => {
 
         <div>
           <label className="block text-sm font-medium text-slate-300 mb-2">Oyuncu İsmin</label>
-          <input
-            type="text"
-            value={playerName}
-            onChange={(e) => setPlayerName(e.target.value)}
-            placeholder="Adın nedir?"
-            className="w-full bg-slate-900 border border-slate-600 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            autoComplete="off"
-            autoCorrect="off"
-            spellCheck="false"
-            autoCapitalize="words"
-          />
+          {useGameKeyboard ? (
+            <TurkishKeyboard
+              value={playerName}
+              onChange={setPlayerName}
+              onSubmit={() => { if (playerName.trim()) startGame(); }}
+              placeholder="Adın nedir?"
+              maxLength={15}
+              theme="dark"
+            />
+          ) : (
+            <input
+              type="text"
+              value={playerName}
+              onChange={(e) => setPlayerName(e.target.value)}
+              placeholder="Adın nedir?"
+              className="w-full bg-slate-900 border border-slate-600 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              autoComplete="off"
+              autoCorrect="off"
+              spellCheck="false"
+              autoCapitalize="words"
+            />
+          )}
         </div>
 
         <div>
@@ -467,7 +509,7 @@ const KostebekAviGame: React.FC<KostebekAviGameProps> = ({ onBack }) => {
   const renderGameplay = () => {
     const currentPlayer = players[currentTurnIndex];
     return (
-      <div className="h-full flex flex-col bg-slate-900">
+      <div className="fixed inset-0 flex flex-col bg-slate-900" style={{ height: '100dvh' }}>
         {/* Fixed Header */}
         <div className="flex-shrink-0 bg-slate-900/50 p-3 border-b border-slate-800">
           <div className="flex justify-between items-center">
@@ -498,13 +540,12 @@ const KostebekAviGame: React.FC<KostebekAviGameProps> = ({ onBack }) => {
           </div>
         </div>
 
-        {/* Clues Stream - Fixed Height */}
+        {/* Clues Stream - Uses flex-1 to fill available space */}
         <div
           ref={scrollRef}
-          className="flex-1 overflow-y-auto space-y-4 px-4 py-4 scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-slate-900"
+          className="flex-1 overflow-y-auto space-y-4 px-4 py-4 scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-slate-900 min-h-0"
           style={{
-            WebkitOverflowScrolling: 'touch',
-            maxHeight: 'calc(100vh - 360px)'
+            WebkitOverflowScrolling: 'touch'
           }}
         >
           {clues.length === 0 && (
@@ -556,20 +597,52 @@ const KostebekAviGame: React.FC<KostebekAviGameProps> = ({ onBack }) => {
           )}
         </div>
 
-        {/* Input Area - REPLACED WITH TURKISH KEYBOARD */}
-        <TurkishKeyboard
-          value={currentClueInput}
-          onChange={setCurrentClueInput}
-          onSubmit={() => {
+        {/* Input Area - CONDITIONALLY RENDER KEYBOARD */}
+        {useGameKeyboard ? (
+          <TurkishKeyboard
+            value={currentClueInput}
+            onChange={setCurrentClueInput}
+            onSubmit={() => {
+              if (currentPlayer.isHuman && currentClueInput.trim()) {
+                submitHumanClue(new Event('submit') as any);
+              }
+            }}
+            placeholder={currentPlayer.isHuman ? "Kelimenle ilgili bir ipucu yaz..." : `${currentPlayer.name} düşünüyor...`}
+            disabled={!currentPlayer.isHuman || showLastClueTransition}
+            maxLength={25}
+            theme="dark"
+          />
+        ) : (
+          <form onSubmit={(e) => {
+            e.preventDefault();
             if (currentPlayer.isHuman && currentClueInput.trim()) {
-              submitHumanClue(new Event('submit') as any);
+              submitHumanClue(e as any);
             }
-          }}
-          placeholder={currentPlayer.isHuman ? "Kelimenle ilgili bir ipucu yaz..." : `${currentPlayer.name} düşünüyor...`}
-          disabled={!currentPlayer.isHuman || showLastClueTransition}
-          maxLength={25}
-          theme="dark"
-        />
+          }} className="p-3 bg-slate-800 border-t border-slate-700">
+            <div className="flex gap-2">
+              <input
+                type="text"
+                value={currentClueInput}
+                onChange={(e) => setCurrentClueInput(e.target.value)}
+                placeholder={currentPlayer.isHuman ? "Kelimenle ilgili bir ipucu yaz..." : `${currentPlayer.name} düşünüyor...`}
+                disabled={!currentPlayer.isHuman || showLastClueTransition}
+                maxLength={25}
+                className="flex-1 bg-slate-900 border-2 border-slate-600 rounded-xl px-4 py-3 text-white placeholder-slate-500 font-medium text-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent disabled:opacity-50"
+                autoComplete="off"
+                autoCorrect="off"
+                spellCheck="false"
+                autoCapitalize="none"
+              />
+              <button
+                type="submit"
+                disabled={!currentPlayer.isHuman || showLastClueTransition || !currentClueInput.trim()}
+                className="px-6 py-3 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+              >
+                Gönder
+              </button>
+            </div>
+          </form>
+        )}
 
         {/* Son ipucu sonrası oylama geçiş bannerı (altta, küçük) */}
         {showLastClueTransition && (

@@ -95,7 +95,7 @@ export const TurkishKeyboard: React.FC<TurkishKeyboardProps> = ({
     : "flex-1 bg-white hover:bg-slate-50 active:bg-slate-200 disabled:opacity-50 disabled:cursor-not-allowed text-slate-700 font-bold py-2.5 rounded-lg transition-all text-sm shadow-sm active:scale-95 border border-slate-200";
 
   return (
-    <div className={containerClass}>
+    <div className={`${containerClass} flex-shrink-0`}>
       {/* Display Area */}
       <div className={displayBgClass}>
         <div className={displayInputClass}>
