@@ -7,7 +7,7 @@ interface WordHuntGameProps {
   onBack: () => void;
   coins: number;
   onSpendCoins: (amount: number) => boolean;
-  level: number;
+  knownWordsCount: number;
 }
 
 const GRID_SIZE = 9; // 9x9 Grid
@@ -26,7 +26,7 @@ interface WordLocation {
   indices: number[]; // Flattened indices
 }
 
-const WordHuntGame: React.FC<WordHuntGameProps> = ({ category, onWin, onBack, coins, onSpendCoins, level }) => {
+const WordHuntGame: React.FC<WordHuntGameProps> = ({ category, onWin, onBack, coins, onSpendCoins, knownWordsCount }) => {
   const [grid, setGrid] = useState<Cell[]>([]);
   const [targetWords, setTargetWords] = useState<string[]>([]);
   const [foundWords, setFoundWords] = useState<string[]>([]);
@@ -42,9 +42,8 @@ const WordHuntGame: React.FC<WordHuntGameProps> = ({ category, onWin, onBack, co
 
   const startNewGame = () => {
     // 1. Pick random words based on Level
-    let wordCount = 5;
-    if (level > 3) wordCount = 7;
-    if (level > 8) wordCount = 9;
+    // Fixed word count for all levels
+    const wordCount = 6;
 
     const validWords = category.words.filter(w => w.length <= GRID_SIZE && w.length > 2);
     const shuffled = [...validWords].sort(() => 0.5 - Math.random());
@@ -356,7 +355,7 @@ const WordHuntGame: React.FC<WordHuntGameProps> = ({ category, onWin, onBack, co
         <div className="text-center">
           <h1 className="font-bold text-lg">{category.label}</h1>
           <p className="text-xs text-teal-100 opacity-80">
-            {foundWords.length} / {targetWords.length} Bulundu • Level {level}
+            {foundWords.length} / {targetWords.length} Bulundu • {knownWordsCount} Kelime 📖
           </p>
         </div>
         <div className="w-20 flex justify-end gap-2">

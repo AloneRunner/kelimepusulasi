@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Category, GuessResult } from '../types';
 import { playSound } from '../services/audioService';
 import { TurkishKeyboard } from './TurkishKeyboard';
-import { getFunFactFromGemini } from '../services/geminiService';
+import { WORD_FACTS } from '../data/wordFacts';
 
 interface GameScreenProps {
   category: Category;
@@ -12,11 +12,11 @@ interface GameScreenProps {
   onBack: () => void;
   coins: number;
   onSpendCoins: (amount: number) => boolean;
-  level: number;
+  knownWordsCount: number;
   useGameKeyboard?: boolean;
 }
 
-const GameScreen: React.FC<GameScreenProps> = ({ category, secretWord, onWin, onBack, coins, onSpendCoins, level, useGameKeyboard = true }) => {
+const GameScreen: React.FC<GameScreenProps> = ({ category, secretWord, onWin, onBack, coins, onSpendCoins, knownWordsCount, useGameKeyboard = true }) => {
   const [guesses, setGuesses] = useState<GuessResult[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [filteredSuggestions, setFilteredSuggestions] = useState<string[]>([]);
@@ -168,7 +168,7 @@ const GameScreen: React.FC<GameScreenProps> = ({ category, secretWord, onWin, on
     }
   };
 
-  const requestFactHint = async () => {
+  const requestFactHint = () => {
     if (factLoading) return;
 
     // Check coins (Price: 100)
@@ -181,8 +181,13 @@ const GameScreen: React.FC<GameScreenProps> = ({ category, secretWord, onWin, on
     setFactLoading(true);
 
     try {
-      const fact = await getFunFactFromGemini(secretWord);
-      setActiveFact(fact);
+      const facts = WORD_FACTS[secretWord.toLocaleLowerCase('tr-TR')];
+      if (facts && facts.length > 0) {
+        const randomFact = facts[Math.floor(Math.random() * facts.length)];
+        setActiveFact(randomFact);
+      } else {
+        setActiveFact("Bu kelime hakkında ipucu bulunmamaktadır.");
+      }
     } catch (error) {
       console.error("Hint error:", error);
       alert("İpucu alınamadı.");
@@ -219,7 +224,7 @@ const GameScreen: React.FC<GameScreenProps> = ({ category, secretWord, onWin, on
           <div className="flex items-center justify-center gap-3 text-xs text-indigo-200 opacity-90 font-mono">
             <span>{coins} 🪙</span>
             <span>•</span>
-            <span>Level {level}</span>
+            <span>{knownWordsCount} Kelime 📖</span>
             <span>•</span>
             <span className="bg-indigo-700 px-1.5 rounded">{formatTime(secondsElapsed)}</span>
           </div>

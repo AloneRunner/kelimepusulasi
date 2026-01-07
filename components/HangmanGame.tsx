@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Category } from '../types';
 import { playSound } from '../services/audioService';
-import { getFunFactFromGemini } from '../services/geminiService';
+import { WORD_FACTS } from '../data/wordFacts';
 
 interface HangmanGameProps {
   category: Category;
@@ -12,14 +12,14 @@ interface HangmanGameProps {
   onBack: () => void;
   coins: number;
   onSpendCoins: (amount: number) => boolean;
-  level: number;
+  knownWordsCount: number;
 }
 
 const ALPHABET = "ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZ".split("");
 
 const MAX_ERRORS = 6;
 
-const HangmanGame: React.FC<HangmanGameProps> = ({ category, secretWord, onWin, onLose, onBack, coins, onSpendCoins, level }) => {
+const HangmanGame: React.FC<HangmanGameProps> = ({ category, secretWord, onWin, onLose, onBack, coins, onSpendCoins, knownWordsCount }) => {
   const [guessedLetters, setGuessedLetters] = useState<Set<string>>(new Set());
   const [errorCount, setErrorCount] = useState(0);
   const [isShaking, setIsShaking] = useState(false);
@@ -69,8 +69,8 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ category, secretWord, onWin, 
     }
   };
 
-  // 2. FACT HINT (Kelime İpucu) - 20 Coins
-  const handleFactHint = async () => {
+  // 2. FACT HINT (Kelime İpucu) - 100 Coins
+  const handleFactHint = () => {
     if (hintLoading) return;
 
     if (!onSpendCoins(100)) {
@@ -81,8 +81,13 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ category, secretWord, onWin, 
     setHintLoading(true);
 
     try {
-      const fact = await getFunFactFromGemini(secretWord);
-      setActiveHint(fact);
+      const facts = WORD_FACTS[secretWord.toLocaleLowerCase('tr-TR')];
+      if (facts && facts.length > 0) {
+        const randomFact = facts[Math.floor(Math.random() * facts.length)];
+        setActiveHint(randomFact);
+      } else {
+        setActiveHint("Bu kelime hakkında ipucu bulunmamaktadır.");
+      }
     } catch (error) {
       console.error("Hint error:", error);
     } finally {
@@ -225,7 +230,7 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ category, secretWord, onWin, 
           <div className="flex items-center justify-center gap-2 text-xs text-orange-100 opacity-80">
             <span>{coins} 🪙</span>
             <span>•</span>
-            <span>Level {level}</span>
+            <span>{knownWordsCount} Kelime 📖</span>
             <span>•</span>
             <span>Hata: {errorCount}/{MAX_ERRORS}</span>
           </div>
@@ -267,13 +272,18 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ category, secretWord, onWin, 
         </div>
 
         {/* Word Display */}
-        <div className="flex flex-wrap justify-center gap-2 mb-8 min-h-[3rem]">
+        <div className="flex flex-wrap justify-center gap-1 mb-8 min-h-[3rem]">
           {normalizedSecret.split('').map((char, idx) => (
             <div key={idx} className="flex flex-col items-center">
-              <div className={`w-8 h-10 flex items-end justify-center text-2xl font-bold border-b-4 transition-all duration-300 
-                  ${char === ' ' ? 'border-transparent mb-2' : (guessedLetters.has(char) ? 'text-slate-800 border-slate-800' : 'text-transparent border-slate-300')}`}>
-                {char === ' ' ? '/' : (guessedLetters.has(char) ? char : '_')}
-              </div>
+              {char === ' ' ? (
+                // Boşluk karakteri için geniş bir aralık bırak
+                <div className="w-4 h-10" />
+              ) : (
+                <div className={`w-8 h-10 flex items-end justify-center text-2xl font-bold border-b-4 transition-all duration-300 
+                    ${guessedLetters.has(char) ? 'text-slate-800 border-slate-800' : 'text-transparent border-slate-300'}`}>
+                  {guessedLetters.has(char) ? char : '_'}
+                </div>
+              )}
             </div>
           ))}
         </div>

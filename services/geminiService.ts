@@ -1441,12 +1441,12 @@ export const generateAiClue = async (
       // HAİN STRATEJİSİ:
       // Hainin hayatta kalmasının tek yolu "Ortak" kelimeleri kullanmaktır.
       // Kendi spesifik kelimesini kullanırsa anında yakalanır.
-      // Bu yüzden %90 ihtimalle ortak kelime seçmeli.
-      useCommonClue = Math.random() < 0.90;
+      // Bu yüzden %95 ihtimalle ortak kelime seçmeli (çok agresif!)
+      useCommonClue = Math.random() < 0.95;
     } else {
       // MASUM STRATEJİSİ:
-      // Masumlar %25 ihtimalle ortak, %75 ihtimalle spesifik kelime kullanır.
-      useCommonClue = Math.random() < 0.25;
+      // Masumlar %35 ihtimalle ortak (biraz daha fazla), %65 ihtimalle spesifik kelime kullanır.
+      useCommonClue = Math.random() < 0.35;
     }
 
     let targetList = (useCommonClue && commonClues.length > 0) ? commonClues : mySpecificClues;
@@ -1471,10 +1471,25 @@ export const generateAiClue = async (
       return true;
     });
 
-    const finalList = safeClues.length > 0 ? safeClues : availableClues;
-    const selectedClue = finalList[Math.floor(Math.random() * finalList.length)];
-
-    resolve(selectedClue);
+    // HAININ İPUÇLARI: Spesifik cevapları daha vagas hale getir (daha az belli olması için)
+    let finalList = safeClues.length > 0 ? safeClues : availableClues;
+    
+    // Eğer Hainin spesifik listesinden seçiyorsa ve çok açık görünüyorsa, başka stratejiye geç
+    if (bot.role === 'imposter' && targetList === mySpecificClues && finalList.length > 0) {
+      // Hain spesifik ipucu vermek yerine, gümrük geçmeyen cevaplar ver
+      // Yani: genel, muğlak, kendinden açıkça kurtaran cevaplar
+      const obfuscatedClues = [
+        "Genel bir kategori", "Hepimizin bildiği", "Sıradan bir şey",
+        "Komik değil", "Serius bir konu", "Popüler kültür", "Antik",
+        "Modern", "Klasik", "Sanat eseri", "İconik", "Ünlü", "Meşhur",
+        "Efsanevi", "Tarihi", "Kurgusal", "Gerçek", "Varsayımsal"
+      ];
+      const selectedClue = obfuscatedClues[Math.floor(Math.random() * obfuscatedClues.length)];
+      resolve(selectedClue);
+    } else {
+      const selectedClue = finalList[Math.floor(Math.random() * finalList.length)];
+      resolve(selectedClue);
+    }
   });
 };
 

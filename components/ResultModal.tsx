@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { getFunFactFromGemini } from '../services/geminiService';
+import { WORD_FACTS } from '../data/wordFacts';
 import { playSound } from '../services/audioService';
 
 interface ResultModalProps {
@@ -20,9 +20,14 @@ const ResultModal: React.FC<ResultModalProps> = ({ word, guessCount, earnedCoins
 
   useEffect(() => {
     // Sadece kazanıldığında veya kaybedildiğinde kelimeyi açıklayalım
-    const fetchFact = async () => {
-      const data = await getFunFactFromGemini(word);
-      setFact(data);
+    const fetchFact = () => {
+      const facts = WORD_FACTS[word.toLocaleLowerCase('tr-TR')];
+      if (facts && facts.length > 0) {
+        const randomFact = facts[Math.floor(Math.random() * facts.length)];
+        setFact(randomFact);
+      } else {
+        setFact("Bu kelime hakkında bilgi bulunmamaktadır.");
+      }
       setLoading(false);
     };
     fetchFact();

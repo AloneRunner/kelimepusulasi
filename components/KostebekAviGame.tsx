@@ -187,6 +187,17 @@ const KostebekAviGame: React.FC<KostebekAviGameProps> = ({ onBack, useGameKeyboa
   };
 
   const addClue = (player: Player, text: string) => {
+    // Duplicate ipuçlarını filtrele
+    const isDuplicate = clues.some(c => 
+      c.playerId === player.id && 
+      c.text.toLowerCase().trim() === text.toLowerCase().trim()
+    );
+
+    if (isDuplicate) {
+      console.debug('Duplicate clue detected, skipping:', text);
+      return;
+    }
+
     const newClue: Clue = {
       playerId: player.id,
       playerName: player.name,

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { Category } from '../types';
-import { getFunFactFromGemini } from '../services/geminiService';
+import { WORD_FACTS } from '../data/wordFacts';
 import { playSound } from '../services/audioService';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -10,7 +10,7 @@ interface ConnectGameProps {
   onBack: () => void;
   coins: number;
   onSpendCoins: (amount: number) => boolean;
-  level: number;
+  knownWordsCount: number;
 }
 
 // ----------------------------------------------------------------------
@@ -169,9 +169,9 @@ const LEVELS: Level[] = [
   }
 ];
 
-const ConnectGame: React.FC<ConnectGameProps> = ({ category, onWin, onBack, coins, onSpendCoins, level }) => {
+const ConnectGame: React.FC<ConnectGameProps> = ({ category, onWin, onBack, coins, onSpendCoins, knownWordsCount }) => {
   // Game State
-  const [levelIndex, setLevelIndex] = useState((level - 1) % LEVELS.length);
+  const [levelIndex, setLevelIndex] = useState(Math.floor(Math.random() * LEVELS.length));
   const [foundWords, setFoundWords] = useState<Set<string>>(new Set());
   const [foundBonusWords, setFoundBonusWords] = useState<Set<string>>(new Set());
   const [gridScale, setGridScale] = useState(1);
@@ -190,7 +190,7 @@ const ConnectGame: React.FC<ConnectGameProps> = ({ category, onWin, onBack, coin
   const gridContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const idx = (level - 1) % LEVELS.length;
+    const idx = Math.floor(Math.random() * LEVELS.length);
     setLevelIndex(idx);
     setFoundWords(new Set());
     setFoundBonusWords(new Set());
@@ -198,7 +198,7 @@ const ConnectGame: React.FC<ConnectGameProps> = ({ category, onWin, onBack, coin
     setCurrentPath([]);
     setTempWord('');
     setActiveHint(null);
-  }, [category, level]);
+  }, [category]);
 
   const currentLevel = LEVELS[levelIndex];
   const targetWords = currentLevel.words.map(w => w.word);
@@ -266,7 +266,7 @@ const ConnectGame: React.FC<ConnectGameProps> = ({ category, onWin, onBack, coin
   // HINTS
   // ----------------------------------------------------------------------
 
-  const handleFactHint = async () => {
+  const handleFactHint = () => {
     if (hintLoading) return;
     const unfoundWords = targetWords.filter(w => !foundWords.has(w));
     if (unfoundWords.length === 0) return;
@@ -276,7 +276,11 @@ const ConnectGame: React.FC<ConnectGameProps> = ({ category, onWin, onBack, coin
     setHintLoading(true);
     const randomWord = unfoundWords[Math.floor(Math.random() * unfoundWords.length)];
     try {
-      const fact = await getFunFactFromGemini(randomWord);
+      const facts = WORD_FACTS[randomWord.toLocaleLowerCase('tr-TR')];
+      let fact = "Bu kelime hakkında bilgi bulunmamaktadır.";
+      if (facts && facts.length > 0) {
+        fact = facts[Math.floor(Math.random() * facts.length)];
+      }
       setActiveHint({ word: randomWord, fact });
     } catch { } finally { setHintLoading(false); }
   };
@@ -432,7 +436,7 @@ const ConnectGame: React.FC<ConnectGameProps> = ({ category, onWin, onBack, coin
 
         <div className="flex flex-col items-center">
           <h1 className="text-lg font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-pink-300 to-purple-300 drop-shadow-sm">
-            BÖLÜM {level}
+            {knownWordsCount} Kelime 📖
           </h1>
           <div className="flex items-center gap-2 mt-1">
             <div className="h-1.5 w-24 bg-slate-800 rounded-full overflow-hidden">

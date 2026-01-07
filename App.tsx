@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { GameStatus, AppView, Category, CategoryGroup, GameType } from './types';
-import { CATEGORIES } from './data/wordLists';
+import { CATEGORIES, ALL_WORDS_CATEGORY } from './data/wordLists';
 import GameScreen from './components/GameScreen';
 import HangmanGame from './components/HangmanGame';
 import WordHuntGame from './components/WordHuntGame';
@@ -16,6 +16,8 @@ import DailyRewardModal from './components/DailyRewardModal';
 import PrivacyModal from './components/PrivacyModal';
 import SettingsModal from './components/SettingsModal';
 import { playSound } from './services/audioService';
+// AdMob: initialize and show a test banner in dev
+import * as AdMobService from './services/admobService';
 
 const App: React.FC = () => {
   // Navigation State
@@ -61,23 +63,22 @@ const App: React.FC = () => {
     return saved !== null ? saved === 'true' : true; // Default: true (oyun klavyesi)
   });
 
-  // Level State
-  const [compassLevel, setCompassLevel] = useState(() => parseInt(localStorage.getItem('kelime_level_compass') || '1'));
-  const [hangmanLevel, setHangmanLevel] = useState(() => parseInt(localStorage.getItem('kelime_level_hangman') || '1'));
-  const [wordHuntLevel, setWordHuntLevel] = useState(() => parseInt(localStorage.getItem('kelime_level_wordhunt') || '1'));
-  const [chainLevel, setChainLevel] = useState(() => parseInt(localStorage.getItem('kelime_level_chain') || '1'));
-  const [connectLevel, setConnectLevel] = useState(() => parseInt(localStorage.getItem('kelime_level_connect') || '1'));
-  const [ladderLevel, setLadderLevel] = useState(() => parseInt(localStorage.getItem('kelime_level_ladder') || '1'));
-  const [kostebekLevel, setKostebekLevel] = useState(() => parseInt(localStorage.getItem('kelime_level_kostebek') || '1'));
+  // Bilinen Kelimeler (Progress Tracking)
+  const [knownWords, setKnownWords] = useState<Set<string>>(() => {
+    const saved = localStorage.getItem('kelime_known_words');
+    return saved ? new Set(JSON.parse(saved)) : new Set();
+  });
 
-  // Save Levels
-  useEffect(() => { localStorage.setItem('kelime_level_compass', compassLevel.toString()); }, [compassLevel]);
-  useEffect(() => { localStorage.setItem('kelime_level_hangman', hangmanLevel.toString()); }, [hangmanLevel]);
-  useEffect(() => { localStorage.setItem('kelime_level_wordhunt', wordHuntLevel.toString()); }, [wordHuntLevel]);
-  useEffect(() => { localStorage.setItem('kelime_level_chain', chainLevel.toString()); }, [chainLevel]);
-  useEffect(() => { localStorage.setItem('kelime_level_connect', connectLevel.toString()); }, [connectLevel]);
-  useEffect(() => { localStorage.setItem('kelime_level_ladder', ladderLevel.toString()); }, [ladderLevel]);
-  useEffect(() => { localStorage.setItem('kelime_level_kostebek', kostebekLevel.toString()); }, [kostebekLevel]);
+  // Save Known Words
+  useEffect(() => {
+    localStorage.setItem('kelime_known_words', JSON.stringify(Array.from(knownWords)));
+  }, [knownWords]);
+
+  // Bir kelimeyi bilinen kelimelere ekle
+  const addKnownWord = (word: string) => {
+    const normalized = word.toLocaleLowerCase('tr-TR');
+    setKnownWords(prev => new Set(prev).add(normalized));
+  };
 
   // Daily Reward Check on Mount
   useEffect(() => {
@@ -89,6 +90,46 @@ const App: React.FC = () => {
       setTimeout(() => setShowDailyReward(true), 1000); // Small delay for effect
     }
   }, []);
+
+  // Initialize AdMob on app mount and show a test banner in non-production
+  const [bannerVisible, setBannerVisible] = useState(false);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        await AdMobService.initAdMob();
+        // Show banner: production ads in production build, test ads in development
+        const isProduction = import.meta.env.MODE === 'production';
+        const ok = await AdMobService.showBanner({
+          production: isProduction,
+          position: 'TOP_CENTER',
+          margin: 56,
+          isTesting: !isProduction
+        });
+        setBannerVisible(!!ok);
+      } catch (e) {
+        console.warn('AdMob setup error', e);
+      }
+    })();
+
+    return () => {
+      // cleanup listeners if any when App unmounts
+      AdMobService.removeAllListeners();
+    };
+  }, []);
+
+  // Manage page top padding when banner is visible so it won't cover menus
+  useEffect(() => {
+    try {
+      if (bannerVisible) {
+        document.documentElement.style.setProperty('--banner-padding-top', '56px');
+      } else {
+        document.documentElement.style.setProperty('--banner-padding-top', '0px');
+      }
+    } catch (e) {
+      // ignore
+    }
+  }, [bannerVisible]);
 
   // Privacy consent one-time check
   useEffect(() => {
@@ -105,7 +146,7 @@ const App: React.FC = () => {
   const handleClaimDailyReward = () => {
     const today = new Date().toDateString();
     localStorage.setItem('kelime_last_claim', today);
-    setCoins(prev => prev + 50);
+    setCoins(prev => prev + 500);
     setShowDailyReward(false);
   };
 
@@ -238,37 +279,9 @@ const App: React.FC = () => {
   const startGame = useCallback((category: Category) => {
     playSound('click');
 
-    // Determine current level based on selected game type
-    let currentLevel = 1;
-    switch (selectedGameType) {
-      case 'compass': currentLevel = compassLevel; break;
-      case 'hangman': currentLevel = hangmanLevel; break;
-      // Other games like ladder/word_hunt/connect handle level internally via props
-      default: currentLevel = 1; break;
-    }
-
-    // Filter words based on difficulty (Level) for single-word games
-    let candidateWords = category.words;
-
-    // Difficulty Logic
-    if (selectedGameType === 'compass' || selectedGameType === 'hangman') {
-      if (currentLevel <= 3) {
-        // Easy: Short words (3-5 chars)
-        candidateWords = category.words.filter(w => w.length >= 3 && w.length <= 5);
-      } else if (currentLevel <= 8) {
-        // Medium: Medium words (5-7 chars)
-        candidateWords = category.words.filter(w => w.length >= 5 && w.length <= 7);
-      } else {
-        // Hard: Long words (7+ chars)
-        candidateWords = category.words.filter(w => w.length >= 7);
-      }
-
-      // Fallback if no words match filter (should rarely happen)
-      if (candidateWords.length === 0) candidateWords = category.words;
-    }
-
-    const randomIndex = Math.floor(Math.random() * candidateWords.length);
-    setSecretWord(candidateWords[randomIndex]);
+    // Rastgele kelime seç (level sistemi kaldırıldı)
+    const randomIndex = Math.floor(Math.random() * category.words.length);
+    setSecretWord(category.words[randomIndex]);
     setCurrentCategory(category);
     setStatus(GameStatus.PLAYING);
     setFinalGuessCount(0);
@@ -282,30 +295,24 @@ const App: React.FC = () => {
       case 'chain': setView(AppView.GAME_CHAIN); break;
       case 'connect': setView(AppView.GAME_CONNECT); break;
     }
-  }, [selectedGameType, compassLevel, hangmanLevel]);
+  }, [selectedGameType]);
 
-  const handleWin = (bonus = 0) => {
+  const handleWin = (bonus = 0, winningWord?: string) => {
     playSound('win');
     setIsGameWon(true);
     setStatus(GameStatus.WON);
     setCoins(prev => prev + WIN_REWARD + bonus);
+    // Kazanılan kelimeyi bilinen kelimelere ekle
+    if (winningWord) {
+      addKnownWord(winningWord);
+    } else if (secretWord) {
+      addKnownWord(secretWord);
+    }
   };
 
   const handleNextLevel = () => {
     playSound('click');
-
-    // Increment level based on current game view
-    switch (view) {
-      case AppView.GAME_COMPASS: setCompassLevel(prev => prev + 1); break;
-      case AppView.GAME_HANGMAN: setHangmanLevel(prev => prev + 1); break;
-      case AppView.GAME_WORD_HUNT: setWordHuntLevel(prev => prev + 1); break;
-      case AppView.GAME_CHAIN: setChainLevel(prev => prev + 1); break;
-      case AppView.GAME_CONNECT: setConnectLevel(prev => prev + 1); break;
-      case AppView.GAME_LADDER: setLadderLevel(prev => prev + 1); break;
-      case AppView.GAME_KOSTEBEK: setKostebekLevel(prev => prev + 1); break;
-    }
-
-    // Reset and start next game
+    // Yeni oyun başlat (level sistemi kaldırıldı)
     handleReset();
   };
 
@@ -317,10 +324,14 @@ const App: React.FC = () => {
 
   const handleCompassWin = useCallback((winningWord: string, count: number, bonusCoins: number) => {
     setFinalGuessCount(count);
-    handleWin(bonusCoins);
+    addKnownWord(winningWord);
+    handleWin(bonusCoins, winningWord);
   }, []);
 
-  const handleHangmanWin = useCallback((winningWord: string) => handleWin(10), []);
+  const handleHangmanWin = useCallback((winningWord: string) => {
+    addKnownWord(winningWord);
+    handleWin(10, winningWord);
+  }, []);
   const handleHangmanLose = useCallback((winningWord: string) => handleLose(), []);
 
   const handleWordHuntWin = useCallback(() => handleWin(15), []);
@@ -409,6 +420,18 @@ const App: React.FC = () => {
               Öğrenci 🎓
             </button>
           </div>
+
+          {/* Hepsi (Tüm Kategoriler) Butonu */}
+          <button
+            onClick={() => startGame(ALL_WORDS_CATEGORY)}
+            className="group w-full max-w-md mb-4 flex items-center justify-center p-4 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-2xl hover:from-yellow-500 hover:to-orange-600 transition-all duration-300 hover:scale-[1.02] active:scale-95 shadow-lg"
+          >
+            <span className="text-3xl mr-3 group-hover:scale-110 transition-transform duration-300">🌟</span>
+            <div className="text-white text-left">
+              <span className="block text-lg font-bold">Hepsi</span>
+              <span className="text-xs text-white/90">{ALL_WORDS_CATEGORY.words.length.toLocaleString('tr-TR')} Kelime</span>
+            </div>
+          </button>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full max-w-md animate-fade-in">
             {filteredCategories.map((cat) => (
@@ -501,7 +524,7 @@ const App: React.FC = () => {
             onBack={navigateBackToCategories}
             coins={coins}
             onSpendCoins={handleSpendCoins}
-            level={compassLevel}
+            knownWordsCount={knownWords.size}
             useGameKeyboard={useGameKeyboard}
           />
         </div>
@@ -521,7 +544,7 @@ const App: React.FC = () => {
             onBack={navigateBackToCategories}
             coins={coins}
             onSpendCoins={handleSpendCoins}
-            level={hangmanLevel}
+            knownWordsCount={knownWords.size}
           />
         </div>
       )}
@@ -538,7 +561,7 @@ const App: React.FC = () => {
             onBack={navigateBackToCategories}
             coins={coins}
             onSpendCoins={handleSpendCoins}
-            level={wordHuntLevel}
+            knownWordsCount={knownWords.size}
           />
         </div>
       )}
@@ -571,7 +594,7 @@ const App: React.FC = () => {
             onBack={navigateBackToCategories}
             coins={coins}
             onSpendCoins={handleSpendCoins}
-            level={connectLevel}
+            knownWordsCount={knownWords.size}
           />
         </div>
       )}
@@ -587,7 +610,7 @@ const App: React.FC = () => {
             onBack={navigateBackToCategories}
             coins={coins}
             onSpendCoins={handleSpendCoins}
-            level={ladderLevel}
+            knownWordsCount={knownWords.size}
             useGameKeyboard={useGameKeyboard}
           />
         </div>

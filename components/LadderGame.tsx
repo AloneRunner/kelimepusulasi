@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { CATEGORIES } from '../data/wordLists';
 import { playSound } from '../services/audioService';
-import { getFunFactFromGemini } from '../services/geminiService';
+import { WORD_FACTS } from '../data/wordFacts';
 import { TurkishKeyboard } from './TurkishKeyboard';
 
 interface LadderGameProps {
@@ -10,7 +10,7 @@ interface LadderGameProps {
     onBack: () => void;
     coins: number;
     onSpendCoins: (amount: number) => boolean;
-    level: number;
+    knownWordsCount: number;
     useGameKeyboard?: boolean;
 }
 
@@ -19,7 +19,7 @@ interface Step {
     status: 'initial' | 'user' | 'target';
 }
 
-const LadderGame: React.FC<LadderGameProps> = ({ onWin, onBack, coins, onSpendCoins, level, useGameKeyboard = true }) => {
+const LadderGame: React.FC<LadderGameProps> = ({ onWin, onBack, coins, onSpendCoins, knownWordsCount, useGameKeyboard = true }) => {
     const [startWord, setStartWord] = useState('');
     const [targetWord, setTargetWord] = useState('');
     const [userSteps, setUserSteps] = useState<string[]>([]);
@@ -70,14 +70,10 @@ const LadderGame: React.FC<LadderGameProps> = ({ onWin, onBack, coins, onSpendCo
         setMessage(null);
         setActiveHint(null);
 
-        // Difficulty Scaling based on Level
-        let minLen = 3;
-        let maxLen = 4;
-        let maxDist = 4; // Start easy
-
-        if (level > 3) { minLen = 4; maxLen = 5; maxDist = 5; }
-        if (level > 7) { minLen = 5; maxLen = 5; maxDist = 6; }
-        if (level > 12) { minLen = 5; maxLen = 6; maxDist = 8; }
+        // Fixed difficulty settings (level scaling removed)
+        const minLen = 4;
+        const maxLen = 5;
+        const maxDist = 5;
 
         const pool = dictionary.filter(w => w.length >= minLen && w.length <= maxLen);
 
@@ -243,7 +239,7 @@ const LadderGame: React.FC<LadderGameProps> = ({ onWin, onBack, coins, onSpendCo
         }
     };
 
-    const handleRiddleHint = async () => {
+    const handleRiddleHint = () => {
         if (hintLoading) return;
 
         if (!onSpendCoins(50)) {
@@ -270,7 +266,11 @@ const LadderGame: React.FC<LadderGameProps> = ({ onWin, onBack, coins, onSpendCo
                 nextWord = targetWord;
             }
 
-            const fact = await getFunFactFromGemini(nextWord);
+            const facts = WORD_FACTS[nextWord.toLocaleLowerCase('tr-TR')];
+            let fact = "Bu kelime hakkında ipucu bulunmamaktadır.";
+            if (facts && facts.length > 0) {
+                fact = facts[Math.floor(Math.random() * facts.length)];
+            }
             const prefix = (nextWord === targetWord) ? "Hedef Kelime İpucu:" : "Sıradaki Adım İpucu:";
             setActiveHint(`${prefix}\n\n${fact}`);
 
@@ -299,7 +299,7 @@ const LadderGame: React.FC<LadderGameProps> = ({ onWin, onBack, coins, onSpendCo
                     <div className="flex items-center justify-center gap-2 text-xs text-blue-100 opacity-90">
                         <span>{coins} 🪙</span>
                         <span>•</span>
-                        <span>Level {level}</span>
+                        <span>{knownWordsCount} Kelime 📖</span>
                         <span>•</span>
                         <span>Hedef: {minSteps} Adım</span>
                     </div>

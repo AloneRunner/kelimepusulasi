@@ -20,13 +20,13 @@ export enum AppView {
 
 export type GameType = 'compass' | 'hangman' | 'word_hunt' | 'chain' | 'connect' | 'ladder' | 'kostebek' | 'wordle';
 
-export type CategoryId = 
-  | 'animals' | 'food' | 'objects' | 'countries' | 'professions' | 'sports' | 'cities' 
-  | 'kitchen' | 'clothes' | 'colors' | 'music' 
-  | 'vehicles' | 'technology' | 'nature' | 'emotions' 
+export type CategoryId =
+  | 'animals' | 'food' | 'objects' | 'countries' | 'professions' | 'sports' | 'cities'
+  | 'kitchen' | 'clothes' | 'colors' | 'music'
+  | 'vehicles' | 'technology' | 'nature' | 'emotions'
   | 'literature' | 'cinema' | 'mythology'
   | 'science6' | 'math_basic' | 'turkish_grammar' | 'chemistry' | 'body'
-  | 'space' | 'history' | 'world_capitals' | 'science' | 'geography' | 'arts';
+  | 'space' | 'history' | 'world_capitals' | 'science' | 'geography' | 'arts' | 'all';
 
 export type CategoryGroup = 'general' | 'education';
 
@@ -69,10 +69,10 @@ export interface Player {
   id: string;
   name: string;
   role: 'civilian' | 'imposter';
-  word: string; 
+  word: string;
   isEliminated: boolean;
   votesReceived: number;
-  isHuman: boolean; 
+  isHuman: boolean;
   personality?: string;
   avatarId?: number; // Random avatar index
   score: number; // Points earned in the game

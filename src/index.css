@@ -6,6 +6,8 @@ body {
   font-family: 'Inter', sans-serif; 
   -webkit-tap-highlight-color: transparent;
   overscroll-behavior: none;
+  /* Space for AdMob banner when visible (controlled via JS) */
+  padding-top: var(--banner-padding-top, 0px);
 }
 
 * {

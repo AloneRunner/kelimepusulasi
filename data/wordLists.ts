@@ -881,3 +881,31 @@ export const CATEGORIES: Category[] = [
   { id: 'math_basic', label: 'Matematik', icon: '📐', words: mathTerms, group: 'education' },
   { id: 'turkish_grammar', label: 'Türkçe Dilbilgisi', icon: '📚', words: turkishGrammar, group: 'education' },
 ];
+
+// --- HEPSİ KATEGORİSİ (Tüm kelimeler birleşik) ---
+const allWords = prepareList([
+  ...animals,
+  ...food,
+  ...generalObjects,
+  ...clothes,
+  ...colors,
+  ...sports,
+  ...professions,
+  ...technology,
+  ...geography,
+  ...arts,
+  ...mythology,
+  ...science,
+  ...history,
+  ...mathTerms,
+  ...turkishGrammar
+]);
+
+// "Hepsi" kategorisini ayrı export et (CATEGORIES'e dahil değil, özel kullanım için)
+export const ALL_WORDS_CATEGORY: Category = {
+  id: 'all',
+  label: 'Hepsi',
+  icon: '🌟',
+  words: allWords,
+  group: 'general'
+};
