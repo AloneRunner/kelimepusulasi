@@ -75,7 +75,7 @@ const MainHub: React.FC<MainHubProps> = ({
   return (
     <div className={`flex flex-col h-full ${styles.container} transition-colors duration-500`}>
       {/* Header - Kompakt */}
-      <header className={`px-4 py-2 flex justify-between items-center ${activeTheme === 'theme_dark' ? 'bg-slate-800' : 'bg-white'} shadow-sm z-10 sticky top-0 transition-colors duration-500`}>
+      <header className={`px-4 py-2 flex justify-between items-center ${activeTheme === 'theme_dark' ? 'bg-slate-800' : 'bg-white'} shadow-sm z-10 sticky transition-colors duration-500`} style={{ top: 'var(--banner-padding-top, 0)' }}>
         <div className="flex items-center gap-2">
           <span className="text-2xl">🎮</span>
           <div>

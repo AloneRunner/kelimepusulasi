@@ -29,9 +29,10 @@ const BOT_NAMES = ["Ahmet", "Ayşe", "Mehmet", "Fatma", "Can", "Zeynep", "Barı�
 interface KostebekAviGameProps {
   onBack: () => void;
   useGameKeyboard?: boolean;
+  bannerHeight?: number;
 }
 
-const KostebekAviGame: React.FC<KostebekAviGameProps> = ({ onBack, useGameKeyboard = true }) => {
+const KostebekAviGame: React.FC<KostebekAviGameProps> = ({ onBack, useGameKeyboard = true, bannerHeight = 0 }) => {
   // --- State ---
   const [phase, setPhase] = useState<GamePhase>(GamePhase.SETUP);
   const [players, setPlayers] = useState<Player[]>([]);
@@ -188,8 +189,8 @@ const KostebekAviGame: React.FC<KostebekAviGameProps> = ({ onBack, useGameKeyboa
 
   const addClue = (player: Player, text: string) => {
     // Duplicate ipuçlarını filtrele
-    const isDuplicate = clues.some(c => 
-      c.playerId === player.id && 
+    const isDuplicate = clues.some(c =>
+      c.playerId === player.id &&
       c.text.toLowerCase().trim() === text.toLowerCase().trim()
     );
 
@@ -520,7 +521,9 @@ const KostebekAviGame: React.FC<KostebekAviGameProps> = ({ onBack, useGameKeyboa
   const renderGameplay = () => {
     const currentPlayer = players[currentTurnIndex];
     return (
-      <div className="fixed inset-0 flex flex-col bg-slate-900" style={{ height: '100dvh' }}>
+      <div
+        className="absolute inset-0 flex flex-col bg-slate-900"
+      >
         {/* Fixed Header */}
         <div className="flex-shrink-0 bg-slate-900/50 p-3 border-b border-slate-800">
           <div className="flex justify-between items-center">

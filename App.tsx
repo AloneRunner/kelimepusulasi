@@ -1,4 +1,5 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
+import { App as CapacitorApp } from '@capacitor/app';
 import { GameStatus, AppView, Category, CategoryGroup, GameType } from './types';
 import { CATEGORIES, ALL_WORDS_CATEGORY } from './data/wordLists';
 import GameScreen from './components/GameScreen';
@@ -93,6 +94,7 @@ const App: React.FC = () => {
 
   // Initialize AdMob on app mount and show a test banner in non-production
   const [bannerVisible, setBannerVisible] = useState(false);
+  const [bannerHeight, setBannerHeight] = useState(0);
 
   useEffect(() => {
     (async () => {
@@ -102,11 +104,28 @@ const App: React.FC = () => {
         const isProduction = import.meta.env.MODE === 'production';
         const ok = await AdMobService.showBanner({
           production: isProduction,
-          position: 'TOP_CENTER',
-          margin: 56,
-          isTesting: !isProduction
+          position: 'TOP',
+          margin: 0,
+          isTesting: !isProduction,
+          onHeightChange: (height) => {
+            console.log('Banner height received:', height);
+            setBannerHeight(height);
+            setBannerVisible(true);
+          }
         });
-        setBannerVisible(!!ok);
+        // If showBanner succeeded, set a default height immediately
+        // The callback will update with actual height if/when it fires
+        if (ok) {
+          setBannerVisible(true);
+          // Set default height if not already set by callback
+          // Adaptive banner is typically 50-90px, use 60 as safe default
+          setTimeout(() => {
+            setBannerHeight(prev => prev === 0 ? 60 : prev);
+          }, 500);
+        } else {
+          setBannerVisible(false);
+          setBannerHeight(0);
+        }
       } catch (e) {
         console.warn('AdMob setup error', e);
       }
@@ -121,15 +140,15 @@ const App: React.FC = () => {
   // Manage page top padding when banner is visible so it won't cover menus
   useEffect(() => {
     try {
-      if (bannerVisible) {
-        document.documentElement.style.setProperty('--banner-padding-top', '56px');
+      if (bannerVisible && bannerHeight > 0) {
+        document.documentElement.style.setProperty('--banner-padding-top', `${bannerHeight}px`);
       } else {
         document.documentElement.style.setProperty('--banner-padding-top', '0px');
       }
     } catch (e) {
       // ignore
     }
-  }, [bannerVisible]);
+  }, [bannerVisible, bannerHeight]);
 
   // Privacy consent one-time check
   useEffect(() => {
@@ -167,31 +186,38 @@ const App: React.FC = () => {
     localStorage.setItem('kelime_use_game_keyboard', useGameKeyboard.toString());
   }, [useGameKeyboard]);
 
-  // Android hardware back button support (fallback)
+  // Android hardware back button support (using Capacitor App plugin)
   useEffect(() => {
-    const handleBackButton = (e: PopStateEvent) => {
-      e.preventDefault();
+    const backButtonListener = CapacitorApp.addListener('backButton', ({ canGoBack }) => {
       // Handle back button based on current view
-      if (showPrivacy || showHowToPlay || showShop || showDailyReward) {
-        // Close modals first
-        setShowPrivacy(false);
+      if (showSettings) {
+        setShowSettings(false);
+      } else if (showPrivacy) {
+        // Don't allow closing privacy modal with back button (must accept)
+        return;
+      } else if (showHowToPlay) {
         setShowHowToPlay(false);
+      } else if (showShop) {
         setShowShop(false);
-        setShowDailyReward(false);
+      } else if (showDailyReward) {
+        // Don't allow closing daily reward with back button
+        return;
       } else if (view === AppView.CATEGORY_SELECTION) {
         // Go back to hub
         navigateToHub();
       } else if (view !== AppView.HUB) {
-        // Go back from game screens
+        // Go back from game screens to categories
         navigateBackToCategories();
+      } else {
+        // On main hub, exit app
+        CapacitorApp.exitApp();
       }
-    };
+    });
 
-    window.addEventListener('popstate', handleBackButton);
     return () => {
-      window.removeEventListener('popstate', handleBackButton);
+      backButtonListener.then(listener => listener.remove());
     };
-  }, [view, showPrivacy, showHowToPlay, showShop, showDailyReward]);
+  }, [view, showPrivacy, showHowToPlay, showShop, showDailyReward, showSettings]);
 
   const WIN_REWARD = 20;
 
@@ -464,7 +490,7 @@ const App: React.FC = () => {
   }
 
   return (
-    <div className={`h-full w-full ${getThemeClass()} transition-colors duration-500`}>
+    <div className={`h-full w-full ${getThemeClass()} transition-colors duration-500`} style={{ paddingTop: bannerHeight }}>
       {/* Privacy Modal (one-time) */}
       {showPrivacy && (
         <PrivacyModal onAccept={handleAcceptPrivacy} />
@@ -526,6 +552,7 @@ const App: React.FC = () => {
             onSpendCoins={handleSpendCoins}
             knownWordsCount={knownWords.size}
             useGameKeyboard={useGameKeyboard}
+            bannerHeight={bannerHeight}
           />
         </div>
       )}
@@ -622,6 +649,7 @@ const App: React.FC = () => {
           <KostebekAviGame
             onBack={navigateBackToCategories}
             useGameKeyboard={useGameKeyboard}
+            bannerHeight={bannerHeight}
           />
         </div>
       )}

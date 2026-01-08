@@ -14,9 +14,10 @@ interface GameScreenProps {
   onSpendCoins: (amount: number) => boolean;
   knownWordsCount: number;
   useGameKeyboard?: boolean;
+  bannerHeight?: number;
 }
 
-const GameScreen: React.FC<GameScreenProps> = ({ category, secretWord, onWin, onBack, coins, onSpendCoins, knownWordsCount, useGameKeyboard = true }) => {
+const GameScreen: React.FC<GameScreenProps> = ({ category, secretWord, onWin, onBack, coins, onSpendCoins, knownWordsCount, useGameKeyboard = true, bannerHeight = 0 }) => {
   const [guesses, setGuesses] = useState<GuessResult[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [filteredSuggestions, setFilteredSuggestions] = useState<string[]>([]);
@@ -213,7 +214,9 @@ const GameScreen: React.FC<GameScreenProps> = ({ category, secretWord, onWin, on
   };
 
   return (
-    <div className="flex flex-col h-screen w-screen max-w-md mx-auto fixed inset-0 bg-white shadow-xl overflow-hidden">
+    <div
+      className="flex flex-col w-full h-full max-w-md mx-auto absolute inset-0 bg-white shadow-xl overflow-hidden"
+    >
       {/* Header */}
       <header className="flex items-center justify-between p-4 bg-indigo-600 text-white shadow-md z-20 flex-shrink-0">
         <button onClick={onBack} className="p-1 hover:bg-indigo-700 rounded transition">

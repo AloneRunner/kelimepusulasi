@@ -1,11 +1,12 @@
-import { AdMob } from '@capacitor-community/admob';
+import { AdMob, BannerAdPosition, BannerAdSize } from '@capacitor-community/admob';
 
 // Google test banner ad unit (use during development only)
 const TEST_BANNER_ID = 'ca-app-pub-3940256099942544/6300978111';
 // Your production banner ad unit (from AdMob)
 const PROD_BANNER_ID = 'ca-app-pub-1337451525993562/2262231986';
 
-let listeners: Array<{remove: () => void}> = [];
+let listeners: Array<{ remove: () => void }> = [];
+let bannerHeightCallback: ((height: number) => void) | null = null;
 
 export async function initAdMob(): Promise<void> {
   try {
@@ -41,24 +42,47 @@ export async function initAdMob(): Promise<void> {
       console.debug('AdMob: onBannerClicked listener not available');
     }
 
+    // Listen for banner size changes to get actual height
+    try {
+      const bannerSizeHandle = await (AdMob.addListener as any)('bannerAdSizeChanged', (info: { width: number, height: number }) => {
+        console.info('AdMob event: banner size changed', info);
+        if (bannerHeightCallback && info.height > 0) {
+          bannerHeightCallback(info.height);
+        }
+      });
+      if (bannerSizeHandle && typeof bannerSizeHandle.remove === 'function') {
+        listeners.push(bannerSizeHandle);
+      }
+    } catch (e) {
+      console.debug('AdMob: bannerAdSizeChanged listener not available');
+    }
+
   } catch (e) {
     console.warn('AdMob initialize failed', e);
   }
 }
 
-export async function showBanner(options?: { production?: boolean; position?: string; margin?: number; isTesting?: boolean; }): Promise<boolean> {
-  const { production = false, position = 'TOP_CENTER', margin = 56, isTesting = !production } = options || {};
+export async function showBanner(options?: { production?: boolean; position?: 'TOP' | 'BOTTOM'; margin?: number; isTesting?: boolean; onHeightChange?: (height: number) => void; }): Promise<boolean> {
+  const { production = false, position = 'BOTTOM', margin = 0, isTesting = !production, onHeightChange } = options || {};
+
+  // Store callback for height updates
+  if (onHeightChange) {
+    bannerHeightCallback = onHeightChange;
+  }
   const adId = production ? PROD_BANNER_ID : TEST_BANNER_ID;
+
+  // Use enum for position
+  const bannerPosition = position === 'TOP' ? BannerAdPosition.TOP_CENTER : BannerAdPosition.BOTTOM_CENTER;
 
   try {
     await AdMob.showBanner({
       adId,
-      adSize: 'BANNER',
-      position,
+      adSize: BannerAdSize.ADAPTIVE_BANNER,
+      position: bannerPosition,
       margin,
       isTesting
-    } as any);
-    console.info('AdMob: showBanner called', { adId, position, margin, isTesting });
+    });
+    console.info('AdMob: showBanner called', { adId, position: bannerPosition, margin, isTesting });
     return true;
   } catch (e) {
     console.warn('AdMob showBanner failed', e);
@@ -77,6 +101,6 @@ export async function hideBanner(): Promise<boolean> {
 }
 
 export function removeAllListeners() {
-  listeners.forEach(l => { try { l.remove(); } catch (e) {} });
+  listeners.forEach(l => { try { l.remove(); } catch (e) { } });
   listeners = [];
 }
